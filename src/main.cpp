@@ -2,6 +2,7 @@
 #include <Arduino_FreeRTOS.h>
 
 #include <blink.h>
+#include <mp3.h>
 
 // define two tasks for Blink & AnalogRead
 void TaskDemo( void *pvParameters );
@@ -134,6 +135,7 @@ void TaskActions(void *pvParameters)  // This is a task.
     case ORAGE:
       suspendDemo();
       digitalWrite(4, HIGH);
+      mp3("orage");
       for (size_t i = 0; i < 10; i++)
       {
         blink(7, 200);
