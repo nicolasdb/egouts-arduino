@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>
 
+#include <fade.h>
 #include <blink.h>
 #include <mp3.h>
 
@@ -19,7 +20,7 @@ enum {
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-
+  // define all buttons
   int startPin = 3;
   for (size_t i = 0; i < 3; i++)
   {
@@ -27,11 +28,12 @@ void setup() {
     delay(10);
   }
 
+  // pin for action test
   pinMode(7, OUTPUT);
-
+  // reading buttons
   pinMode(A0, INPUT);
-  
-  
+
+
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
 
@@ -85,9 +87,8 @@ void TaskDemo(void *pvParameters)  // This is a task.
 
   for (;;) {
     // Si on est en IDLE on joue la démo
-    blink(3);
-    blink(4);
-    blink(5);
+    fade(500);
+    vTaskDelay(5);
   }
 }
 
@@ -156,7 +157,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       etats = IDLE;
       digitalWrite(5, LOW);
       break;
-    
+
     default:
       etats = IDLE;
       vTaskResume(xDemoHandle);
