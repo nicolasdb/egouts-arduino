@@ -1,22 +1,36 @@
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>
+#include <SoftwareSerial.h>
+#include <DFRobotDFPlayerMini.h>
 
 #include <fade.h>
 #include <blink.h>
 #include <mp3.h>
 
-// define two tasks for Blink & AnalogRead
+// define tasks for Demo, AnalogRead buttons, set Actions, MP3 lauch
 void TaskDemo( void *pvParameters );
 TaskHandle_t xDemoHandle = NULL;
 void TaskButtons( void *pvParameters );
 void TaskActions( void *pvParameters );
+void TaskMP3storm( void *pvParameters );
 
+// define différent scénario = les actions déclenchées par les boutons lorsque pressé.
 enum {
   IDLE,
   PLUIE,
   ORAGE,
   TOILETTE
 } etats;
+
+// mp3 variable
+int StripPin = 9;    // LED strip (via MOSFET) connected to pin 9
+int rxPin = 10;    // DFplayer RX to Arduino pin 10
+int txPin = 11;    // DFplayer TX toArduinopin 11
+int busyPin = 12;  // DFplayer BUSY connected to pin 12
+
+SoftwareSerial mySoftwareSerial(rxPin, txPin);
+DFRobotDFPlayerMini stormPlayer;
+
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -88,7 +102,6 @@ void TaskDemo(void *pvParameters)  // This is a task.
   for (;;) {
     // Si on est en IDLE on joue la démo
     fade(500);
-    vTaskDelay(5);
   }
 }
 
@@ -149,7 +162,7 @@ void TaskActions(void *pvParameters)  // This is a task.
     case TOILETTE:
       suspendDemo();
       digitalWrite(5, HIGH);
-      for (size_t i = 0; i < 10; i++)
+      for (size_t i = 0; i < 5; i++)
       {
         blink(7, 800);
       }
