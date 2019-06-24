@@ -22,14 +22,7 @@ enum {
   TOILETTE
 } etats;
 
-// mp3 variable
-int StripPin = 9;    // LED strip (via MOSFET) connected to pin 9
-int rxPin = 10;    // DFplayer RX to Arduino pin 10
-int txPin = 11;    // DFplayer TX toArduinopin 11
-int busyPin = 12;  // DFplayer BUSY connected to pin 12
 
-SoftwareSerial mySoftwareSerial(rxPin, txPin);
-DFRobotDFPlayerMini stormPlayer;
 
 
 // the setup function runs once when you press reset or power the board
@@ -49,7 +42,10 @@ void setup() {
 
 
   // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
+  // Serial.begin(9600);
+
+// initialize mp3setup
+  mp3setup();
 
   // Now set up two tasks to run independently.
   xTaskCreate(
@@ -113,7 +109,7 @@ void TaskButtons(void *pvParameters)
 
     if (etats == IDLE) {
       int buttonValue = analogRead(A0);
-
+      Serial.println("Waiting entry");
       if (buttonValue > 300 && buttonValue < 500) {
         Serial.println("Button 1");
         etats = PLUIE;
@@ -149,7 +145,7 @@ void TaskActions(void *pvParameters)  // This is a task.
     case ORAGE:
       suspendDemo();
       digitalWrite(4, HIGH);
-      mp3("orage");
+      mp3(2);
       for (size_t i = 0; i < 10; i++)
       {
         blink(7, 200);

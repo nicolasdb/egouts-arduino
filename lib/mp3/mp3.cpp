@@ -3,9 +3,16 @@
 #include <SoftwareSerial.h>
 #include <DFRobotDFPlayerMini.h>
 
+// mp3 variable
+int StripPin = 9;    // LED strip (via MOSFET) connected to pin 9
+int rxPin = 10;    // DFplayer RX to Arduino pin 10
+int txPin = 11;    // DFplayer TX toArduinopin 11
+int busyPin = 12;  // DFplayer BUSY connected to pin 12
 
+SoftwareSerial mySoftwareSerial(rxPin, txPin);
+DFRobotDFPlayerMini stormPlayer;
 
-void mp3setup (int StripPin) {
+void mp3setup () {
    pinMode(StripPin, OUTPUT);
    pinMode(busyPin, INPUT);
 
@@ -20,20 +27,20 @@ void mp3setup (int StripPin) {
 
    Serial.println(F("stormPlayer Mini online."));
 
-   myDFPlayer.setTimeOut(500);                   // Set serial communictaion time out 500ms
-   myDFPlayer.volume(25);                        // Set volume value (0~30).
-   myDFPlayer.EQ(DFPLAYER_EQ_NORMAL);              // Set EQ to BASS (normal/pop/rock/jazz/classic/bass)
-   myDFPlayer.outputDevice(DFPLAYER_DEVICE_SD);  // Set device we use SD as default
-   myDFPlayer.enableDAC();                       // Enable On-chip DAC
+   stormPlayer.setTimeOut(500);                   // Set serial communictaion time out 500ms
+   stormPlayer.volume(25);                        // Set volume value (0~30).
+   stormPlayer.EQ(DFPLAYER_EQ_NORMAL);              // Set EQ to BASS (normal/pop/rock/jazz/classic/bass)
+   stormPlayer.outputDevice(DFPLAYER_DEVICE_SD);  // Set device we use SD as default
+   stormPlayer.enableDAC();                       // Enable On-chip DAC
 
 }
 
 
 void mp3 (int stormCount) {
-    Serial.print("Son : ");
-    Serial.println(filename);
-
-    int flashCount = random (3, 15);        // Min. and max. number of flashes each loop
+    Serial.print("Boucles : ");
+    Serial.println(stormCount);
+for (size_t i=1 ; i<= stormCount ; i++){
+    int flashCount = random (5, 15);        // Min. and max. number of flashes each loop
       int flashBrightnessMin =  10;           // LED flash min. brightness (0-255)
       int flashBrightnessMax =  255;          // LED flash max. brightness (0-255)
 
@@ -45,7 +52,7 @@ void mp3 (int stormCount) {
 
       int thunderDelay = random (300, 1000);  // Min. and max. delay between flashing and playing sound
       int thunderFile = random (1, 17);       // There are 17 soundfiles: 0001.mp3 ... 0017.mp3
-      int loopDelay = random (1000, 3000);   // Min. and max. delay between each loop
+      int loopDelay = random (50, 200);   // Min. and max. delay between each loop
 
       Serial.println();
       Serial.print(F("Flashing, count: "));
@@ -76,4 +83,5 @@ void mp3 (int stormCount) {
       Serial.println(loopDelay);
       delay(loopDelay);
 
+  }
 }
