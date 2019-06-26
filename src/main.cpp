@@ -20,15 +20,12 @@ void TaskMP3storm( void *pvParameters );
 // define différent scénario = les actions déclenchées par les boutons lorsque pressé.
 enum {
   IDLE,
-  PLUIE,
-  ORAGE,
   S1,
   S2,
   S3,
   S4,
   S5,
-  S6,
-  S7
+  S6,S7,S8,S9
 } etats;
 int buttonID = 0;
 
@@ -147,39 +144,39 @@ void TaskButtons(void *pvParameters)
       if (buttonValue > 1000) {
         Serial.println("Button 1");
         buttonID = 1;
-        etats = PLUIE;
+        etats = S1;
       } else if (buttonValue > 900 && buttonValue < 990) {
         Serial.println("Button 2");
         buttonID = 2;
-        etats = ORAGE;
+        etats = S2;
       } else if (buttonValue > 780 && buttonValue < 890) {
         Serial.println("Button 3");
         buttonID = 3;
-        etats = S1;
+        etats = S3;
       } else if (buttonValue > 670 && buttonValue < 770) {
         Serial.println("Button 4");
         buttonID = 4;
-        etats = S2;
+        etats = S4;
       } else if (buttonValue > 550 && buttonValue < 650) {
         Serial.println("Button 5");
         buttonID = 5;
-        etats = S3;
+        etats = S5;
       } else if (buttonValue > 440 && buttonValue < 540) {
         Serial.println("Button 6");
         buttonID = 6;
-        etats = S4;
+        etats = S6;
       } else if (buttonValue > 330 && buttonValue < 430) {
         Serial.println("Button 7");
         buttonID = 7;
-        etats = S5;
+        etats = S7;
       } else if (buttonValue > 210 && buttonValue < 320) {
         Serial.println("Button 8");
         buttonID = 8;
-        etats = S6;
+        etats = S8;
       } else if (buttonValue > 100 && buttonValue < 200) {
         Serial.println("Button 9");
         buttonID = 9;
-        etats = S7;
+        etats = S9;
     }
     }
     vTaskDelay(10);
@@ -191,32 +188,38 @@ void TaskActions(void *pvParameters)  // This is a task.
   for(;;) {
     switch (etats)
     {
-    case PLUIE:
-      suspendDemo();
-      mcp0.digitalWrite(buttonID, HIGH);
-      for (size_t i = 0; i < 10; i++)
-      {
-        blink(7, 100);
-      }
-      vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
-      etats = IDLE;
-      mcp0.digitalWrite(buttonID, LOW);
-      break;
-
-    case ORAGE:
-      suspendDemo();
-      mcp0.digitalWrite(buttonID, HIGH);
-      mp3(1);
-      for (size_t i = 0; i < 10; i++)
-      {
-        blink(7, 100);
-      }
-      vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
-      etats = IDLE;
-      mcp0.digitalWrite(buttonID, LOW);
-      break;
-
     case S1:
+      suspendDemo();
+      mcp0.digitalWrite(buttonID, HIGH);
+      blink(7, 200);
+      vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+      mp3(1);
+      Serial.println("Pluie");
+        vTaskDelay( 1000 / portTICK_PERIOD_MS );
+      Serial.println("Champs");
+      Serial.println("et Jardin");
+        vTaskDelay( 1000 / portTICK_PERIOD_MS );
+      Serial.println("Nappe Phréatique");
+        vTaskDelay( 1000 / portTICK_PERIOD_MS );
+      etats = IDLE;
+      mcp0.digitalWrite(buttonID, LOW);
+      break;
+
+    case S2:
+      suspendDemo();
+      mcp0.digitalWrite(buttonID, HIGH);
+      Serial.println("Pluie");
+        vTaskDelay( 1000 / portTICK_PERIOD_MS );
+      for (size_t i = 0; i < 10; i++)
+      {
+        blink(7, 100);
+      }
+      vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+      etats = IDLE;
+      mcp0.digitalWrite(buttonID, LOW);
+      break;
+
+    case S3:
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
       for (size_t i = 0; i < 3; i++)
@@ -228,7 +231,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       mcp0.digitalWrite(buttonID, LOW);
       break;
 
-    case S2:
+    case S4:
         suspendDemo();
         mcp0.digitalWrite(buttonID, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
@@ -236,20 +239,6 @@ void TaskActions(void *pvParameters)  // This is a task.
         mcp0.digitalWrite(buttonID, LOW);
         break;
 
-    case S3:
-            suspendDemo();
-            mcp0.digitalWrite(buttonID, HIGH);
-            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
-            etats = IDLE;
-            mcp0.digitalWrite(buttonID, LOW);
-            break;
-    case S4:
-            suspendDemo();
-            mcp0.digitalWrite(buttonID, HIGH);
-            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
-            etats = IDLE;
-            mcp0.digitalWrite(buttonID, LOW);
-            break;
     case S5:
             suspendDemo();
             mcp0.digitalWrite(buttonID, HIGH);
@@ -265,6 +254,20 @@ void TaskActions(void *pvParameters)  // This is a task.
             mcp0.digitalWrite(buttonID, LOW);
             break;
     case S7:
+            suspendDemo();
+            mcp0.digitalWrite(buttonID, HIGH);
+            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+            etats = IDLE;
+            mcp0.digitalWrite(buttonID, LOW);
+            break;
+    case S8:
+            suspendDemo();
+            mcp0.digitalWrite(buttonID, HIGH);
+            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+            etats = IDLE;
+            mcp0.digitalWrite(buttonID, LOW);
+            break;
+    case S9:
             suspendDemo();
             mcp0.digitalWrite(buttonID, HIGH);
             vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
