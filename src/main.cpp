@@ -52,6 +52,7 @@ void setup() {
   // pin for action test
   pinMode(7, OUTPUT);
   // reading buttons
+
   pinMode(A1, INPUT);
 
 
@@ -140,40 +141,41 @@ void TaskButtons(void *pvParameters)
 
     if (etats == IDLE) {
       int buttonValue = analogRead(A1);
-      Serial.println("Waiting entry");
-      if (buttonValue > 1000) {
+      Serial.print("Waiting entry");
+      Serial.println(buttonValue);
+      if (buttonValue > 980) {
         Serial.println("Button 1");
         buttonID = 1;
         etats = S1;
-      } else if (buttonValue > 900 && buttonValue < 990) {
+      } else if (buttonValue > 880 && buttonValue < 979) {
         Serial.println("Button 2");
         buttonID = 2;
         etats = S2;
-      } else if (buttonValue > 780 && buttonValue < 890) {
+      } else if (buttonValue > 750 && buttonValue < 879) {
         Serial.println("Button 3");
         buttonID = 3;
         etats = S3;
-      } else if (buttonValue > 670 && buttonValue < 770) {
+      } else if (buttonValue > 650 && buttonValue < 749) {
         Serial.println("Button 4");
         buttonID = 4;
         etats = S4;
-      } else if (buttonValue > 550 && buttonValue < 650) {
+      } else if (buttonValue > 510 && buttonValue < 649) {
         Serial.println("Button 5");
         buttonID = 5;
         etats = S5;
-      } else if (buttonValue > 440 && buttonValue < 540) {
+      } else if (buttonValue > 420 && buttonValue < 509) {
         Serial.println("Button 6");
         buttonID = 6;
         etats = S6;
-      } else if (buttonValue > 330 && buttonValue < 430) {
+      } else if (buttonValue > 300 && buttonValue < 419) {
         Serial.println("Button 7");
         buttonID = 7;
         etats = S7;
-      } else if (buttonValue > 210 && buttonValue < 320) {
+      } else if (buttonValue > 200 && buttonValue < 299) {
         Serial.println("Button 8");
         buttonID = 8;
         etats = S8;
-      } else if (buttonValue > 100 && buttonValue < 200) {
+      } else if (buttonValue > 110 && buttonValue < 199) {
         Serial.println("Button 9");
         buttonID = 9;
         etats = S9;
@@ -195,7 +197,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
       mp3(1);
       Serial.println("Pluie");
-        vTaskDelay( 1000 / portTICK_PERIOD_MS );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS)*2 );
       Serial.println("Champs");
       Serial.println("et Jardin");
         vTaskDelay( 1000 / portTICK_PERIOD_MS );
