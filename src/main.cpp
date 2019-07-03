@@ -1,39 +1,63 @@
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>
+#include <SoftwareSerial.h>
+#include <DFRobotDFPlayerMini.h>
+#include <Wire.h>
+#include <Adafruit_MCP23017.h>
 
+
+// #include <fade.h>
 #include <blink.h>
 #include <mp3.h>
 
-// define two tasks for Blink & AnalogRead
+// define tasks for Demo, AnalogRead buttons, set Actions, MP3 lauch
 void TaskDemo( void *pvParameters );
 TaskHandle_t xDemoHandle = NULL;
 void TaskButtons( void *pvParameters );
 void TaskActions( void *pvParameters );
+void TaskMP3storm( void *pvParameters );
 
+// define différent scénario = les actions déclenchées par les boutons lorsque pressé.
 enum {
   IDLE,
-  PLUIE,
-  ORAGE,
-  TOILETTE
+  S1,
+  S2,
+  S3,
+  S4,
+  S5,
+  S6,S7,S8,S9
 } etats;
+int buttonID = 0;
+
+// define MCP0
+Adafruit_MCP23017 mcp0;
+int count = 0;  // compteur pour scanner led k2000
+int speed = 1;  // delay pour scanner led k2000
+int ledButtonArray[] = {1,2,3,4,5,6,7,8,9};
 
 // the setup function runs once when you press reset or power the board
 void setup() {
 
-  int startPin = 3;
-  for (size_t i = 0; i < 3; i++)
-  {
-    pinMode(i + startPin, OUTPUT);
+  // define all buttons
+  mcp0.begin(0);      // use default address 0
+  //  This could probably be an array
+  for (size_t i = 0; i < 9 ; i++){
+    mcp0.pinMode(ledButtonArray[i], OUTPUT);
     delay(10);
   }
 
-  pinMode(7, OUTPUT);
 
-  pinMode(A0, INPUT);
-  
-  
-  // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
+
+
+  // pin for action test
+  pinMode(7, OUTPUT);
+  // reading buttons
+  pinMode(A1, INPUT);
+
+
+  // fadeSetup();  // mcp0 setup
+// initialize mp3setup
+  mp3setup();
 
   // Now set up two tasks to run independently.
   xTaskCreate(
@@ -70,10 +94,13 @@ void loop()
 
 void suspendDemo () {
   vTaskSuspend(xDemoHandle);
-  digitalWrite(3, LOW);
-  digitalWrite(4, LOW);
-  digitalWrite(5, LOW);
+  for (size_t i = 0 ; i < 9 ; i++){
+    mcp0.digitalWrite(ledButtonArray[i], LOW);
+    delay(10);
+    }
 }
+
+
 
 /*--------------------------------------------------*/
 /*---------------------- Tasks ---------------------*/
@@ -83,11 +110,25 @@ void TaskDemo(void *pvParameters)  // This is a task.
 {
   (void) pvParameters;
 
-  for (;;) {
-    // Si on est en IDLE on joue la démo
-    blink(3);
-    blink(4);
-    blink(5);
+  for (;;) {    // Si on est en IDLE on joue la démo
+    for (count = 0 ; count < 9 ; count++){
+      mcp0.digitalWrite(ledButtonArray[count], HIGH);
+      vTaskDelay(speed);
+      mcp0.digitalWrite(ledButtonArray[count+1], HIGH);
+      vTaskDelay(speed);
+      mcp0.digitalWrite(ledButtonArray[count], LOW);
+      vTaskDelay(speed*2);
+    }
+    // vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
+    for (count = 9 ; count > 0 ; count--){
+      mcp0.digitalWrite(ledButtonArray[count], HIGH);
+      vTaskDelay(speed);
+      mcp0.digitalWrite(ledButtonArray[count-1], HIGH);
+      vTaskDelay(speed);
+      mcp0.digitalWrite(ledButtonArray[count], LOW);
+      vTaskDelay(speed*2);
+    }
+    // vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
   }
 }
 
@@ -98,20 +139,47 @@ void TaskButtons(void *pvParameters)
   for (;;) {
 
     if (etats == IDLE) {
-      int buttonValue = analogRead(A0);
-
-      if (buttonValue > 300 && buttonValue < 500) {
+      int buttonValue = analogRead(A1);
+      Serial.println("Waiting entry");
+      if (buttonValue > 1000) {
         Serial.println("Button 1");
-        etats = PLUIE;
-      } else if (buttonValue > 501 && buttonValue < 900) {
+        buttonID = 1;
+        etats = S1;
+      } else if (buttonValue > 900 && buttonValue < 990) {
         Serial.println("Button 2");
-        etats = ORAGE;
-      } else if (buttonValue > 901) {
+        buttonID = 2;
+        etats = S2;
+      } else if (buttonValue > 780 && buttonValue < 890) {
         Serial.println("Button 3");
-        etats = TOILETTE;
-      }
+        buttonID = 3;
+        etats = S3;
+      } else if (buttonValue > 670 && buttonValue < 770) {
+        Serial.println("Button 4");
+        buttonID = 4;
+        etats = S4;
+      } else if (buttonValue > 550 && buttonValue < 650) {
+        Serial.println("Button 5");
+        buttonID = 5;
+        etats = S5;
+      } else if (buttonValue > 440 && buttonValue < 540) {
+        Serial.println("Button 6");
+        buttonID = 6;
+        etats = S6;
+      } else if (buttonValue > 330 && buttonValue < 430) {
+        Serial.println("Button 7");
+        buttonID = 7;
+        etats = S7;
+      } else if (buttonValue > 210 && buttonValue < 320) {
+        Serial.println("Button 8");
+        buttonID = 8;
+        etats = S8;
+      } else if (buttonValue > 100 && buttonValue < 200) {
+        Serial.println("Button 9");
+        buttonID = 9;
+        etats = S9;
     }
-    vTaskDelay(15);
+    }
+    vTaskDelay(10);
   }
 }
 
@@ -120,44 +188,98 @@ void TaskActions(void *pvParameters)  // This is a task.
   for(;;) {
     switch (etats)
     {
-    case PLUIE:
+    case S1:
       suspendDemo();
-      digitalWrite(3, HIGH);
-      for (size_t i = 0; i < 10; i++)
-      {
-        blink(7, 500);
-      }
+      mcp0.digitalWrite(buttonID, HIGH);
+      blink(7, 200);
       vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+      mp3(1);
+      Serial.println("Pluie");
+        vTaskDelay( 1000 / portTICK_PERIOD_MS );
+      Serial.println("Champs");
+      Serial.println("et Jardin");
+        vTaskDelay( 1000 / portTICK_PERIOD_MS );
+      Serial.println("Nappe Phréatique");
+        vTaskDelay( 1000 / portTICK_PERIOD_MS );
       etats = IDLE;
-      digitalWrite(3, LOW);
+      mcp0.digitalWrite(buttonID, LOW);
       break;
 
-    case ORAGE:
+    case S2:
       suspendDemo();
-      digitalWrite(4, HIGH);
-      mp3("orage");
+      mcp0.digitalWrite(buttonID, HIGH);
+      Serial.println("Pluie");
+        vTaskDelay( 1000 / portTICK_PERIOD_MS );
       for (size_t i = 0; i < 10; i++)
       {
-        blink(7, 200);
+        blink(7, 100);
       }
       vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
       etats = IDLE;
-      digitalWrite(4, LOW);
+      mcp0.digitalWrite(buttonID, LOW);
       break;
 
-    case TOILETTE:
+    case S3:
       suspendDemo();
-      digitalWrite(5, HIGH);
-      for (size_t i = 0; i < 10; i++)
+      mcp0.digitalWrite(buttonID, HIGH);
+      for (size_t i = 0; i < 3; i++)
       {
-        blink(7, 800);
+        blink(7, 250);
       }
       vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
       etats = IDLE;
-      digitalWrite(5, LOW);
+      mcp0.digitalWrite(buttonID, LOW);
       break;
-    
+
+    case S4:
+        suspendDemo();
+        mcp0.digitalWrite(buttonID, HIGH);
+        vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+        etats = IDLE;
+        mcp0.digitalWrite(buttonID, LOW);
+        break;
+
+    case S5:
+            suspendDemo();
+            mcp0.digitalWrite(buttonID, HIGH);
+            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+            etats = IDLE;
+            mcp0.digitalWrite(buttonID, LOW);
+            break;
+    case S6:
+            suspendDemo();
+            mcp0.digitalWrite(buttonID, HIGH);
+            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+            etats = IDLE;
+            mcp0.digitalWrite(buttonID, LOW);
+            break;
+    case S7:
+            suspendDemo();
+            mcp0.digitalWrite(buttonID, HIGH);
+            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+            etats = IDLE;
+            mcp0.digitalWrite(buttonID, LOW);
+            break;
+    case S8:
+            suspendDemo();
+            mcp0.digitalWrite(buttonID, HIGH);
+            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+            etats = IDLE;
+            mcp0.digitalWrite(buttonID, LOW);
+            break;
+    case S9:
+            suspendDemo();
+            mcp0.digitalWrite(buttonID, HIGH);
+            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+            etats = IDLE;
+            mcp0.digitalWrite(buttonID, LOW);
+            break;
+
+
+
+
     default:
+      buttonID = 0;
       etats = IDLE;
       vTaskResume(xDemoHandle);
       break;
