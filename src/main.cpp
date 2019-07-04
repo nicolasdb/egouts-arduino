@@ -7,67 +7,85 @@
 
 
 // #include <fade.h>
-#include <blink.h>
-#include <mp3.h>
+#include <blink.h>          // lib pour l'action de clignotement
+#include <mp3.h>            // controle du module mp3
 
-// define tasks for Demo, AnalogRead buttons, set Actions, MP3 lauch
-void TaskDemo( void *pvParameters );
-TaskHandle_t xDemoHandle = NULL;
-void TaskButtons( void *pvParameters );
-void TaskActions( void *pvParameters );
-void TaskMP3storm( void *pvParameters );
+// define tasks for Demo, AnalogRead buttons, set Actions, MP3 launch
+void TaskDemo( void *pvParameters );          // define demo
+TaskHandle_t xDemoHandle = NULL;              // nécessaire pour activer la pause et reprise de la tâche
+void TaskButtons( void *pvParameters );       // define Buttons, pour l'écoute de quel bouton est activé
+void TaskActions( void *pvParameters );       // define la tâche d'actions.
+// void TaskMP3storm( void *pvParameters );
 
 // define différent scénario = les actions déclenchées par les boutons lorsque pressé.
 enum {
   IDLE,
-  S1,
-  S2,
-  S3,
-  S4,
-  S5,
-  S6,S7,S8,S9
+  S1,S2,S3,S4,S5,S6,S7
 } etats;
 int buttonID = 0;
 
-// define MCP0
+// mapping valveArray
+int pChamp = 1;
+int pJardin = 2;
+
+// mapping ledMurray
+int nappe = 1;
+
+// define MCP0 - registre pour les leds Buttons et options
 Adafruit_MCP23017 mcp0;
+// define MCP1 - registre pour les electrovannes via relais
+Adafruit_MCP23017 mcp1;
+// define MCP0 - registre pour les leds d'ambiance maquette
+Adafruit_MCP23017 mcp2;
+
 int count = 0;  // compteur pour scanner led k2000
 int speed = 1;  // delay pour scanner led k2000
-int ledButtonArray[] = {1,2,3,4,5,6,7,8,9};
+int ledButtonArray[] = {1,2,3,4,5,6,7};
+int valveArray[] = {1,2,3,4,5,6,7,8,9,10};
+int ledMurray[] = {1,2,3,4,5,6,7,8,9,10};
 
+/*--------------------------------------------------*/
+/*---------------------- setup ---------------------*/
+/*--------------------------------------------------*/
 // the setup function runs once when you press reset or power the board
+
 void setup() {
+
+  // INPUT buttons
+  pinMode(A0, INPUT);
+  // pin for action test
+  pinMode(7, OUTPUT);
 
   // define all buttons
   mcp0.begin(0);      // use default address 0
-  //  This could probably be an array
-  for (size_t i = 0; i < 9 ; i++){
+  for (size_t i = 0; i < 7 ; i++){
     mcp0.pinMode(ledButtonArray[i], OUTPUT);
     delay(10);
   }
+  mcp1.begin(1);      // use default address 1
+  for (size_t i = 0; i < 10 ; i++){
+    mcp1.pinMode(valveArray[i], OUTPUT);
+    mcp1.digitalWrite(valveArray[i], HIGH);
+    delay(10);
+    mcp1.digitalWrite(valveArray[i], LOW);
+  }
+  mcp2.begin(2);      // use default address 2
+  for (size_t i = 0; i < 7 ; i++){
+    mcp2.pinMode(ledMurray[i], OUTPUT);
+    delay(10);
+  }
 
-
-
-
-  // pin for action test
-  pinMode(7, OUTPUT);
-  // reading buttons
-
-  pinMode(A1, INPUT);
-
-
-  // fadeSetup();  // mcp0 setup
-// initialize mp3setup
+  // initialize mp3setup
   mp3setup();
 
-  // Now set up two tasks to run independently.
+  // Now set up tasks to run independently and their priority.
   xTaskCreate(
-      TaskDemo
-      ,  (const portCHAR *)"Demo"   // A name just for humans
-      ,  128  // This stack size can be checked & adjusted by reading the Stack Highwater
-      ,  NULL
-      ,  1  // Priority, with 3 (configMAX_PRIORITIES - 1) being the highest, and 0 being the lowest.
-      ,  &xDemoHandle );
+    TaskDemo
+    ,  (const portCHAR *)"Demo"   // A name just for humans
+    ,  128  // This stack size can be checked & adjusted by reading the Stack Highwater
+    ,  NULL
+    ,  1  // Priority, with 3 (configMAX_PRIORITIES - 1) being the highest, and 0 being the lowest.
+    ,  &xDemoHandle );
 
   xTaskCreate(
     TaskButtons
@@ -85,17 +103,26 @@ void setup() {
     ,  2  // Priority, with 3 (configMAX_PRIORITIES - 1) being the highest, and 0 being the lowest.
     ,  NULL );
 
-  // Now the task scheduler, which takes over control of scheduling individual tasks, is automatically started.
+  // Now the task scheduler, whill takes over control of scheduling individual tasks, is automatically started.
 }
+
+/*--------------------------------------------------*/
+/*---------------------- loop ----------------------*/
+/*--------------------------------------------------*/
+// the loop function is not use here
 
 void loop()
 {
-  //
 }
 
+/*------------------------------------------------------*/
+/*---------------------- functions ---------------------*/
+/*------------------------------------------------------*/
+
+// this function will suspend Demo and turn off all led buttons
 void suspendDemo () {
   vTaskSuspend(xDemoHandle);
-  for (size_t i = 0 ; i < 9 ; i++){
+  for (size_t i = 0 ; i < 7 ; i++){
     mcp0.digitalWrite(ledButtonArray[i], LOW);
     delay(10);
     }
@@ -107,12 +134,12 @@ void suspendDemo () {
 /*---------------------- Tasks ---------------------*/
 /*--------------------------------------------------*/
 
+/*---------------------- demo ---------------------*/
 void TaskDemo(void *pvParameters)  // This is a task.
 {
   (void) pvParameters;
-
-  for (;;) {    // Si on est en IDLE on joue la démo
-    for (count = 0 ; count < 9 ; count++){
+  for (;;) {    // on joue la démo en loop : effet scanner k2000
+    for (count = 0 ; count < 7 ; count++){
       mcp0.digitalWrite(ledButtonArray[count], HIGH);
       vTaskDelay(speed);
       mcp0.digitalWrite(ledButtonArray[count+1], HIGH);
@@ -121,7 +148,7 @@ void TaskDemo(void *pvParameters)  // This is a task.
       vTaskDelay(speed*2);
     }
     // vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
-    for (count = 9 ; count > 0 ; count--){
+    for (count = 7 ; count > 0 ; count--){
       mcp0.digitalWrite(ledButtonArray[count], HIGH);
       vTaskDelay(speed);
       mcp0.digitalWrite(ledButtonArray[count-1], HIGH);
@@ -133,6 +160,8 @@ void TaskDemo(void *pvParameters)  // This is a task.
   }
 }
 
+
+/*---------------------- buttons ---------------------*/
 void TaskButtons(void *pvParameters)
 {
   (void) pvParameters;
@@ -140,7 +169,7 @@ void TaskButtons(void *pvParameters)
   for (;;) {
 
     if (etats == IDLE) {
-      int buttonValue = analogRead(A1);
+      int buttonValue = analogRead(A0);
       Serial.print("Waiting entry");
       Serial.println(buttonValue);
       if (buttonValue > 980) {
@@ -171,57 +200,69 @@ void TaskButtons(void *pvParameters)
         Serial.println("Button 7");
         buttonID = 7;
         etats = S7;
-      } else if (buttonValue > 200 && buttonValue < 299) {
-        Serial.println("Button 8");
-        buttonID = 8;
-        etats = S8;
-      } else if (buttonValue > 110 && buttonValue < 199) {
-        Serial.println("Button 9");
-        buttonID = 9;
-        etats = S9;
-    }
+      }
+    //   else if (buttonValue > 200 && buttonValue < 299) {
+    //     Serial.println("Button 8");
+    //     buttonID = 8;
+    //     etats = S8;
+    //   } else if (buttonValue > 110 && buttonValue < 199) {
+    //     Serial.println("Button 9");
+    //     buttonID = 9;
+    //     etats = S9;
+    // }
     }
     vTaskDelay(10);
   }
 }
 
+/*---------------------- actions ---------------------*/
 void TaskActions(void *pvParameters)  // This is a task.
 {
   for(;;) {
     switch (etats)
     {
-    case S1:
+    default:
+      buttonID = 0;
+      etats = IDLE;
+      vTaskResume(xDemoHandle);
+      break;
+
+    case S1:              /*---------------------- case ---------------------*/
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
-      blink(7, 200);
-      vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
-      mp3(1);
-      Serial.println("Pluie");
+
+        vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+      Serial.println("Pluie Champs");
+      Serial.println("Pluie Jardin");
+      mcp1.digitalWrite(pChamp, HIGH);
+      mcp1.digitalWrite(pJardin, HIGH);
+        vTaskDelay( (1000 / portTICK_PERIOD_MS)*3 );
+      mcp1.digitalWrite(pChamp, LOW);
+      mcp1.digitalWrite(pJardin, LOW);
         vTaskDelay( (1000 / portTICK_PERIOD_MS)*2 );
-      Serial.println("Champs");
-      Serial.println("et Jardin");
-        vTaskDelay( 1000 / portTICK_PERIOD_MS );
       Serial.println("Nappe Phréatique");
-        vTaskDelay( 1000 / portTICK_PERIOD_MS );
-      etats = IDLE;
+      mcp2.digitalWrite(nappe, HIGH);
+        vTaskDelay( (1000 / portTICK_PERIOD_MS)*3 );
+      mcp2.digitalWrite(nappe, LOW);
+        vTaskDelay( (1000 / portTICK_PERIOD_MS)*2 );
       mcp0.digitalWrite(buttonID, LOW);
+      etats = IDLE;
       break;
 
-    case S2:
+    case S2:              /*---------------------- case ---------------------*/
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
-      Serial.println("Pluie");
-        vTaskDelay( 1000 / portTICK_PERIOD_MS );
-      for (size_t i = 0; i < 10; i++)
-      {
-        blink(7, 100);
-      }
-      vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+      Serial.println("Pompage nappe Phréatique");
+      mcp2.digitalWrite(2, HIGH);
+        vTaskDelay( (1000 / portTICK_PERIOD_MS)*3 );
+      mcp2.digitalWrite(2, LOW);
+        vTaskDelay( (1000 / portTICK_PERIOD_MS)*2 );
+
       etats = IDLE;
       mcp0.digitalWrite(buttonID, LOW);
       break;
 
-    case S3:
+    case S3:              /*---------------------- case ---------------------*/
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
       for (size_t i = 0; i < 3; i++)
@@ -233,7 +274,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       mcp0.digitalWrite(buttonID, LOW);
       break;
 
-    case S4:
+    case S4:              /*---------------------- case ---------------------*/
         suspendDemo();
         mcp0.digitalWrite(buttonID, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
@@ -241,50 +282,43 @@ void TaskActions(void *pvParameters)  // This is a task.
         mcp0.digitalWrite(buttonID, LOW);
         break;
 
-    case S5:
+    case S5:              /*---------------------- case ---------------------*/
             suspendDemo();
             mcp0.digitalWrite(buttonID, HIGH);
             vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
             etats = IDLE;
             mcp0.digitalWrite(buttonID, LOW);
             break;
-    case S6:
+    case S6:              /*---------------------- case ---------------------*/
             suspendDemo();
             mcp0.digitalWrite(buttonID, HIGH);
             vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
             etats = IDLE;
             mcp0.digitalWrite(buttonID, LOW);
             break;
-    case S7:
+    case S7:              /*---------------------- case ---------------------*/
             suspendDemo();
             mcp0.digitalWrite(buttonID, HIGH);
             vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
             etats = IDLE;
             mcp0.digitalWrite(buttonID, LOW);
             break;
-    case S8:
-            suspendDemo();
-            mcp0.digitalWrite(buttonID, HIGH);
-            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
-            etats = IDLE;
-            mcp0.digitalWrite(buttonID, LOW);
-            break;
-    case S9:
-            suspendDemo();
-            mcp0.digitalWrite(buttonID, HIGH);
-            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
-            etats = IDLE;
-            mcp0.digitalWrite(buttonID, LOW);
-            break;
+    // case S8:
+    //         suspendDemo();
+    //         mcp0.digitalWrite(buttonID, HIGH);
+    //         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+    //         etats = IDLE;
+    //         mcp0.digitalWrite(buttonID, LOW);
+    //         break;
+    // case S9:
+    //         suspendDemo();
+    //         mcp0.digitalWrite(buttonID, HIGH);
+    //         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+    //         etats = IDLE;
+    //         mcp0.digitalWrite(buttonID, LOW);
+    //         break;
 
 
-
-
-    default:
-      buttonID = 0;
-      etats = IDLE;
-      vTaskResume(xDemoHandle);
-      break;
     }
     vTaskDelay(1);
   }
