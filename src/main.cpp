@@ -39,7 +39,7 @@ Adafruit_MCP23017 mcp1;
 Adafruit_MCP23017 mcp2;
 
 int count = 0;  // compteur pour scanner led k2000
-int speed = 1;  // delay pour scanner led k2000
+int speed = 10;  // delay pour scanner led k2000
 int ledButtonArray[] = {1,2,3,4,5,6,7};
 int valveArray[] = {1,2,3,4,5,6,7,8,9,10};
 int ledMurray[] = {1,2,3,4,5,6,7,8,9,10};
@@ -124,7 +124,7 @@ void suspendDemo () {
   vTaskSuspend(xDemoHandle);
   for (size_t i = 0 ; i < 7 ; i++){
     mcp0.digitalWrite(ledButtonArray[i], LOW);
-    delay(10);
+    vTaskDelay(1);
     }
 }
 
@@ -141,20 +141,20 @@ void TaskDemo(void *pvParameters)  // This is a task.
   for (;;) {    // on joue la démo en loop : effet scanner k2000
     for (count = 0 ; count < 7 ; count++){
       mcp0.digitalWrite(ledButtonArray[count], HIGH);
-      vTaskDelay(speed);
+      vTaskDelay(speed / portTICK_PERIOD_MS);
       mcp0.digitalWrite(ledButtonArray[count+1], HIGH);
-      vTaskDelay(speed);
+      vTaskDelay(speed / portTICK_PERIOD_MS);
       mcp0.digitalWrite(ledButtonArray[count], LOW);
-      vTaskDelay(speed*2);
+      vTaskDelay((speed*5) / portTICK_PERIOD_MS);
     }
     // vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
     for (count = 7 ; count > 0 ; count--){
       mcp0.digitalWrite(ledButtonArray[count], HIGH);
-      vTaskDelay(speed);
+      vTaskDelay(speed / portTICK_PERIOD_MS);
       mcp0.digitalWrite(ledButtonArray[count-1], HIGH);
-      vTaskDelay(speed);
+      vTaskDelay(speed / portTICK_PERIOD_MS);
       mcp0.digitalWrite(ledButtonArray[count], LOW);
-      vTaskDelay(speed*2);
+      vTaskDelay((speed*5) / portTICK_PERIOD_MS);
     }
     // vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
   }
@@ -172,31 +172,31 @@ void TaskButtons(void *pvParameters)
       int buttonValue = analogRead(A0);
       Serial.print("Waiting entry");
       Serial.println(buttonValue);
-      if (buttonValue > 980) {
+      if (buttonValue > 950) {
         Serial.println("Button 1");
         buttonID = 1;
         etats = S1;
-      } else if (buttonValue > 880 && buttonValue < 979) {
+      } else if (buttonValue > 800 && buttonValue < 949) {
         Serial.println("Button 2");
         buttonID = 2;
         etats = S2;
-      } else if (buttonValue > 750 && buttonValue < 879) {
+      } else if (buttonValue > 650 && buttonValue < 799) {
         Serial.println("Button 3");
         buttonID = 3;
         etats = S3;
-      } else if (buttonValue > 650 && buttonValue < 749) {
+      } else if (buttonValue > 520 && buttonValue < 649) {
         Serial.println("Button 4");
         buttonID = 4;
         etats = S4;
-      } else if (buttonValue > 510 && buttonValue < 649) {
+      } else if (buttonValue > 400 && buttonValue < 519) {
         Serial.println("Button 5");
         buttonID = 5;
         etats = S5;
-      } else if (buttonValue > 420 && buttonValue < 509) {
+      } else if (buttonValue > 250 && buttonValue < 399) {
         Serial.println("Button 6");
         buttonID = 6;
         etats = S6;
-      } else if (buttonValue > 300 && buttonValue < 419) {
+      } else if (buttonValue > 150 && buttonValue < 249) {
         Serial.println("Button 7");
         buttonID = 7;
         etats = S7;
@@ -211,7 +211,7 @@ void TaskButtons(void *pvParameters)
     //     etats = S9;
     // }
     }
-    vTaskDelay(10);
+    vTaskDelay(1);
   }
 }
 
