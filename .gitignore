@@ -6,3 +6,4 @@
 .vscode/launch.json
 .gcc-flags.json
 .clang_complete
+*.s##
