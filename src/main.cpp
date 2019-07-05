@@ -34,7 +34,7 @@ Adafruit_MCP23017 mcp1;
 Adafruit_MCP23017 mcp2;
 
 int count = 0;  // compteur pour scanner led k2000
-int speed = 12;  // delay pour scanner led k2000
+int speed = 15;  // delay pour scanner led k2000
 int ledButtonArray[] = {1,2,3,4,5,6,7};
 
 int valveArray[] = {4,5,6,7,8,9,10,11,12,13};
@@ -81,11 +81,8 @@ int toilette = 4;
 void setup() {
 
   // INPUT buttons
-  pinMode(A0, INPUT);
-  pinMode(8, INPUT);
-
-  // pin for action test
-  // pinMode(7, OUTPUT);
+  pinMode(A0, INPUT);  // input pin buttons
+  pinMode(8, INPUT);   // input pin WaterLevel (reed switch)
 
   // define all buttons
   mcp0.begin(0);      // use default address 0
@@ -286,7 +283,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       vTaskResume(xDemoHandle);
       break;
 
-    
+
 
     case S1:              /*---------------------- case ---------------------*/
       suspendDemo();
