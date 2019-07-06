@@ -37,12 +37,15 @@ int count = 0;  // compteur pour scanner led k2000
 int speed = 15;  // delay pour scanner led k2000
 int ledButtonArray[] = {1,2,3,4,5,6,7};
 
-int valveArray[] = {4,5,6,7,8,9,10,11,12,13};
+int valveArray[] = {3,4,5,6,7,8,9,10,11,12,13};
 int ledMurray[] = {1,2,3,4,5,6,7,8,9,10};
 
-bool reedStat;
+bool reedValue;
+bool pumpStat;
 
 // mapping valveArray
+int pump = 3;
+
 int pChamp = 4;
 int tImper = 5;
 int tPlant = 6;
@@ -91,7 +94,7 @@ void setup() {
     delay(10);
   }
   mcp1.begin(1);      // use default address 1
-  for (size_t i = 0; i < 10 ; i++){
+  for (size_t i = 0; i < 11 ; i++){
     mcp1.pinMode(valveArray[i], OUTPUT);
     delay(10);
 
@@ -193,6 +196,12 @@ void TaskDemo(void *pvParameters)  // This is a task.
       vTaskDelay((speed*5) / portTICK_PERIOD_MS);
     }
     // vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
+// if (pumpStat == 1) {
+//   mcp2.digitalWrite(nappe, HIGH);
+//   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+// } else {mcp2.digitalWrite(nappe, LOW);
+//         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );}
+
   }
 }
 
@@ -202,8 +211,8 @@ void TaskDemo(void *pvParameters)  // This is a task.
 //   (void) pvParameters;
 //   for (;;) {
 //   if (reedStat == 1) {
-//     mcp2.digitalWrite(nappe, HIGH);
-//     vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+    // mcp2.digitalWrite(nappe, HIGH);
+    // vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 //                       }
 //    else {
 //     mcp2.digitalWrite(nappe, LOW);
@@ -219,8 +228,10 @@ void TaskButtons(void *pvParameters)
 
   for (;;) {
 
-    reedStat = digitalRead(8);
-    Serial.println(reedStat);
+    reedValue = digitalRead(8);
+    Serial.println(reedValue);
+    // pumpStat = reedValue;
+    // vTaskDelay( (1000 / portTICK_PERIOD_MS)*0.5 );
 
     if (etats == IDLE) {
       int buttonValue = analogRead(A0);
@@ -265,7 +276,7 @@ void TaskButtons(void *pvParameters)
     //     etats = S9;
     // }
     }
-    vTaskDelay(2);
+    vTaskDelay(3);
   }
 }
 
@@ -283,7 +294,13 @@ void TaskActions(void *pvParameters)  // This is a task.
       vTaskResume(xDemoHandle);
       break;
 
-
+    // case IDLE:
+    //
+    //   buttonID = 0;
+    //   etats = IDLE;
+    //   vTaskResume(xDemoHandle);
+    //
+    //   break;
 
     case S1:              /*---------------------- case ---------------------*/
       suspendDemo();
