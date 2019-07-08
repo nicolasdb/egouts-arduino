@@ -198,7 +198,7 @@ void TaskDemo(void *pvParameters)  // This is a task.
       mcp0.digitalWrite(ledButtonArray[count], LOW);
       vTaskDelay((speed*5) / portTICK_PERIOD_MS);
     }
-    vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
+    // vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
 // if (pumpStat == 1) {
 //   mcp2.digitalWrite(nappe, HIGH);
 //   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
@@ -309,16 +309,16 @@ void TaskActions(void *pvParameters)  // This is a task.
       Serial.println("Pluie Jardin");
       mcp1.digitalWrite(pChamp, HIGH);
       mcp1.digitalWrite(pJardin, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*2 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
       mcp1.digitalWrite(pChamp, LOW);
       mcp1.digitalWrite(pJardin, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*2 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
 
       Serial.println("Nappe Phréatique");
       mcp2.digitalWrite(nappe, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*2 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
       mcp2.digitalWrite(nappe, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*2 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
 
       mcp0.digitalWrite(buttonID, LOW);
       etats = IDLE;
@@ -330,15 +330,15 @@ void TaskActions(void *pvParameters)  // This is a task.
 
       Serial.println("Pompage nappe Phréatique");
       mcp2.digitalWrite(nappe, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
       mcp2.digitalWrite(nappe, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
       Serial.println("l'eau coule du robinet à la cuisine");
       mcp2.digitalWrite(robinet, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*2 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
       mcp2.digitalWrite(robinet, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
       etats = IDLE;
       mcp0.digitalWrite(buttonID, LOW);
@@ -350,15 +350,15 @@ void TaskActions(void *pvParameters)  // This is a task.
 
       Serial.println("il pleut sur la toiture imperméable");
       mcp1.digitalWrite(tImper, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
       mcp1.digitalWrite(tImper, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
       // Serial.print("il pleut sur la toiture plantée");
       mcp1.digitalWrite(tPlant, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*2 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
       mcp1.digitalWrite(tPlant, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
       // Serial.println("la citerne se remplit et stock l'eau pour la canicule");
       // mcp1.digitalWrite(citerne, HIGH);
@@ -374,7 +374,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       // mcp2.digitalWrite(lavelinge, LOW);
       //   vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
       // mcp2.digitalWrite(toilette, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
       etats = IDLE;
       mcp0.digitalWrite(buttonID, LOW);
@@ -386,17 +386,17 @@ void TaskActions(void *pvParameters)  // This is a task.
 
         Serial.println("Pompage nappe Phréatique");
         mcp2.digitalWrite(nappe, HIGH);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
         mcp2.digitalWrite(nappe, LOW);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
         Serial.println("l'eau coule du robinet à la cuisine");
         mcp2.digitalWrite(robinet, HIGH);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
         mcp2.digitalWrite(robinet, LOW);
 
 
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
         etats = IDLE;
         mcp0.digitalWrite(buttonID, LOW);
         break;
@@ -405,7 +405,7 @@ void TaskActions(void *pvParameters)  // This is a task.
         suspendDemo();
         mcp0.digitalWrite(buttonID, HIGH);
 
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
         etats = IDLE;
         mcp0.digitalWrite(buttonID, LOW);
         break;
@@ -413,7 +413,7 @@ void TaskActions(void *pvParameters)  // This is a task.
         suspendDemo();
         mcp0.digitalWrite(buttonID, HIGH);
 
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
         etats = IDLE;
         mcp0.digitalWrite(buttonID, LOW);
         break;
@@ -421,7 +421,8 @@ void TaskActions(void *pvParameters)  // This is a task.
         suspendDemo();
         mcp0.digitalWrite(buttonID, HIGH);
 
-        vTaskDelay( (1000 / portTICK_PERIOD_MS)*1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 0.5 );
+        mp3(1);
         etats = IDLE;
         mcp0.digitalWrite(buttonID, LOW);
         break;
