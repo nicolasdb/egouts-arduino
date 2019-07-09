@@ -37,7 +37,8 @@ int count = 0;  // compteur pour scanner led k2000
 int speed = 15;  // delay pour scanner led k2000
 int ledButtonArray[] = {7,6,9,8,11,10,5,4};  // liste les pin utilisée sur mcp0 et leur ordre
 
-int valveArray[] = {3,4,5,6,7,8,9,10,11,12,13};
+int valveArray[] = {0,1,2,3,4,5,6,7};
+int valveBrray[] = {8,9,10,11,12,13,14,15};
 int ledMurray[] = {1,2,3,4,5,6,7,8,9,10};
 
 bool reedValue;
@@ -82,12 +83,11 @@ int toilette = 4;
 // the setup function runs once when you press reset or power the board
 
 void setup() {
-  // initialize mp3setup
-  mp3setup();
 
+  Serial.begin(115200);
 
   // INPUT buttons
-  pinMode(A0, INPUT);  // input pin buttons
+  pinMode(A3, INPUT);  // input pin buttons
   pinMode(8, INPUT);   // input pin WaterLevel (reed switch)
 
   // define all buttons
@@ -98,20 +98,29 @@ void setup() {
   }
 
   mcp1.begin(1);      // use default address 1
-  // for (size_t i = 0; i < 11 ; i++){
-  //   mcp1.pinMode(valveArray[i], OUTPUT);
-  //   delay(10);
-  // }
+  for (int j = 0; j < 8 ; j++){
+    mcp1.pinMode(valveArray[j], OUTPUT);
+    // mcp1.pinMode(valveBrray[j], OUTPUT);
+    delay(500);
+    mcp1.digitalWrite(valveArray[j], HIGH);
+    // mcp1.digitalWrite(valveBrray[j], HIGH);
+    Serial.println(valveArray[j]);
+    delay(500);
+    mcp1.digitalWrite(valveArray[j], LOW);
+  }
+  // mcp1.pinMode(valveArray[9], OUTPUT);
+  // mcp1.digitalWrite(valveArray[9], HIGH);
 
-  mcp2.begin(2);      // use default address 2
+
+  // mcp2.begin(2);      // use default address 2
   // for (size_t i = 0; i < 10 ; i++){
   //   mcp2.pinMode(ledMurray[i], OUTPUT);
   //   delay(10);
   // }
 
-
-
-
+  mp3setup();    // initialize mp3setup
+  Serial.println("j'ai finis");
+  etats = IDLE;
 
   // Now set up tasks to run independently and their priority.
   xTaskCreate(
@@ -138,14 +147,6 @@ void setup() {
     ,  2  // Priority, with 3 (configMAX_PRIORITIES - 1) being the highest, and 0 being the lowest.
     ,  NULL );
 
-  // xTaskCreate(
-  //   TaskPump
-  //   ,  (const portCHAR *)"WaterLevel"   // A name just for humans
-  //   ,  128  // This stack size can be checked & adjusted by reading the Stack Highwater
-  //   ,  NULL
-  //   ,  1  // Priority, with 3 (configMAX_PRIORITIES - 1) being the highest, and 0 being the lowest.
-  //   ,  NULL );
-  // Now the task scheduler, whill takes over control of scheduling individual tasks, is automatically started.
 }
 
 /*--------------------------------------------------*/
@@ -237,10 +238,10 @@ void TaskButtons(void *pvParameters)
     // vTaskDelay( (1000 / portTICK_PERIOD_MS)*0.5 );
 
     if (etats == IDLE) {
-      int buttonValue = analogRead(A0);
+      int buttonValue=analogRead(A3);
       Serial.print("Waiting entry");
       Serial.println(buttonValue);
-      if (buttonValue > 910) {
+      if (buttonValue>910) {
         Serial.println("Button 8");
         buttonID = ledButtonArray[8-1];
         etats = IDLE;
@@ -268,7 +269,7 @@ void TaskButtons(void *pvParameters)
         Serial.println("Button 2");
         buttonID = ledButtonArray[2-1];
         etats = S2;
-      } else if (buttonValue > 130 && buttonValue < 209) {
+      } else if (buttonValue > 110 && buttonValue < 209) {
         Serial.println("Button 1");
         buttonID = ledButtonArray[1-1];
         etats = S1;
@@ -281,8 +282,6 @@ void TaskButtons(void *pvParameters)
 /*---------------------- actions ---------------------*/
 void TaskActions(void *pvParameters)  // This is a task.
 {
-
-
   for(;;) {
     switch (etats)
     {
@@ -307,11 +306,11 @@ void TaskActions(void *pvParameters)  // This is a task.
 
       Serial.println("Pluie Champs");
       Serial.println("Pluie Jardin");
-      mcp1.digitalWrite(pChamp, HIGH);
-      mcp1.digitalWrite(pJardin, HIGH);
+      // mcp1.digitalWrite(pChamp, HIGH);
+      // mcp1.digitalWrite(pJardin, HIGH);
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
-      mcp1.digitalWrite(pChamp, LOW);
-      mcp1.digitalWrite(pJardin, LOW);
+      // mcp1.digitalWrite(pChamp, LOW);
+      // mcp1.digitalWrite(pJardin, LOW);
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
 
       Serial.println("Nappe Phréatique");
@@ -349,15 +348,15 @@ void TaskActions(void *pvParameters)  // This is a task.
       mcp0.digitalWrite(buttonID, HIGH);
 
       Serial.println("il pleut sur la toiture imperméable");
-      mcp1.digitalWrite(tImper, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-      mcp1.digitalWrite(tImper, LOW);
+      // mcp1.digitalWrite(tImper, HIGH);
+      //   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+      // mcp1.digitalWrite(tImper, LOW);
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
       // Serial.print("il pleut sur la toiture plantée");
-      mcp1.digitalWrite(tPlant, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
-      mcp1.digitalWrite(tPlant, LOW);
+      // mcp1.digitalWrite(tPlant, HIGH);
+      //   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+      // mcp1.digitalWrite(tPlant, LOW);
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
       // Serial.println("la citerne se remplit et stock l'eau pour la canicule");
@@ -384,19 +383,25 @@ void TaskActions(void *pvParameters)  // This is a task.
         suspendDemo();
         mcp0.digitalWrite(buttonID, HIGH);
 
-        Serial.println("Pompage nappe Phréatique");
-        mcp2.digitalWrite(nappe, HIGH);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-        mcp2.digitalWrite(nappe, LOW);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+        // for (count = 0 ; count < 14 ; count++){
+        //   mcp1.digitalWrite(valveArray[count], HIGH);
+        //   vTaskDelay(200 / portTICK_PERIOD_MS);
+        //   mcp1.digitalWrite(valveArray[count+1], HIGH);
+        //   vTaskDelay(200 / portTICK_PERIOD_MS);
+        //   mcp1.digitalWrite(valveArray[count], LOW);
+        //   vTaskDelay((200*5) / portTICK_PERIOD_MS);
+        // }
+        // // vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
+        // for (count = 14 ; count > 0 ; count--){
+        //   mcp1.digitalWrite(valveArray[count], HIGH);
+        //   vTaskDelay(200 / portTICK_PERIOD_MS);
+        //   mcp1.digitalWrite(valveArray[count-1], HIGH);
+        //   vTaskDelay(200 / portTICK_PERIOD_MS);
+        //   mcp1.digitalWrite(valveArray[count], LOW);
+        //   vTaskDelay((200*5) / portTICK_PERIOD_MS);
+        // }
 
-        Serial.println("l'eau coule du robinet à la cuisine");
-        mcp2.digitalWrite(robinet, HIGH);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-        mcp2.digitalWrite(robinet, LOW);
-
-
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
         etats = IDLE;
         mcp0.digitalWrite(buttonID, LOW);
         break;
@@ -422,7 +427,7 @@ void TaskActions(void *pvParameters)  // This is a task.
         mcp0.digitalWrite(buttonID, HIGH);
 
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 0.5 );
-        mp3(1);
+        // mp3(1);
         etats = IDLE;
         mcp0.digitalWrite(buttonID, LOW);
         break;

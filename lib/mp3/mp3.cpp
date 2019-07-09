@@ -17,7 +17,7 @@ void mp3setup () {
    pinMode(busyPin, INPUT);
 
    mySoftwareSerial.begin(9600);
-   Serial.begin(115200);
+   // Serial.begin(115200);
    Serial.println(F("Initializing DFPlayer..."));
 
    if (!stormPlayer.begin(mySoftwareSerial)) {  //Use softwareSerial to communicate with mp3.
@@ -31,7 +31,7 @@ void mp3setup () {
    stormPlayer.volume(25);                        // Set volume value (0~30).
    stormPlayer.EQ(DFPLAYER_EQ_NORMAL);              // Set EQ to BASS (normal/pop/rock/jazz/classic/bass)
    stormPlayer.outputDevice(DFPLAYER_DEVICE_SD);  // Set device we use SD as default
-   // stormPlayer.enableDAC();                       // Enable On-chip DAC
+   stormPlayer.enableDAC();                       // Enable On-chip DAC
 
 }
 

@@ -166,6 +166,14 @@
 <text x="-2.54" y="-2.54" size="1.778" layer="96">&gt;VALUE</text>
 <pin name="GND" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
 </symbol>
+<symbol name="+12V" urn="urn:adsk.eagle:symbol:26931/1" library_version="1">
+<wire x1="1.27" y1="-1.905" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="-1.27" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-0.635" x2="0" y2="1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="1.27" x2="-1.27" y2="-0.635" width="0.254" layer="94"/>
+<text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<pin name="+12V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="+5V" urn="urn:adsk.eagle:component:26963/1" prefix="P+" library_version="1">
@@ -185,6 +193,19 @@
 <description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
 <gates>
 <gate name="1" symbol="GND" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="+12V" urn="urn:adsk.eagle:component:26959/1" prefix="P+" library_version="1">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="1" symbol="+12V" x="0" y="0"/>
 </gates>
 <devices>
 <device name="">
@@ -12224,6 +12245,214 @@ Source: www.kingbright.com</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="transistor-fet" urn="urn:adsk.eagle:library:396">
+<description>&lt;b&gt;Field Effect Transistors&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;&lt;p&gt;
+&lt;p&gt;
+Symbols changed according to IEC617&lt;p&gt; 
+All types, packages and assignment to symbols and pins checked&lt;p&gt;
+Package outlines partly checked&lt;p&gt;
+&lt;p&gt;
+JFET = junction FET&lt;p&gt;
+IGBT-x = insulated gate bipolar transistor&lt;p&gt;
+x=N: NPN; x=P: PNP&lt;p&gt;
+IGFET-mc-nnn; (IGFET=insulated gate field effect transistor)&lt;P&gt;
+m=D: depletion mode (Verdr&amp;auml;ngungstyp)&lt;p&gt;
+m=E: enhancement mode (Anreicherungstyp)&lt;p&gt;
+c: N=N-channel; P=P-Channel&lt;p&gt;
+GDSB: gate, drain, source, bulk&lt;p&gt;
+&lt;p&gt;
+by R. Vogg  15.March.2002</description>
+<packages>
+<package name="TO220" urn="urn:adsk.eagle:footprint:28453/1" library_version="4">
+<description>&lt;b&gt;TO 220 horizontal&lt;/b&gt;</description>
+<wire x1="-5.207" y1="-1.27" x2="5.207" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="5.207" y1="14.605" x2="-5.207" y2="14.605" width="0.127" layer="21"/>
+<wire x1="5.207" y1="-1.27" x2="5.207" y2="11.176" width="0.127" layer="21"/>
+<wire x1="5.207" y1="11.176" x2="4.318" y2="11.176" width="0.127" layer="21"/>
+<wire x1="4.318" y1="11.176" x2="4.318" y2="12.7" width="0.127" layer="21"/>
+<wire x1="4.318" y1="12.7" x2="5.207" y2="12.7" width="0.127" layer="21"/>
+<wire x1="5.207" y1="12.7" x2="5.207" y2="14.605" width="0.127" layer="21"/>
+<wire x1="-5.207" y1="-1.27" x2="-5.207" y2="11.176" width="0.127" layer="21"/>
+<wire x1="-5.207" y1="11.176" x2="-4.318" y2="11.176" width="0.127" layer="21"/>
+<wire x1="-4.318" y1="11.176" x2="-4.318" y2="12.7" width="0.127" layer="21"/>
+<wire x1="-4.318" y1="12.7" x2="-5.207" y2="12.7" width="0.127" layer="21"/>
+<wire x1="-5.207" y1="12.7" x2="-5.207" y2="14.605" width="0.127" layer="21"/>
+<wire x1="-4.572" y1="-0.635" x2="4.572" y2="-0.635" width="0.0508" layer="21"/>
+<wire x1="4.572" y1="7.62" x2="4.572" y2="-0.635" width="0.0508" layer="21"/>
+<wire x1="4.572" y1="7.62" x2="-4.572" y2="7.62" width="0.0508" layer="21"/>
+<wire x1="-4.572" y1="-0.635" x2="-4.572" y2="7.62" width="0.0508" layer="21"/>
+<circle x="0" y="11.176" radius="1.8034" width="0.127" layer="21"/>
+<circle x="0" y="11.176" radius="4.191" width="0" layer="42"/>
+<circle x="0" y="11.176" radius="4.191" width="0" layer="43"/>
+<pad name="1" x="-2.54" y="-6.35" drill="1.1176" shape="long" rot="R90"/>
+<pad name="2" x="0" y="-6.35" drill="1.1176" shape="long" rot="R90"/>
+<pad name="3" x="2.54" y="-6.35" drill="1.1176" shape="long" rot="R90"/>
+<text x="-3.81" y="5.207" size="1.778" layer="25" ratio="10">&gt;NAME</text>
+<text x="-3.937" y="2.54" size="1.778" layer="27" ratio="10">&gt;VALUE</text>
+<text x="-4.445" y="7.874" size="0.9906" layer="21" ratio="12">A17,5mm</text>
+<text x="-3.175" y="0" size="1.27" layer="51" ratio="10">1</text>
+<text x="-0.635" y="0" size="1.27" layer="51" ratio="10">2</text>
+<text x="1.905" y="0" size="1.27" layer="51" ratio="10">3</text>
+<rectangle x1="2.159" y1="-4.699" x2="2.921" y2="-4.064" layer="21"/>
+<rectangle x1="-0.381" y1="-4.699" x2="0.381" y2="-4.064" layer="21"/>
+<rectangle x1="-2.921" y1="-4.699" x2="-2.159" y2="-4.064" layer="21"/>
+<rectangle x1="-3.175" y1="-4.064" x2="-1.905" y2="-1.27" layer="21"/>
+<rectangle x1="-0.635" y1="-4.064" x2="0.635" y2="-1.27" layer="21"/>
+<rectangle x1="1.905" y1="-4.064" x2="3.175" y2="-1.27" layer="21"/>
+<rectangle x1="-2.921" y1="-6.604" x2="-2.159" y2="-4.699" layer="51"/>
+<rectangle x1="-0.381" y1="-6.604" x2="0.381" y2="-4.699" layer="51"/>
+<rectangle x1="2.159" y1="-6.604" x2="2.921" y2="-4.699" layer="51"/>
+<hole x="0" y="11.176" drill="3.302"/>
+</package>
+</packages>
+<packages3d>
+<package3d name="TO220" urn="urn:adsk.eagle:package:28520/1" type="box" library_version="4">
+<description>TO 220 horizontal</description>
+<packageinstances>
+<packageinstance name="TO220"/>
+</packageinstances>
+</package3d>
+</packages3d>
+<symbols>
+<symbol name="IGFET-EN-GDS" urn="urn:adsk.eagle:symbol:28452/1" library_version="4">
+<wire x1="-2.54" y1="-2.54" x2="-1.2192" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="0" y1="0.762" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="0" y2="-0.762" width="0.254" layer="94"/>
+<wire x1="0" y1="3.683" x2="0" y2="1.397" width="0.254" layer="94"/>
+<wire x1="1.905" y1="0.635" x2="0.635" y2="0" width="0.254" layer="94"/>
+<wire x1="1.905" y1="-0.635" x2="0.635" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="0.635" y2="0" width="0.1524" layer="94"/>
+<wire x1="0.635" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="0" x2="2.54" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="0" y1="-1.397" x2="0" y2="-3.683" width="0.254" layer="94"/>
+<wire x1="-1.143" y1="2.54" x2="-1.143" y2="-2.54" width="0.254" layer="94"/>
+<text x="-11.43" y="0" size="1.778" layer="96">&gt;VALUE</text>
+<text x="-11.43" y="2.54" size="1.778" layer="95">&gt;NAME</text>
+<pin name="D" x="5.08" y="2.54" visible="off" length="middle" direction="pas" rot="R180"/>
+<pin name="S" x="5.08" y="-2.54" visible="off" length="middle" direction="pas" rot="R180"/>
+<pin name="G" x="-5.08" y="-2.54" visible="off" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="IRF840" urn="urn:adsk.eagle:component:28595/1" prefix="Q" library_version="4">
+<description>&lt;b&gt;N-Channel Enhancement MOSFET&lt;/b&gt; (HEXFET); 500V; 8A; 0,85Ohm</description>
+<gates>
+<gate name="G$1" symbol="IGFET-EN-GDS" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TO220">
+<connects>
+<connect gate="G$1" pin="D" pad="2"/>
+<connect gate="G$1" pin="G" pad="1"/>
+<connect gate="G$1" pin="S" pad="3"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:28520/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="speaker" urn="urn:adsk.eagle:library:365">
+<packages>
+<package name="SMS-1308MS-2-R" urn="urn:adsk.eagle:footprint:26518/1" library_version="1">
+<description>&lt;b&gt;Speaker 13 x 13mm&lt;/b&gt;, 8 Ohm, 0.7W&lt;p&gt;
+Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
+<wire x1="-5.8875" y1="-6.4" x2="5.9" y2="-6.4" width="0.2032" layer="21"/>
+<wire x1="5.9" y1="-6.4" x2="5.9" y2="-3.2125" width="0.2032" layer="51"/>
+<wire x1="5.9" y1="-3.2125" x2="6.4125" y2="-2.7" width="0.2032" layer="51"/>
+<wire x1="6.4125" y1="-2.7" x2="6.4" y2="2.675" width="0.2032" layer="21"/>
+<wire x1="6.4" y1="2.675" x2="5.8875" y2="3.1875" width="0.2032" layer="51"/>
+<wire x1="5.8875" y1="3.1875" x2="5.8875" y2="5.6" width="0.2032" layer="51"/>
+<wire x1="5.8875" y1="5.6" x2="5.0875" y2="6.4" width="0.2032" layer="51"/>
+<wire x1="5.0875" y1="6.4" x2="-5.0875" y2="6.4" width="0.2032" layer="21"/>
+<wire x1="-5.0875" y1="6.4" x2="-5.8875" y2="5.6" width="0.2032" layer="51"/>
+<wire x1="-5.8875" y1="5.6" x2="-5.8875" y2="3.2125" width="0.2032" layer="51"/>
+<wire x1="-5.8875" y1="3.2125" x2="-6.4" y2="2.7" width="0.2032" layer="51"/>
+<wire x1="-6.4" y1="2.7" x2="-6.4" y2="-2.7" width="0.2032" layer="21"/>
+<wire x1="-6.4" y1="-2.7" x2="-5.8875" y2="-3.2125" width="0.2032" layer="51"/>
+<wire x1="-5.8875" y1="-3.2125" x2="-5.8875" y2="-6.4" width="0.2032" layer="51"/>
+<text x="-5.5016" y="6.6286" size="1.27" layer="25">&gt;NAME</text>
+<text x="-3" y="-5" size="1.27" layer="27">&gt;VALUE</text>
+<smd name="+" x="-5.375" y="-4.35" dx="1.4" dy="2.2" layer="1"/>
+<smd name="-" x="5.375" y="-4.35" dx="1.4" dy="2.2" layer="1"/>
+<smd name="M2" x="5.375" y="4.35" dx="1.4" dy="2.2" layer="1"/>
+<smd name="M1" x="-5.375" y="4.35" dx="1.4" dy="2.2" layer="1"/>
+<polygon width="0.2032" layer="21">
+<vertex x="0.2" y="0.2"/>
+<vertex x="0.2" y="2" curve="-76.641477"/>
+<vertex x="2" y="0.2"/>
+</polygon>
+<polygon width="0.2032" layer="21">
+<vertex x="-0.2" y="0.2"/>
+<vertex x="-2" y="0.2" curve="-76.641477"/>
+<vertex x="-0.2" y="2"/>
+</polygon>
+<polygon width="0.2032" layer="21">
+<vertex x="-0.2" y="-0.2"/>
+<vertex x="-0.2" y="-2" curve="-76.641477"/>
+<vertex x="-2" y="-0.2"/>
+</polygon>
+<polygon width="0.2032" layer="21">
+<vertex x="0.2" y="-0.2"/>
+<vertex x="2" y="-0.2" curve="-76.641477"/>
+<vertex x="0.2" y="-2"/>
+</polygon>
+</package>
+</packages>
+<packages3d>
+<package3d name="SMS-1308MS-2-R" urn="urn:adsk.eagle:package:26519/1" type="box" library_version="1">
+<description>Speaker 13 x 13mm, 8 Ohm, 0.7W
+Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
+<packageinstances>
+<packageinstance name="SMS-1308MS-2-R"/>
+</packageinstances>
+</package3d>
+</packages3d>
+<symbols>
+<symbol name="SPEAKER" urn="urn:adsk.eagle:symbol:26517/1" library_version="1">
+<pin name="1" x="0" y="5.08" visible="pad" length="short" direction="pas" swaplevel="1" rot="R270"/>
+<pin name="2" x="0" y="-5.08" visible="pad" length="short" direction="pas" swaplevel="1" rot="R90"/>
+<wire x1="-1.27" y1="2.54" x2="-1.27" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="-2.54" x2="1.27" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-2.54" x2="1.27" y2="2.54" width="0.254" layer="94"/>
+<wire x1="1.27" y1="2.54" x2="-1.27" y2="2.54" width="0.254" layer="94"/>
+<wire x1="1.27" y1="2.54" x2="3.81" y2="5.08" width="0.254" layer="94"/>
+<wire x1="3.81" y1="5.08" x2="3.81" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="3.81" y1="-5.08" x2="1.27" y2="-2.54" width="0.254" layer="94"/>
+<text x="5.08" y="1.27" size="1.778" layer="95">&gt;NAME</text>
+<text x="5.08" y="-2.54" size="1.778" layer="96">&gt;VALUE</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="SMS-1308MS-2-R" urn="urn:adsk.eagle:component:26520/1" prefix="SP" library_version="1">
+<description>&lt;b&gt;Speaker 13 x 13mm&lt;/b&gt;, 8 Ohm, 0.7W&lt;p&gt;
+Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
+<gates>
+<gate name="A" symbol="SPEAKER" x="0" y="0" addlevel="always" swaplevel="1"/>
+</gates>
+<devices>
+<device name="" package="SMS-1308MS-2-R">
+<connects>
+<connect gate="A" pin="1" pad="+"/>
+<connect gate="A" pin="2" pad="-"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:26519/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -12339,6 +12568,11 @@ Source: www.kingbright.com</description>
 <part name="LED4" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="5MM" package3d_urn="urn:adsk.eagle:package:15799/2"/>
 <part name="R46" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="POTENTIOMETER_" device="PT-10" package3d_urn="urn:adsk.eagle:package:23786/1"/>
 <part name="LED5" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="5MM" package3d_urn="urn:adsk.eagle:package:15799/2"/>
+<part name="IRFZ44N" library="transistor-fet" library_urn="urn:adsk.eagle:library:396" deviceset="IRF840" device="" package3d_urn="urn:adsk.eagle:package:28520/1"/>
+<part name="SP1" library="speaker" library_urn="urn:adsk.eagle:library:365" deviceset="SMS-1308MS-2-R" device="" package3d_urn="urn:adsk.eagle:package:26519/1"/>
+<part name="STRIPLED" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="5MM" package3d_urn="urn:adsk.eagle:package:15799/2"/>
+<part name="P+8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+12V" device=""/>
+<part name="GND12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -12700,6 +12934,23 @@ Source: www.kingbright.com</description>
 <attribute name="NAME" x="483.616" y="8.128" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="485.775" y="8.128" size="1.778" layer="96" rot="R90"/>
 </instance>
+<instance part="IRFZ44N" gate="G$1" x="457.2" y="160.02" smashed="yes">
+<attribute name="NAME" x="445.77" y="162.56" size="1.778" layer="95"/>
+</instance>
+<instance part="SP1" gate="A" x="414.02" y="193.04" smashed="yes">
+<attribute name="NAME" x="419.1" y="194.31" size="1.778" layer="95"/>
+<attribute name="VALUE" x="419.1" y="190.5" size="1.778" layer="96"/>
+</instance>
+<instance part="STRIPLED" gate="G$1" x="464.82" y="175.26" smashed="yes">
+<attribute name="NAME" x="468.376" y="170.688" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="470.535" y="170.688" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="P+8" gate="1" x="464.82" y="187.96" smashed="yes">
+<attribute name="VALUE" x="462.28" y="182.88" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="GND12" gate="1" x="462.28" y="152.4" smashed="yes">
+<attribute name="VALUE" x="459.74" y="149.86" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -12885,6 +13136,11 @@ Source: www.kingbright.com</description>
 <pinref part="GND11" gate="1" pin="GND"/>
 <wire x1="480.06" y1="7.62" x2="480.06" y2="2.54" width="0.1524" layer="91"/>
 <junction x="480.06" y="7.62"/>
+</segment>
+<segment>
+<pinref part="IRFZ44N" gate="G$1" pin="S"/>
+<wire x1="462.28" y1="157.48" x2="462.28" y2="154.94" width="0.1524" layer="91"/>
+<pinref part="GND12" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -13814,6 +14070,29 @@ Source: www.kingbright.com</description>
 <wire x1="556.26" y1="35.56" x2="474.98" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="R46" gate="1" pin="1"/>
 <wire x1="474.98" y1="35.56" x2="474.98" y2="20.32" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$97" class="0">
+<segment>
+<pinref part="B1" gate="G$1" pin="*D9"/>
+<wire x1="368.3" y1="142.24" x2="368.3" y2="157.48" width="0.1524" layer="91"/>
+<wire x1="368.3" y1="157.48" x2="452.12" y2="157.48" width="0.1524" layer="91"/>
+<pinref part="IRFZ44N" gate="G$1" pin="G"/>
+</segment>
+</net>
+<net name="N$100" class="0">
+<segment>
+<pinref part="IRFZ44N" gate="G$1" pin="D"/>
+<wire x1="462.28" y1="162.56" x2="464.82" y2="162.56" width="0.1524" layer="91"/>
+<wire x1="464.82" y1="162.56" x2="464.82" y2="170.18" width="0.1524" layer="91"/>
+<pinref part="STRIPLED" gate="G$1" pin="C"/>
+</segment>
+</net>
+<net name="+12V" class="0">
+<segment>
+<pinref part="STRIPLED" gate="G$1" pin="A"/>
+<pinref part="P+8" gate="1" pin="+12V"/>
+<wire x1="464.82" y1="177.8" x2="464.82" y2="185.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
