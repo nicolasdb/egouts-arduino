@@ -15,10 +15,13 @@ DFRobotDFPlayerMini stormPlayer;
 void mp3setup () {
    pinMode(StripPin, OUTPUT);
    pinMode(busyPin, INPUT);
+   pinMode(A0, INPUT);
+
 
    mySoftwareSerial.begin(9600);
    // Serial.begin(115200);
    Serial.println(F("Initializing DFPlayer..."));
+   randomSeed(analogRead(A0));
 
    if (!stormPlayer.begin(mySoftwareSerial)) {  //Use softwareSerial to communicate with mp3.
      Serial.println(F("Unable to begin. Check connection and SD card, or reset the Arduino."));
@@ -73,7 +76,8 @@ for (size_t i=1 ; i<= stormCount ; i++){
 
       Serial.print(F("Playing thunder sound, file number: "));
       Serial.println(thunderFile);
-      stormPlayer.playMp3Folder(thunderFile);
+      stormPlayer.play(thunderFile);
+      // stormPlayer.playMp3Folder(thunderFile);
       delay(1000); // Give the DFPlayer some time
 
       while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
