@@ -7,7 +7,7 @@
 
 
 // #include <fade.h>
-#include <blink.h>          // lib pour l'action de clignotement
+// #include <blink.h>          // lib pour l'action de clignotement
 #include <mp3.h>            // controle du module mp3
 
 // define tasks for Demo, AnalogRead buttons, set Actions, MP3 launch
@@ -20,7 +20,7 @@ void TaskPump( void *pvParameters );
 // define différent scénario = les actions déclenchées par les boutons lorsque pressé.
 enum {
   IDLE,
-  S1,S2,S3,S4,S5,S6,S7
+  S1,S2,S3,S4,S5,S6,S7,S8
 } etats;
 int buttonID = 0;
 
@@ -37,43 +37,43 @@ int count = 0;  // compteur pour scanner led k2000
 int speed = 15;  // delay pour scanner led k2000
 int ledButtonArray[] = {7,6,9,8,11,10,5,4};  // liste les pin utilisée sur mcp0 et leur ordre
 
-int valveArray[] = {0,1,2,3,4,5,6,7};
-// int valveBrray[] = {8,9,10,11,12,13,14,15};
-int ledMurray[] = {1,2,3,4,5,6,7,8,9,10};
-
 bool reedValue;
 bool pumpStat;
 
 // mapping valveArray
-int pump = 3;
+int valveArray[] = {0,1,2,3,4,5,6,7};
+int valveBrray[] = {8,9,10,11,12,13,14,15};
 
-int pChamp = 4;
-int tImper = 5;
-int tPlant = 6;
-int pJardin = 7;
-int sImper = 8;
-int citerne = 9;
-int egout = 10;
-int collecteur = 11;
-int bOrage = 12;
-int riviere = 13;
+int pump = 0;
+
+int pChamp = 1;
+int tImper = 2;
+int tPlant = 3;
+int pJardin =4;
+int sImper = 5;
+int citerne = 6;
+int egout = 7;
+int collecteur = 8;
+int bOrage = 9;
+int riviere = 10;
+int RuePlace = 11;
+int simVille1 = 12;
+int simVille2 = 13;
 
 
 
 // mapping ledMurray
+
+int ledMurray[] = {1,2,3,4,5,6,7,8,9,10};
+
 int nappe = 1;
-int robinet = 2;
-int lavelinge = 3;
+int station = 2;
+int sdb1 = 3;
 int toilette = 4;
-
-
-
-
-
-
-
-
-
+int cuisine = 5;
+int arrosage = 6;
+int lavelinge = 7;
+int cave = 8;
 
 
 
@@ -86,9 +86,18 @@ void setup() {
   mp3setup();    // initialize mp3setup
   Serial.begin(115200);
 
-  // INPUT buttons
+  // INPUT sensors
   pinMode(A3, INPUT);  // input pin buttons
-  pinMode(8, INPUT);   // input pin WaterLevel (reed switch)
+  pinMode(13, INPUT);   // input pin WaterLevel (reed switch)
+
+  // OUTPUT controls
+  for (size_t i = 0; i < 7 ; i++){
+    pinMode(i, OUTPUT);
+    digitalWrite(i,HIGH);
+    delay(10);
+  }
+  // pinMode(1, OUTPUT);
+  // digitalWrite(1,HIGH);
 
   // define all buttons
   mcp0.begin(0);      // use default address 0
@@ -244,35 +253,35 @@ void TaskButtons(void *pvParameters)
       if (buttonValue>950) {
         Serial.println("Button 8");
         buttonID = ledButtonArray[8-1];
-        etats = IDLE;
+        etats = S7;
       } else if (buttonValue > 800 && buttonValue < 949) {
         Serial.println("Button 7");
         buttonID = ledButtonArray[7-1];
-        etats = S7;
+        etats = S6;
       } else if (buttonValue > 700 && buttonValue < 799) {
         Serial.println("Button 6");
         buttonID = ledButtonArray[6-1];
-        etats = S6;
+        etats = S5;
       } else if (buttonValue > 550 && buttonValue < 699) {
         Serial.println("Button 5");
         buttonID = ledButtonArray[5-1];
-        etats = S5;
+        etats = S4;
       } else if (buttonValue > 420 && buttonValue < 549) {
         Serial.println("Button 4");
         buttonID = ledButtonArray[4-1];
-        etats = S4;
+        etats = S3;
       } else if (buttonValue > 310 && buttonValue < 419) {
         Serial.println("Button 3");
         buttonID = ledButtonArray[3-1];
-        etats = S3;
+        etats = S2;
       } else if (buttonValue > 210 && buttonValue < 309) {
         Serial.println("Button 2");
         buttonID = ledButtonArray[2-1];
-        etats = S2;
+        etats = S1;
       } else if (buttonValue > 110 && buttonValue < 209) {
         Serial.println("Button 1");
         buttonID = ledButtonArray[1-1];
-        etats = S1;
+        etats = IDLE;
       }
     }
     vTaskDelay(3);
@@ -431,13 +440,13 @@ void TaskActions(void *pvParameters)  // This is a task.
         etats = IDLE;
         mcp0.digitalWrite(buttonID, LOW);
         break;
-    // case S8:
-    //         suspendDemo();
-    //         mcp0.digitalWrite(buttonID, HIGH);
-    //         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
-    //         etats = IDLE;
-    //         mcp0.digitalWrite(buttonID, LOW);
-    //         break;
+    case S8:
+            suspendDemo();
+            mcp0.digitalWrite(buttonID, HIGH);
+            vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+            etats = IDLE;
+            mcp0.digitalWrite(buttonID, LOW);
+            break;
 
 
 

@@ -12588,6 +12588,8 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <part name="R56" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="POTENTIOMETER_" device="PT-10" package3d_urn="urn:adsk.eagle:package:23786/1"/>
 <part name="LED10" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="5MM" package3d_urn="urn:adsk.eagle:package:15799/2"/>
 <part name="GND15" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="R23" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="POTENTIOMETER_" device="PT-10" package3d_urn="urn:adsk.eagle:package:23786/1"/>
+<part name="LED1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="5MM" package3d_urn="urn:adsk.eagle:package:15799/2"/>
 </parts>
 <sheets>
 <sheet>
@@ -12718,18 +12720,18 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <instance part="P+2" gate="1" x="342.9" y="68.58" smashed="yes">
 <attribute name="VALUE" x="340.36" y="63.5" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="B1" gate="G$1" x="360.68" y="129.54" smashed="yes" rot="R90">
-<attribute name="NAME" x="340.106" y="119.888" size="1.778" layer="95" font="vector" rot="R90"/>
-<attribute name="VALUE" x="381.254" y="128.27" size="1.778" layer="96" font="vector" rot="R180" align="top-left"/>
+<instance part="B1" gate="G$1" x="363.22" y="129.54" smashed="yes" rot="R90">
+<attribute name="NAME" x="342.646" y="119.888" size="1.778" layer="95" font="vector" rot="R90"/>
+<attribute name="VALUE" x="383.794" y="128.27" size="1.778" layer="96" font="vector" rot="R180" align="top-left"/>
 </instance>
-<instance part="P+3" gate="1" x="370.84" y="109.22" smashed="yes" rot="R180">
-<attribute name="VALUE" x="370.84" y="106.68" size="1.778" layer="96" rot="R270"/>
+<instance part="P+3" gate="1" x="373.38" y="109.22" smashed="yes" rot="R180">
+<attribute name="VALUE" x="373.38" y="106.68" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="GND4" gate="1" x="378.46" y="109.22" smashed="yes">
-<attribute name="VALUE" x="375.92" y="106.68" size="1.778" layer="96"/>
+<instance part="GND4" gate="1" x="381" y="109.22" smashed="yes">
+<attribute name="VALUE" x="378.46" y="106.68" size="1.778" layer="96"/>
 </instance>
-<instance part="REEDWATERLEVEL" gate="G$1" x="309.88" y="195.58" smashed="yes">
-<attribute name="NAME" x="312.42" y="198.12" size="1.778" layer="95"/>
+<instance part="REEDWATERLEVEL" gate="G$1" x="411.48" y="195.58" smashed="yes">
+<attribute name="NAME" x="414.02" y="198.12" size="1.778" layer="95"/>
 </instance>
 <instance part="U$1" gate="G$1" x="363.22" y="251.46" smashed="yes" rot="R90">
 <attribute name="NAME" x="347.98" y="269.24" size="1.778" layer="95" rot="R90"/>
@@ -12753,15 +12755,15 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <instance part="GND5" gate="1" x="332.74" y="254" smashed="yes">
 <attribute name="VALUE" x="330.2" y="251.46" size="1.778" layer="96"/>
 </instance>
-<instance part="P+5" gate="1" x="309.88" y="208.28" smashed="yes">
-<attribute name="VALUE" x="307.34" y="203.2" size="1.778" layer="96" rot="R90"/>
+<instance part="P+5" gate="1" x="411.48" y="208.28" smashed="yes">
+<attribute name="VALUE" x="408.94" y="203.2" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R21" gate="G$1" x="314.96" y="187.96" smashed="yes" rot="R180">
-<attribute name="NAME" x="318.77" y="186.4614" size="1.778" layer="95" rot="R180" display="off"/>
-<attribute name="VALUE" x="318.77" y="191.262" size="1.778" layer="96" rot="R180"/>
+<instance part="R21" gate="G$1" x="416.56" y="187.96" smashed="yes" rot="R180">
+<attribute name="NAME" x="420.37" y="186.4614" size="1.778" layer="95" rot="R180" display="off"/>
+<attribute name="VALUE" x="420.37" y="191.262" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="GND6" gate="1" x="320.04" y="185.42" smashed="yes">
-<attribute name="VALUE" x="317.5" y="182.88" size="1.778" layer="96"/>
+<instance part="GND6" gate="1" x="421.64" y="185.42" smashed="yes">
+<attribute name="VALUE" x="419.1" y="182.88" size="1.778" layer="96"/>
 </instance>
 <instance part="MCP1" gate="G$1" x="495.3" y="48.26" smashed="yes" rot="R180">
 <attribute name="NAME" x="505.46" y="24.13" size="1.778" layer="95" rot="R180"/>
@@ -12874,35 +12876,35 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <attribute name="NAME" x="397.51" y="31.9786" size="1.778" layer="95" display="off"/>
 <attribute name="VALUE" x="405.13" y="32.258" size="1.778" layer="96"/>
 </instance>
-<instance part="IRFZ44N" gate="G$1" x="342.9" y="187.96" smashed="yes">
-<attribute name="NAME" x="331.47" y="190.5" size="1.778" layer="95"/>
+<instance part="IRFZ44N" gate="G$1" x="317.5" y="187.96" smashed="yes">
+<attribute name="NAME" x="306.07" y="190.5" size="1.778" layer="95"/>
 </instance>
 <instance part="SP1" gate="A" x="414.02" y="259.08" smashed="yes">
 <attribute name="NAME" x="419.1" y="260.35" size="1.778" layer="95"/>
 <attribute name="VALUE" x="419.1" y="256.54" size="1.778" layer="96"/>
 </instance>
-<instance part="STRIPLED" gate="G$1" x="350.52" y="203.2" smashed="yes">
-<attribute name="NAME" x="354.076" y="198.628" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="356.235" y="198.628" size="1.778" layer="96" rot="R90"/>
+<instance part="STRIPLED" gate="G$1" x="325.12" y="203.2" smashed="yes">
+<attribute name="NAME" x="328.676" y="198.628" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="330.835" y="198.628" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="P+8" gate="1" x="350.52" y="215.9" smashed="yes">
-<attribute name="VALUE" x="347.98" y="210.82" size="1.778" layer="96" rot="R90"/>
+<instance part="P+8" gate="1" x="325.12" y="215.9" smashed="yes">
+<attribute name="VALUE" x="322.58" y="210.82" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="GND12" gate="1" x="347.98" y="180.34" smashed="yes">
-<attribute name="VALUE" x="345.44" y="177.8" size="1.778" layer="96"/>
+<instance part="GND12" gate="1" x="322.58" y="180.34" smashed="yes">
+<attribute name="VALUE" x="320.04" y="177.8" size="1.778" layer="96"/>
 </instance>
-<instance part="IRFZ44N1" gate="G$1" x="271.78" y="185.42" smashed="yes">
-<attribute name="NAME" x="260.35" y="187.96" size="1.778" layer="95"/>
+<instance part="IRFZ44N1" gate="G$1" x="271.78" y="187.96" smashed="yes">
+<attribute name="NAME" x="260.35" y="190.5" size="1.778" layer="95"/>
 </instance>
-<instance part="NAPPE-LED" gate="G$1" x="279.4" y="203.2" smashed="yes">
-<attribute name="NAME" x="295.656" y="191.008" size="1.778" layer="95" rot="R180"/>
-<attribute name="VALUE" x="285.115" y="198.628" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED" gate="G$1" x="279.4" y="205.74" smashed="yes">
+<attribute name="NAME" x="295.656" y="193.548" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="285.115" y="201.168" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="P+10" gate="1" x="279.4" y="269.24" smashed="yes">
-<attribute name="VALUE" x="276.86" y="264.16" size="1.778" layer="96" rot="R90"/>
+<instance part="P+10" gate="1" x="279.4" y="271.78" smashed="yes">
+<attribute name="VALUE" x="276.86" y="266.7" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="GND13" gate="1" x="276.86" y="177.8" smashed="yes">
-<attribute name="VALUE" x="274.32" y="175.26" size="1.778" layer="96"/>
+<instance part="GND13" gate="1" x="276.86" y="180.34" smashed="yes">
+<attribute name="VALUE" x="274.32" y="177.8" size="1.778" layer="96"/>
 </instance>
 <instance part="IRFZ44N2" gate="G$1" x="236.22" y="187.96" smashed="yes">
 <attribute name="NAME" x="224.79" y="190.5" size="1.778" layer="95"/>
@@ -12910,57 +12912,57 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <instance part="GND14" gate="1" x="241.3" y="180.34" smashed="yes">
 <attribute name="VALUE" x="238.76" y="177.8" size="1.778" layer="96"/>
 </instance>
-<instance part="NAPPE-LED1" gate="G$1" x="279.4" y="213.36" smashed="yes">
-<attribute name="VALUE" x="285.115" y="208.788" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED1" gate="G$1" x="279.4" y="215.9" smashed="yes">
+<attribute name="VALUE" x="285.115" y="211.328" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="NAPPE-LED2" gate="G$1" x="279.4" y="223.52" smashed="yes">
-<attribute name="VALUE" x="285.115" y="218.948" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED2" gate="G$1" x="279.4" y="226.06" smashed="yes">
+<attribute name="VALUE" x="285.115" y="221.488" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R47" gate="G$1" x="279.4" y="236.22" smashed="yes" rot="R270">
-<attribute name="NAME" x="280.8986" y="240.03" size="1.778" layer="95" rot="R270" display="off"/>
-<attribute name="VALUE" x="276.098" y="240.03" size="1.778" layer="96" rot="R270"/>
+<instance part="R47" gate="G$1" x="279.4" y="238.76" smashed="yes" rot="R270">
+<attribute name="NAME" x="280.8986" y="242.57" size="1.778" layer="95" rot="R270" display="off"/>
+<attribute name="VALUE" x="276.098" y="242.57" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="NAPPE-LED3" gate="G$1" x="269.24" y="208.28" smashed="yes">
-<attribute name="VALUE" x="274.955" y="203.708" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED3" gate="G$1" x="269.24" y="210.82" smashed="yes">
+<attribute name="VALUE" x="274.955" y="206.248" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="NAPPE-LED4" gate="G$1" x="269.24" y="218.44" smashed="yes">
-<attribute name="VALUE" x="274.955" y="213.868" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED4" gate="G$1" x="269.24" y="220.98" smashed="yes">
+<attribute name="VALUE" x="274.955" y="216.408" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="NAPPE-LED5" gate="G$1" x="269.24" y="228.6" smashed="yes">
-<attribute name="VALUE" x="274.955" y="224.028" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED5" gate="G$1" x="269.24" y="231.14" smashed="yes">
+<attribute name="VALUE" x="274.955" y="226.568" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R49" gate="G$1" x="269.24" y="241.3" smashed="yes" rot="R270">
-<attribute name="NAME" x="270.7386" y="245.11" size="1.778" layer="95" rot="R270" display="off"/>
-<attribute name="VALUE" x="265.938" y="245.11" size="1.778" layer="96" rot="R270"/>
+<instance part="R49" gate="G$1" x="269.24" y="243.84" smashed="yes" rot="R270">
+<attribute name="NAME" x="270.7386" y="247.65" size="1.778" layer="95" rot="R270" display="off"/>
+<attribute name="VALUE" x="265.938" y="247.65" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="NAPPE-LED6" gate="G$1" x="289.56" y="208.28" smashed="yes">
-<attribute name="VALUE" x="295.275" y="203.708" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED6" gate="G$1" x="289.56" y="210.82" smashed="yes">
+<attribute name="VALUE" x="295.275" y="206.248" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="NAPPE-LED7" gate="G$1" x="289.56" y="218.44" smashed="yes">
-<attribute name="VALUE" x="295.275" y="213.868" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED7" gate="G$1" x="289.56" y="220.98" smashed="yes">
+<attribute name="VALUE" x="295.275" y="216.408" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="NAPPE-LED8" gate="G$1" x="289.56" y="228.6" smashed="yes">
-<attribute name="VALUE" x="295.275" y="224.028" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED8" gate="G$1" x="289.56" y="231.14" smashed="yes">
+<attribute name="VALUE" x="295.275" y="226.568" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R50" gate="G$1" x="289.56" y="241.3" smashed="yes" rot="R270">
-<attribute name="NAME" x="291.0586" y="245.11" size="1.778" layer="95" rot="R270" display="off"/>
-<attribute name="VALUE" x="286.258" y="245.11" size="1.778" layer="96" rot="R270"/>
+<instance part="R50" gate="G$1" x="289.56" y="243.84" smashed="yes" rot="R270">
+<attribute name="NAME" x="291.0586" y="247.65" size="1.778" layer="95" rot="R270" display="off"/>
+<attribute name="VALUE" x="286.258" y="247.65" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="NAPPE-LED9" gate="G$1" x="243.84" y="208.28" smashed="yes">
-<attribute name="VALUE" x="249.555" y="203.708" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED9" gate="G$1" x="243.84" y="210.82" smashed="yes">
+<attribute name="VALUE" x="249.555" y="206.248" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="NAPPE-LED10" gate="G$1" x="243.84" y="218.44" smashed="yes">
-<attribute name="VALUE" x="249.555" y="213.868" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED10" gate="G$1" x="243.84" y="220.98" smashed="yes">
+<attribute name="VALUE" x="249.555" y="216.408" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="NAPPE-LED11" gate="G$1" x="243.84" y="228.6" smashed="yes">
-<attribute name="VALUE" x="249.555" y="224.028" size="1.778" layer="96" rot="R90"/>
+<instance part="NAPPE-LED11" gate="G$1" x="243.84" y="231.14" smashed="yes">
+<attribute name="VALUE" x="249.555" y="226.568" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R51" gate="G$1" x="243.84" y="241.3" smashed="yes" rot="R270">
-<attribute name="NAME" x="245.3386" y="245.11" size="1.778" layer="95" rot="R270" display="off"/>
-<attribute name="VALUE" x="240.538" y="245.11" size="1.778" layer="96" rot="R270"/>
+<instance part="R51" gate="G$1" x="243.84" y="243.84" smashed="yes" rot="R270">
+<attribute name="NAME" x="245.3386" y="247.65" size="1.778" layer="95" rot="R270" display="off"/>
+<attribute name="VALUE" x="240.538" y="247.65" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="P+11" gate="1" x="243.84" y="269.24" smashed="yes">
-<attribute name="VALUE" x="241.3" y="264.16" size="1.778" layer="96" rot="R90"/>
+<instance part="P+11" gate="1" x="243.84" y="271.78" smashed="yes">
+<attribute name="VALUE" x="241.3" y="266.7" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="NAPPE-LED12" gate="G$1" x="137.16" y="170.18" smashed="yes" rot="R270">
 <attribute name="VALUE" x="132.588" y="164.465" size="1.778" layer="96"/>
@@ -12977,40 +12979,48 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <attribute name="NAME" x="539.75" y="41.6814" size="1.778" layer="95" rot="R180" display="off"/>
 <attribute name="VALUE" x="539.75" y="46.482" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="R53" gate="1" x="172.72" y="152.4" smashed="yes">
-<attribute name="NAME" x="175.26" y="147.32" size="1.778" layer="95"/>
-<attribute name="VALUE" x="175.26" y="144.78" size="1.778" layer="96"/>
+<instance part="R53" gate="1" x="172.72" y="147.32" smashed="yes">
+<attribute name="NAME" x="175.26" y="142.24" size="1.778" layer="95"/>
+<attribute name="VALUE" x="175.26" y="139.7" size="1.778" layer="96"/>
 </instance>
-<instance part="LED6" gate="G$1" x="172.72" y="144.78" smashed="yes">
-<attribute name="NAME" x="176.276" y="140.208" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="178.435" y="140.208" size="1.778" layer="96" rot="R90"/>
+<instance part="LED6" gate="G$1" x="172.72" y="139.7" smashed="yes">
+<attribute name="NAME" x="176.276" y="135.128" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="178.435" y="135.128" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R54" gate="1" x="160.02" y="152.4" smashed="yes">
-<attribute name="NAME" x="162.56" y="147.32" size="1.778" layer="95"/>
-<attribute name="VALUE" x="162.56" y="144.78" size="1.778" layer="96"/>
+<instance part="R54" gate="1" x="160.02" y="147.32" smashed="yes">
+<attribute name="NAME" x="162.56" y="142.24" size="1.778" layer="95"/>
+<attribute name="VALUE" x="162.56" y="139.7" size="1.778" layer="96"/>
 </instance>
-<instance part="LED8" gate="G$1" x="160.02" y="144.78" smashed="yes">
-<attribute name="NAME" x="163.576" y="140.208" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="165.735" y="140.208" size="1.778" layer="96" rot="R90"/>
+<instance part="LED8" gate="G$1" x="160.02" y="139.7" smashed="yes">
+<attribute name="NAME" x="163.576" y="135.128" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="165.735" y="135.128" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R55" gate="1" x="144.78" y="152.4" smashed="yes">
-<attribute name="NAME" x="147.32" y="147.32" size="1.778" layer="95"/>
-<attribute name="VALUE" x="147.32" y="144.78" size="1.778" layer="96"/>
+<instance part="R55" gate="1" x="144.78" y="147.32" smashed="yes">
+<attribute name="NAME" x="147.32" y="142.24" size="1.778" layer="95"/>
+<attribute name="VALUE" x="147.32" y="139.7" size="1.778" layer="96"/>
 </instance>
-<instance part="LED9" gate="G$1" x="144.78" y="144.78" smashed="yes">
-<attribute name="NAME" x="148.336" y="140.208" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="150.495" y="140.208" size="1.778" layer="96" rot="R90"/>
+<instance part="LED9" gate="G$1" x="144.78" y="139.7" smashed="yes">
+<attribute name="NAME" x="148.336" y="135.128" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="150.495" y="135.128" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R56" gate="1" x="132.08" y="152.4" smashed="yes">
-<attribute name="NAME" x="134.62" y="147.32" size="1.778" layer="95"/>
-<attribute name="VALUE" x="134.62" y="144.78" size="1.778" layer="96"/>
+<instance part="R56" gate="1" x="132.08" y="147.32" smashed="yes">
+<attribute name="NAME" x="134.62" y="142.24" size="1.778" layer="95"/>
+<attribute name="VALUE" x="134.62" y="139.7" size="1.778" layer="96"/>
 </instance>
-<instance part="LED10" gate="G$1" x="132.08" y="144.78" smashed="yes">
-<attribute name="NAME" x="135.636" y="140.208" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="137.795" y="140.208" size="1.778" layer="96" rot="R90"/>
+<instance part="LED10" gate="G$1" x="132.08" y="139.7" smashed="yes">
+<attribute name="NAME" x="135.636" y="135.128" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="137.795" y="135.128" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="GND15" gate="1" x="111.76" y="134.62" smashed="yes">
-<attribute name="VALUE" x="109.22" y="132.08" size="1.778" layer="96"/>
+<instance part="GND15" gate="1" x="111.76" y="129.54" smashed="yes">
+<attribute name="VALUE" x="109.22" y="127" size="1.778" layer="96"/>
+</instance>
+<instance part="R23" gate="1" x="185.42" y="147.32" smashed="yes">
+<attribute name="NAME" x="187.96" y="142.24" size="1.778" layer="95"/>
+<attribute name="VALUE" x="187.96" y="139.7" size="1.778" layer="96"/>
+</instance>
+<instance part="LED1" gate="G$1" x="185.42" y="139.7" smashed="yes">
+<attribute name="NAME" x="188.976" y="135.128" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="191.135" y="135.128" size="1.778" layer="96" rot="R90"/>
 </instance>
 </instances>
 <busses>
@@ -13075,7 +13085,7 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <segment>
 <pinref part="B1" gate="G$1" pin="GND@2"/>
 <pinref part="GND4" gate="1" pin="GND"/>
-<wire x1="378.46" y1="116.84" x2="378.46" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="381" y1="116.84" x2="381" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="GND5" gate="1" pin="GND"/>
@@ -13150,13 +13160,13 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 </segment>
 <segment>
 <pinref part="IRFZ44N" gate="G$1" pin="S"/>
-<wire x1="347.98" y1="185.42" x2="347.98" y2="182.88" width="0.1524" layer="91"/>
+<wire x1="322.58" y1="185.42" x2="322.58" y2="182.88" width="0.1524" layer="91"/>
 <pinref part="GND12" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="IRFZ44N1" gate="G$1" pin="S"/>
 <pinref part="GND13" gate="1" pin="GND"/>
-<wire x1="276.86" y1="180.34" x2="276.86" y2="182.88" width="0.1524" layer="91"/>
+<wire x1="276.86" y1="182.88" x2="276.86" y2="185.42" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="IRFZ44N2" gate="G$1" pin="S"/>
@@ -13167,36 +13177,43 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <pinref part="GND15" gate="1" pin="GND"/>
 <pinref part="R54" gate="1" pin="2"/>
 <pinref part="LED8" gate="G$1" pin="C"/>
-<wire x1="111.76" y1="139.7" x2="111.76" y2="137.16" width="0.1524" layer="91"/>
-<wire x1="165.1" y1="152.4" x2="165.1" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="165.1" y1="139.7" x2="160.02" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="160.02" y1="139.7" x2="149.86" y2="139.7" width="0.1524" layer="91"/>
-<junction x="160.02" y="139.7"/>
+<wire x1="111.76" y1="134.62" x2="111.76" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="165.1" y1="147.32" x2="165.1" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="165.1" y1="134.62" x2="160.02" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="160.02" y1="134.62" x2="149.86" y2="134.62" width="0.1524" layer="91"/>
+<junction x="160.02" y="134.62"/>
 <pinref part="R53" gate="1" pin="2"/>
 <pinref part="LED6" gate="G$1" pin="C"/>
-<wire x1="177.8" y1="152.4" x2="177.8" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="139.7" x2="172.72" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="172.72" y1="139.7" x2="165.1" y2="139.7" width="0.1524" layer="91"/>
-<junction x="172.72" y="139.7"/>
+<wire x1="177.8" y1="147.32" x2="177.8" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="134.62" x2="172.72" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="134.62" x2="165.1" y2="134.62" width="0.1524" layer="91"/>
+<junction x="172.72" y="134.62"/>
 <pinref part="R56" gate="1" pin="2"/>
 <pinref part="LED10" gate="G$1" pin="C"/>
-<wire x1="137.16" y1="152.4" x2="137.16" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="137.16" y1="139.7" x2="132.08" y2="139.7" width="0.1524" layer="91"/>
-<junction x="132.08" y="139.7"/>
+<wire x1="137.16" y1="147.32" x2="137.16" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="137.16" y1="134.62" x2="132.08" y2="134.62" width="0.1524" layer="91"/>
+<junction x="132.08" y="134.62"/>
 <pinref part="R55" gate="1" pin="2"/>
 <pinref part="LED9" gate="G$1" pin="C"/>
-<wire x1="149.86" y1="152.4" x2="149.86" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="149.86" y1="139.7" x2="144.78" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="144.78" y1="139.7" x2="137.16" y2="139.7" width="0.1524" layer="91"/>
-<junction x="144.78" y="139.7"/>
-<junction x="149.86" y="139.7"/>
-<wire x1="132.08" y1="139.7" x2="111.76" y2="139.7" width="0.1524" layer="91"/>
-<junction x="137.16" y="139.7"/>
-<junction x="165.1" y="139.7"/>
+<wire x1="149.86" y1="147.32" x2="149.86" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="149.86" y1="134.62" x2="144.78" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="144.78" y1="134.62" x2="137.16" y2="134.62" width="0.1524" layer="91"/>
+<junction x="144.78" y="134.62"/>
+<junction x="149.86" y="134.62"/>
+<wire x1="132.08" y1="134.62" x2="111.76" y2="134.62" width="0.1524" layer="91"/>
+<junction x="137.16" y="134.62"/>
+<junction x="165.1" y="134.62"/>
 <pinref part="NAPPE-LED12" gate="G$1" pin="C"/>
 <wire x1="132.08" y1="170.18" x2="111.76" y2="170.18" width="0.1524" layer="91"/>
-<wire x1="111.76" y1="170.18" x2="111.76" y2="139.7" width="0.1524" layer="91"/>
-<junction x="111.76" y="139.7"/>
+<wire x1="111.76" y1="170.18" x2="111.76" y2="134.62" width="0.1524" layer="91"/>
+<junction x="111.76" y="134.62"/>
+<pinref part="R23" gate="1" pin="2"/>
+<pinref part="LED1" gate="G$1" pin="C"/>
+<wire x1="190.5" y1="147.32" x2="190.5" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="134.62" x2="185.42" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="134.62" x2="177.8" y2="134.62" width="0.1524" layer="91"/>
+<junction x="185.42" y="134.62"/>
+<junction x="177.8" y="134.62"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -13296,7 +13313,7 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <segment>
 <pinref part="P+3" gate="1" pin="+5V"/>
 <pinref part="B1" gate="G$1" pin="5V"/>
-<wire x1="370.84" y1="111.76" x2="370.84" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="373.38" y1="111.76" x2="373.38" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R9" gate="G$1" pin="2"/>
@@ -13316,7 +13333,7 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 </segment>
 <segment>
 <pinref part="REEDWATERLEVEL" gate="G$1" pin="1"/>
-<wire x1="309.88" y1="203.2" x2="309.88" y2="205.74" width="0.1524" layer="91"/>
+<wire x1="411.48" y1="203.2" x2="411.48" y2="205.74" width="0.1524" layer="91"/>
 <pinref part="P+5" gate="1" pin="+5V"/>
 </segment>
 <segment>
@@ -13513,9 +13530,9 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <segment>
 <pinref part="R19" gate="G$1" pin="1"/>
 <wire x1="396.24" y1="243.84" x2="396.24" y2="154.94" width="0.1524" layer="91"/>
-<wire x1="396.24" y1="154.94" x2="370.84" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="396.24" y1="154.94" x2="373.38" y2="154.94" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="*D10"/>
-<wire x1="370.84" y1="154.94" x2="370.84" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="373.38" y1="154.94" x2="373.38" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$33" class="0">
@@ -13523,25 +13540,23 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <pinref part="R10" gate="G$1" pin="1"/>
 <wire x1="396.24" y1="246.38" x2="398.78" y2="246.38" width="0.1524" layer="91"/>
 <wire x1="398.78" y1="246.38" x2="398.78" y2="152.4" width="0.1524" layer="91"/>
-<wire x1="398.78" y1="152.4" x2="373.38" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="398.78" y1="152.4" x2="375.92" y2="152.4" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="*D11"/>
-<wire x1="373.38" y1="152.4" x2="373.38" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="375.92" y1="152.4" x2="375.92" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$34" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="BUSY"/>
 <wire x1="340.36" y1="241.3" x2="340.36" y2="228.6" width="0.1524" layer="91"/>
-<wire x1="340.36" y1="228.6" x2="375.92" y2="228.6" width="0.1524" layer="91"/>
+<wire x1="340.36" y1="228.6" x2="378.46" y2="228.6" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="D12"/>
-<wire x1="375.92" y1="228.6" x2="375.92" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="228.6" x2="378.46" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$2" class="0">
 <segment>
-<pinref part="B1" gate="G$1" pin="A0"/>
-<wire x1="342.9" y1="114.3" x2="342.9" y2="116.84" width="0.1524" layer="91"/>
-<wire x1="342.9" y1="114.3" x2="325.12" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="353.06" y1="114.3" x2="325.12" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="325.12" y1="114.3" x2="325.12" y2="147.32" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="228.6" y1="0" x2="236.22" y2="0" width="0.1524" layer="91"/>
@@ -13579,6 +13594,8 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <wire x1="251.46" y1="139.7" x2="236.22" y2="139.7" width="0.1524" layer="91"/>
 <junction x="236.22" y="139.7"/>
 <wire x1="325.12" y1="147.32" x2="236.22" y2="147.32" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="A3"/>
+<wire x1="353.06" y1="114.3" x2="353.06" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$35" class="0">
@@ -13963,8 +13980,8 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <net name="N$100" class="0">
 <segment>
 <pinref part="IRFZ44N" gate="G$1" pin="D"/>
-<wire x1="347.98" y1="190.5" x2="350.52" y2="190.5" width="0.1524" layer="91"/>
-<wire x1="350.52" y1="190.5" x2="350.52" y2="198.12" width="0.1524" layer="91"/>
+<wire x1="322.58" y1="190.5" x2="325.12" y2="190.5" width="0.1524" layer="91"/>
+<wire x1="325.12" y1="190.5" x2="325.12" y2="198.12" width="0.1524" layer="91"/>
 <pinref part="STRIPLED" gate="G$1" pin="C"/>
 </segment>
 </net>
@@ -13972,23 +13989,23 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <segment>
 <pinref part="STRIPLED" gate="G$1" pin="A"/>
 <pinref part="P+8" gate="1" pin="+12V"/>
-<wire x1="350.52" y1="205.74" x2="350.52" y2="213.36" width="0.1524" layer="91"/>
+<wire x1="325.12" y1="205.74" x2="325.12" y2="213.36" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="P+10" gate="1" pin="+12V"/>
-<wire x1="279.4" y1="241.3" x2="279.4" y2="254" width="0.1524" layer="91"/>
+<wire x1="279.4" y1="243.84" x2="279.4" y2="256.54" width="0.1524" layer="91"/>
 <pinref part="R47" gate="G$1" pin="1"/>
-<wire x1="279.4" y1="254" x2="279.4" y2="266.7" width="0.1524" layer="91"/>
-<wire x1="269.24" y1="246.38" x2="269.24" y2="254" width="0.1524" layer="91"/>
+<wire x1="279.4" y1="256.54" x2="279.4" y2="269.24" width="0.1524" layer="91"/>
+<wire x1="269.24" y1="248.92" x2="269.24" y2="256.54" width="0.1524" layer="91"/>
 <pinref part="R49" gate="G$1" pin="1"/>
-<wire x1="269.24" y1="254" x2="279.4" y2="254" width="0.1524" layer="91"/>
-<junction x="279.4" y="254"/>
-<wire x1="289.56" y1="246.38" x2="289.56" y2="254" width="0.1524" layer="91"/>
+<wire x1="269.24" y1="256.54" x2="279.4" y2="256.54" width="0.1524" layer="91"/>
+<junction x="279.4" y="256.54"/>
+<wire x1="289.56" y1="248.92" x2="289.56" y2="256.54" width="0.1524" layer="91"/>
 <pinref part="R50" gate="G$1" pin="1"/>
-<wire x1="289.56" y1="254" x2="279.4" y2="254" width="0.1524" layer="91"/>
+<wire x1="289.56" y1="256.54" x2="279.4" y2="256.54" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="243.84" y1="246.38" x2="243.84" y2="266.7" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="248.92" x2="243.84" y2="269.24" width="0.1524" layer="91"/>
 <pinref part="R51" gate="G$1" pin="1"/>
 <pinref part="P+11" gate="1" pin="+12V"/>
 </segment>
@@ -13996,161 +14013,157 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <net name="N$97" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="*D9"/>
-<wire x1="368.3" y1="142.24" x2="368.3" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="370.84" y1="142.24" x2="370.84" y2="175.26" width="0.1524" layer="91"/>
 <pinref part="IRFZ44N" gate="G$1" pin="G"/>
-<wire x1="337.82" y1="175.26" x2="337.82" y2="185.42" width="0.1524" layer="91"/>
-<wire x1="368.3" y1="175.26" x2="337.82" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="312.42" y1="175.26" x2="312.42" y2="185.42" width="0.1524" layer="91"/>
+<wire x1="370.84" y1="175.26" x2="312.42" y2="175.26" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$101" class="0">
 <segment>
-<pinref part="B1" gate="G$1" pin="*D6"/>
-<wire x1="360.68" y1="142.24" x2="360.68" y2="170.18" width="0.1524" layer="91"/>
 <pinref part="IRFZ44N1" gate="G$1" pin="G"/>
-<wire x1="266.7" y1="170.18" x2="266.7" y2="182.88" width="0.1524" layer="91"/>
-<wire x1="360.68" y1="170.18" x2="266.7" y2="170.18" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$103" class="0">
-<segment>
-<pinref part="IRFZ44N2" gate="G$1" pin="D"/>
-<wire x1="241.3" y1="190.5" x2="243.84" y2="190.5" width="0.1524" layer="91"/>
+<wire x1="266.7" y1="170.18" x2="266.7" y2="185.42" width="0.1524" layer="91"/>
+<wire x1="365.76" y1="170.18" x2="266.7" y2="170.18" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="D7"/>
+<wire x1="365.76" y1="142.24" x2="365.76" y2="170.18" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$36" class="0">
 <segment>
-<pinref part="B1" gate="G$1" pin="D7"/>
-<wire x1="363.22" y1="172.72" x2="363.22" y2="142.24" width="0.1524" layer="91"/>
 <pinref part="REEDWATERLEVEL" gate="G$1" pin="2"/>
-<wire x1="309.88" y1="190.5" x2="309.88" y2="187.96" width="0.1524" layer="91"/>
+<wire x1="411.48" y1="190.5" x2="411.48" y2="187.96" width="0.1524" layer="91"/>
 <pinref part="R21" gate="G$1" pin="2"/>
-<wire x1="309.88" y1="172.72" x2="309.88" y2="187.96" width="0.1524" layer="91"/>
-<junction x="309.88" y="187.96"/>
-<wire x1="363.22" y1="172.72" x2="309.88" y2="172.72" width="0.1524" layer="91"/>
+<wire x1="411.48" y1="172.72" x2="411.48" y2="187.96" width="0.1524" layer="91"/>
+<junction x="411.48" y="187.96"/>
+<wire x1="381" y1="172.72" x2="411.48" y2="172.72" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="D13"/>
+<wire x1="381" y1="142.24" x2="381" y2="172.72" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$102" class="0">
 <segment>
 <pinref part="NAPPE-LED" gate="G$1" pin="A"/>
-<wire x1="279.4" y1="205.74" x2="279.4" y2="208.28" width="0.1524" layer="91"/>
+<wire x1="279.4" y1="208.28" x2="279.4" y2="210.82" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED1" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$104" class="0">
 <segment>
 <pinref part="NAPPE-LED1" gate="G$1" pin="A"/>
-<wire x1="279.4" y1="215.9" x2="279.4" y2="218.44" width="0.1524" layer="91"/>
+<wire x1="279.4" y1="218.44" x2="279.4" y2="220.98" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED2" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$105" class="0">
 <segment>
 <pinref part="NAPPE-LED2" gate="G$1" pin="A"/>
-<wire x1="279.4" y1="226.06" x2="279.4" y2="231.14" width="0.1524" layer="91"/>
+<wire x1="279.4" y1="228.6" x2="279.4" y2="233.68" width="0.1524" layer="91"/>
 <pinref part="R47" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$107" class="0">
 <segment>
 <pinref part="NAPPE-LED3" gate="G$1" pin="A"/>
-<wire x1="269.24" y1="210.82" x2="269.24" y2="213.36" width="0.1524" layer="91"/>
+<wire x1="269.24" y1="213.36" x2="269.24" y2="215.9" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED4" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$108" class="0">
 <segment>
 <pinref part="NAPPE-LED4" gate="G$1" pin="A"/>
-<wire x1="269.24" y1="220.98" x2="269.24" y2="223.52" width="0.1524" layer="91"/>
+<wire x1="269.24" y1="223.52" x2="269.24" y2="226.06" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED5" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$109" class="0">
 <segment>
 <pinref part="NAPPE-LED5" gate="G$1" pin="A"/>
-<wire x1="269.24" y1="231.14" x2="269.24" y2="236.22" width="0.1524" layer="91"/>
+<wire x1="269.24" y1="233.68" x2="269.24" y2="238.76" width="0.1524" layer="91"/>
 <pinref part="R49" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$111" class="0">
 <segment>
 <pinref part="NAPPE-LED6" gate="G$1" pin="A"/>
-<wire x1="289.56" y1="210.82" x2="289.56" y2="213.36" width="0.1524" layer="91"/>
+<wire x1="289.56" y1="213.36" x2="289.56" y2="215.9" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED7" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$112" class="0">
 <segment>
 <pinref part="NAPPE-LED7" gate="G$1" pin="A"/>
-<wire x1="289.56" y1="220.98" x2="289.56" y2="223.52" width="0.1524" layer="91"/>
+<wire x1="289.56" y1="223.52" x2="289.56" y2="226.06" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED8" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$113" class="0">
 <segment>
 <pinref part="NAPPE-LED8" gate="G$1" pin="A"/>
-<wire x1="289.56" y1="231.14" x2="289.56" y2="236.22" width="0.1524" layer="91"/>
+<wire x1="289.56" y1="233.68" x2="289.56" y2="238.76" width="0.1524" layer="91"/>
 <pinref part="R50" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$99" class="0">
 <segment>
-<wire x1="289.56" y1="195.58" x2="289.56" y2="203.2" width="0.1524" layer="91"/>
+<wire x1="289.56" y1="198.12" x2="289.56" y2="205.74" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED6" gate="G$1" pin="C"/>
-<wire x1="269.24" y1="195.58" x2="269.24" y2="203.2" width="0.1524" layer="91"/>
+<wire x1="269.24" y1="198.12" x2="269.24" y2="205.74" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED3" gate="G$1" pin="C"/>
 <pinref part="IRFZ44N1" gate="G$1" pin="D"/>
-<wire x1="276.86" y1="187.96" x2="279.4" y2="187.96" width="0.1524" layer="91"/>
-<wire x1="279.4" y1="187.96" x2="279.4" y2="193.04" width="0.1524" layer="91"/>
+<wire x1="276.86" y1="190.5" x2="279.4" y2="190.5" width="0.1524" layer="91"/>
+<wire x1="279.4" y1="190.5" x2="279.4" y2="195.58" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED" gate="G$1" pin="C"/>
-<wire x1="279.4" y1="193.04" x2="279.4" y2="198.12" width="0.1524" layer="91"/>
-<wire x1="269.24" y1="195.58" x2="279.4" y2="193.04" width="0.1524" layer="91"/>
-<junction x="279.4" y="193.04"/>
-<wire x1="289.56" y1="195.58" x2="279.4" y2="193.04" width="0.1524" layer="91"/>
+<wire x1="279.4" y1="195.58" x2="279.4" y2="200.66" width="0.1524" layer="91"/>
+<wire x1="269.24" y1="198.12" x2="279.4" y2="195.58" width="0.1524" layer="91"/>
+<junction x="279.4" y="195.58"/>
+<wire x1="289.56" y1="198.12" x2="279.4" y2="195.58" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$106" class="0">
 <segment>
 <pinref part="NAPPE-LED9" gate="G$1" pin="A"/>
-<wire x1="243.84" y1="210.82" x2="243.84" y2="213.36" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="213.36" x2="243.84" y2="215.9" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED10" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$110" class="0">
 <segment>
 <pinref part="NAPPE-LED10" gate="G$1" pin="A"/>
-<wire x1="243.84" y1="220.98" x2="243.84" y2="223.52" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="223.52" x2="243.84" y2="226.06" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED11" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$114" class="0">
 <segment>
 <pinref part="NAPPE-LED11" gate="G$1" pin="A"/>
-<wire x1="243.84" y1="231.14" x2="243.84" y2="236.22" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="233.68" x2="243.84" y2="238.76" width="0.1524" layer="91"/>
 <pinref part="R51" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$115" class="0">
 <segment>
-<wire x1="243.84" y1="190.5" x2="243.84" y2="203.2" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="190.5" x2="243.84" y2="205.74" width="0.1524" layer="91"/>
 <pinref part="NAPPE-LED9" gate="G$1" pin="C"/>
+<pinref part="IRFZ44N2" gate="G$1" pin="D"/>
+<wire x1="241.3" y1="190.5" x2="243.84" y2="190.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$116" class="0">
 <segment>
 <pinref part="IRFZ44N2" gate="G$1" pin="G"/>
 <wire x1="231.14" y1="185.42" x2="231.14" y2="167.64" width="0.1524" layer="91"/>
-<wire x1="231.14" y1="167.64" x2="358.14" y2="167.64" width="0.1524" layer="91"/>
-<pinref part="B1" gate="G$1" pin="*D5"/>
-<wire x1="358.14" y1="167.64" x2="358.14" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="231.14" y1="167.64" x2="363.22" y2="167.64" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="*D6"/>
+<wire x1="363.22" y1="142.24" x2="363.22" y2="167.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$117" class="0">
 <segment>
-<pinref part="B1" gate="G$1" pin="D4"/>
-<wire x1="355.6" y1="142.24" x2="355.6" y2="165.1" width="0.1524" layer="91"/>
-<wire x1="355.6" y1="165.1" x2="149.86" y2="165.1" width="0.1524" layer="91"/>
+<wire x1="360.68" y1="165.1" x2="149.86" y2="165.1" width="0.1524" layer="91"/>
 <pinref part="R52" gate="G$1" pin="2"/>
 <wire x1="149.86" y1="165.1" x2="149.86" y2="170.18" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="*D5"/>
+<wire x1="360.68" y1="142.24" x2="360.68" y2="165.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$122" class="0">
@@ -14161,11 +14174,11 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 </net>
 <net name="N$121" class="0">
 <segment>
-<pinref part="B1" gate="G$1" pin="D2"/>
-<wire x1="350.52" y1="142.24" x2="350.52" y2="154.94" width="0.1524" layer="91"/>
-<wire x1="350.52" y1="154.94" x2="167.64" y2="154.94" width="0.1524" layer="91"/>
 <pinref part="R53" gate="1" pin="1"/>
-<wire x1="167.64" y1="154.94" x2="167.64" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="347.98" y1="154.94" x2="167.64" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="167.64" y1="154.94" x2="167.64" y2="147.32" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="TX"/>
+<wire x1="347.98" y1="142.24" x2="347.98" y2="154.94" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$124" class="0">
@@ -14177,10 +14190,10 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <net name="N$125" class="0">
 <segment>
 <pinref part="R54" gate="1" pin="1"/>
-<wire x1="154.94" y1="157.48" x2="154.94" y2="152.4" width="0.1524" layer="91"/>
-<pinref part="B1" gate="G$1" pin="*D3"/>
-<wire x1="353.06" y1="142.24" x2="353.06" y2="157.48" width="0.1524" layer="91"/>
+<wire x1="154.94" y1="157.48" x2="154.94" y2="147.32" width="0.1524" layer="91"/>
 <wire x1="353.06" y1="157.48" x2="154.94" y2="157.48" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="D2"/>
+<wire x1="353.06" y1="157.48" x2="353.06" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$127" class="0">
@@ -14192,10 +14205,10 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <net name="N$128" class="0">
 <segment>
 <pinref part="R55" gate="1" pin="1"/>
-<wire x1="139.7" y1="160.02" x2="139.7" y2="152.4" width="0.1524" layer="91"/>
-<pinref part="B1" gate="G$1" pin="D8"/>
-<wire x1="365.76" y1="142.24" x2="365.76" y2="160.02" width="0.1524" layer="91"/>
-<wire x1="365.76" y1="160.02" x2="139.7" y2="160.02" width="0.1524" layer="91"/>
+<wire x1="139.7" y1="160.02" x2="139.7" y2="147.32" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="*D3"/>
+<wire x1="355.6" y1="160.02" x2="139.7" y2="160.02" width="0.1524" layer="91"/>
+<wire x1="355.6" y1="142.24" x2="355.6" y2="160.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$129" class="0">
@@ -14207,10 +14220,10 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <net name="N$130" class="0">
 <segment>
 <pinref part="R56" gate="1" pin="1"/>
-<wire x1="127" y1="162.56" x2="127" y2="152.4" width="0.1524" layer="91"/>
-<pinref part="B1" gate="G$1" pin="D13"/>
-<wire x1="378.46" y1="142.24" x2="378.46" y2="162.56" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="162.56" x2="127" y2="162.56" width="0.1524" layer="91"/>
+<wire x1="127" y1="162.56" x2="127" y2="147.32" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="D4"/>
+<wire x1="358.14" y1="162.56" x2="127" y2="162.56" width="0.1524" layer="91"/>
+<wire x1="358.14" y1="142.24" x2="358.14" y2="162.56" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$118" class="0">
@@ -14222,8 +14235,8 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <net name="N$18" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="A4"/>
-<wire x1="353.06" y1="78.74" x2="353.06" y2="116.84" width="0.1524" layer="91"/>
-<wire x1="332.74" y1="78.74" x2="353.06" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="355.6" y1="78.74" x2="355.6" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="332.74" y1="78.74" x2="355.6" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="332.74" y1="81.28" x2="332.74" y2="78.74" width="0.1524" layer="91"/>
 <pinref part="MCP0" gate="G$1" pin="SDA"/>
 <wire x1="325.12" y1="81.28" x2="332.74" y2="81.28" width="0.1524" layer="91"/>
@@ -14232,17 +14245,17 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <wire x1="510.54" y1="53.34" x2="510.54" y2="43.18" width="0.1524" layer="91"/>
 <pinref part="R25" gate="G$1" pin="2"/>
 <wire x1="510.54" y1="43.18" x2="530.86" y2="43.18" width="0.1524" layer="91"/>
-<wire x1="353.06" y1="78.74" x2="510.54" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="355.6" y1="78.74" x2="510.54" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="510.54" y1="78.74" x2="510.54" y2="53.34" width="0.1524" layer="91"/>
-<junction x="353.06" y="78.74"/>
+<junction x="355.6" y="78.74"/>
 <junction x="510.54" y="53.34"/>
 </segment>
 </net>
 <net name="N$29" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="A5"/>
-<wire x1="355.6" y1="76.2" x2="355.6" y2="116.84" width="0.1524" layer="91"/>
-<wire x1="330.2" y1="76.2" x2="355.6" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="358.14" y1="76.2" x2="358.14" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="330.2" y1="76.2" x2="358.14" y2="76.2" width="0.1524" layer="91"/>
 <wire x1="330.2" y1="78.74" x2="330.2" y2="76.2" width="0.1524" layer="91"/>
 <pinref part="MCP0" gate="G$1" pin="SCL"/>
 <wire x1="325.12" y1="78.74" x2="330.2" y2="78.74" width="0.1524" layer="91"/>
@@ -14251,10 +14264,25 @@ Source: pui audio inc. SMS-1308MS-2-R.pdf</description>
 <pinref part="R24" gate="G$1" pin="2"/>
 <wire x1="530.86" y1="48.26" x2="513.08" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="513.08" y1="48.26" x2="513.08" y2="50.8" width="0.1524" layer="91"/>
-<wire x1="355.6" y1="76.2" x2="513.08" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="358.14" y1="76.2" x2="513.08" y2="76.2" width="0.1524" layer="91"/>
 <wire x1="513.08" y1="76.2" x2="513.08" y2="50.8" width="0.1524" layer="91"/>
-<junction x="355.6" y="76.2"/>
+<junction x="358.14" y="76.2"/>
 <junction x="513.08" y="50.8"/>
+</segment>
+</net>
+<net name="N$55" class="0">
+<segment>
+<pinref part="R23" gate="1" pin="3"/>
+<pinref part="LED1" gate="G$1" pin="A"/>
+</segment>
+</net>
+<net name="N$86" class="0">
+<segment>
+<pinref part="R23" gate="1" pin="1"/>
+<wire x1="345.44" y1="152.4" x2="180.34" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="180.34" y1="152.4" x2="180.34" y2="147.32" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="RX"/>
+<wire x1="345.44" y1="152.4" x2="345.44" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
