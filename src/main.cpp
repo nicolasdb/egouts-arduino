@@ -41,19 +41,18 @@ int valveArray[] = {0,1,2,3,4,5,6,7};
 int valveBrray[] = {8,9,10,11,12,13,14,15};
 
 // define n° relay for valves on MCP0
-int pChamp = 1;       //valve
-int tImper = 2;       //valve
-int tPlant = 3;       //valve
-int pJardin = 4;      //valve
-int sImper = 5;       //valve
-int citerne = 6;      //valve
-int egout = 7;        //valve
-int collecteur = 8;   //valve
-int bOrage = 9;       //valve
-int riviere = 10;     //valve
-int RuePlace = 11;    //valve
-int simVille1 = 12;   //valve
-int simVille2 = 13;   //valve
+int pChamp = 4;       //valve 8 pluie champ
+int tImper = 5;       //valve 5 pluie toiture G
+int tPlant = 6;       //valve 9 pluie toiture D
+int pJardin = 3;      //valve 3 pluie jardin
+int sImper = 8;       //valve 12 rue&place 220V
+int citerne = 2;      //valve 1 citerne
+int egout = 14;       //valve 2 egout champignon
+int collecteur = 11;  //valve 7 collecteur maison (oeuf)
+int bOrage = 12;      //valve 4 bassin d'orage
+int riviere = 7;      //valve 10 rivière
+int simVille1 = 13;   //valve 11 activité voisine
+int sterput = 15;     //valve 6 sterput maison
 
 // mapping leds
 // int ledMurray[] = {1,2,3,4,5,6,7,8,9,10};
@@ -189,31 +188,9 @@ void TaskDemo(void *pvParameters)  // This is a task.
       mcp0.digitalWrite(ledButtonArray[count], LOW);
       vTaskDelay((speed*5) / portTICK_PERIOD_MS);
     }
-    // vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
-// if (pumpStat == 1) {
-//   mcp2.digitalWrite(nappe, HIGH);
-//   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-// } else {mcp2.digitalWrite(nappe, LOW);
-//         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );}
-
   }
 }
 
-/*---------------------- Pompe ---------------------*/
-// void TaskPump(void *pvParameters)  // This is a task.
-// {
-//   (void) pvParameters;
-//   for (;;) {
-//   if (reedStat == 1) {
-    // mcp2.digitalWrite(nappe, HIGH);
-    // vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-//                       }
-//    else {
-//     mcp2.digitalWrite(nappe, LOW);
-//     vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
-//         }
-//     }
-// }
 
 /*---------------------- buttons ---------------------*/
 void TaskButtons(void *pvParameters)
@@ -287,9 +264,11 @@ void TaskActions(void *pvParameters)  // This is a task.
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
 
       Serial.println("test mcp1 pin0");
-      mcp1.digitalWrite(0, HIGH);
+      mcp1.digitalWrite(1, HIGH);
+      digitalWrite(nappe, HIGH);
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
-      mcp1.digitalWrite(0, LOW);
+      mcp1.digitalWrite(1, LOW);
+      digitalWrite(nappe, LOW);
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
 
       // Serial.println("Nappe Phréatique");
@@ -305,9 +284,11 @@ void TaskActions(void *pvParameters)  // This is a task.
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
 
       Serial.println("test mcp1 pin1");
-      mcp1.digitalWrite(1, HIGH);
+      mcp1.digitalWrite(9, HIGH);
+        digitalWrite(egg, HIGH);
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
-      mcp1.digitalWrite(1, LOW);
+      mcp1.digitalWrite(9, LOW);
+        digitalWrite(egg, LOW);
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
 
       mcp0.digitalWrite(buttonID, LOW);
@@ -321,9 +302,9 @@ void TaskActions(void *pvParameters)  // This is a task.
 
       Serial.println("test mcp1 pin2");
       piste2();
-      // mcp1.digitalWrite(2, HIGH);
-      //   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
-      // mcp1.digitalWrite(2, LOW);
+      mcp1.digitalWrite(10, HIGH);
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+      mcp1.digitalWrite(10, LOW);
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
 
       mcp0.digitalWrite(buttonID, LOW);
