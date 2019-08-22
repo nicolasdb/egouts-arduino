@@ -34,7 +34,7 @@ void mp3setup () {
    stormPlayer.volume(25);                        // Set volume value (0~30).
    stormPlayer.EQ(DFPLAYER_EQ_NORMAL);              // Set EQ to BASS (normal/pop/rock/jazz/classic/bass)
    stormPlayer.outputDevice(DFPLAYER_DEVICE_SD);  // Set device we use SD as default
-   stormPlayer.enableDAC();                       // Enable On-chip DAC
+   // stormPlayer.enableDAC();                       // Enable On-chip DAC
 
 }
 
@@ -54,7 +54,7 @@ for (size_t i=1 ; i<= stormCount ; i++){
       int nextFlashDelayMax = 150;            // Max, delay between each flash and the next
 
       int thunderDelay = random (300, 1000);  // Min. and max. delay between flashing and playing sound
-      int thunderFile = random (1, 17);       // There are 17 soundfiles: 0001.mp3 ... 0017.mp3
+      int thunderFile = random (1, 13);       // There are 17 soundfiles: 0001.mp3 ... 0017.mp3
       int loopDelay = random (50, 200);   // Min. and max. delay between each loop
 
       Serial.println();
@@ -76,7 +76,7 @@ for (size_t i=1 ; i<= stormCount ; i++){
 
       Serial.print(F("Playing thunder sound, file number: "));
       Serial.println(thunderFile);
-      stormPlayer.play(thunderFile);
+      stormPlayer.playFolder(2, thunderFile);
       // stormPlayer.playMp3Folder(thunderFile);
       delay(1000); // Give the DFPlayer some time
 
@@ -88,4 +88,22 @@ for (size_t i=1 ; i<= stormCount ; i++){
       delay(loopDelay);
 
   }
+}
+
+void piste1 () {
+  stormPlayer.playFolder(1,4);
+  delay(1000); // Give the DFPlayer some time
+
+  while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
+
+}
+}
+
+void piste2 () {
+  stormPlayer.playFolder(3,3);
+  delay(1000); // Give the DFPlayer some time
+
+  while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
+
+}
 }

@@ -3,5 +3,7 @@
 
 void mp3setup ();
 void mp3 (int stormCount);
+void piste1 ();
+void piste2 ();
 
 #endif

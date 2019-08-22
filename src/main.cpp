@@ -32,39 +32,39 @@ int ledButtonArray[] = {7,6,9,8,11,10,5,4};   // liste les pin utilisées sur mc
 int count = 0;                                // compteur pour scanner led k2000
 int speed = 15;                               // delay pour scanner led k2000
 
-bool reedValue;
-bool pumpStat;
-int pump = 0;
+// bool reedValue;
+// bool pumpStat;
+// int pump = 0;
 
 // mapping valveArray, liste les pin utilisées sur mcp1
 int valveArray[] = {0,1,2,3,4,5,6,7};
 int valveBrray[] = {8,9,10,11,12,13,14,15};
 
-// define n° relay for valves
-int pChamp = 1;
-int tImper = 2;
-int tPlant = 3;
-int pJardin = 4;
-int sImper = 5;
-int citerne = 6;
-int egout = 7;
-int collecteur = 8;
-int bOrage = 9;
-int riviere = 10;
-int RuePlace = 11;
-int simVille1 = 12;
-int simVille2 = 13;
+// define n° relay for valves on MCP0
+int pChamp = 1;       //valve
+int tImper = 2;       //valve
+int tPlant = 3;       //valve
+int pJardin = 4;      //valve
+int sImper = 5;       //valve
+int citerne = 6;      //valve
+int egout = 7;        //valve
+int collecteur = 8;   //valve
+int bOrage = 9;       //valve
+int riviere = 10;     //valve
+int RuePlace = 11;    //valve
+int simVille1 = 12;   //valve
+int simVille2 = 13;   //valve
 
 // mapping leds
 // int ledMurray[] = {1,2,3,4,5,6,7,8,9,10};
-int nappe = 1;
-int station = 2;
-int sdb1 = 3;
-int toilette = 4;
-int cuisine = 5;
-int arrosage = 6;
-int lavelinge = 7;
-int cave = 8;
+int nappe = 8;
+int egg = 7;
+int sdb1 = 1;
+int toilette = 2;
+int cuisine = 3;
+int arrosage = 4;
+int lavelinge = 5;
+int cave = 6;
 
 /*--------------------------------------------------*/
 /*---------------------- setup ---------------------*/
@@ -77,12 +77,12 @@ void setup() {
 
   // INPUT sensors
   pinMode(A3, INPUT);  // input pin buttons scénario
-  pinMode(13, INPUT);   // input pin WaterLevel (reed switch)
+  // pinMode(13, INPUT);   // input pin WaterLevel (reed switch)
 
   // onboard OUTPUT controls
-  for (size_t i = 0; i < 7 ; i++){
+  for (size_t i = 1; i < 9 ; i++){
     pinMode(i, OUTPUT);
-    digitalWrite(i,HIGH);
+    // digitalWrite(i,HIGH);
     delay(10);
   }
   // pinMode(1, OUTPUT);
@@ -222,8 +222,8 @@ void TaskButtons(void *pvParameters)
 
   for (;;) {
 
-    reedValue = digitalRead(13);      //  waterlevel sensor Input reading
-    Serial.println(reedValue);        
+    // reedValue = digitalRead(13);      //  waterlevel sensor Input reading
+    // Serial.println(reedValue);
     // pumpStat = reedValue;
     // vTaskDelay( (1000 / portTICK_PERIOD_MS)*0.5 );
 
@@ -234,31 +234,31 @@ void TaskButtons(void *pvParameters)
       if (buttonValue>950) {
         Serial.println("Button 8");
         buttonID = ledButtonArray[8-1];
-        etats = S7;
+        etats = IDLE;
       } else if (buttonValue > 800 && buttonValue < 949) {
         Serial.println("Button 7");
         buttonID = ledButtonArray[7-1];
-        etats = S6;
+        etats = S5;
       } else if (buttonValue > 700 && buttonValue < 799) {
         Serial.println("Button 6");
         buttonID = ledButtonArray[6-1];
-        etats = S5;
+        etats = S4;
       } else if (buttonValue > 550 && buttonValue < 699) {
         Serial.println("Button 5");
         buttonID = ledButtonArray[5-1];
-        etats = S4;
+        etats = S3;
       } else if (buttonValue > 420 && buttonValue < 549) {
         Serial.println("Button 4");
         buttonID = ledButtonArray[4-1];
-        etats = S3;
+        etats = S2;
       } else if (buttonValue > 310 && buttonValue < 419) {
         Serial.println("Button 3");
         buttonID = ledButtonArray[3-1];
-        etats = S2;
+        etats = S1;
       } else if (buttonValue > 210 && buttonValue < 309) {
         Serial.println("Button 2");
         buttonID = ledButtonArray[2-1];
-        etats = S1;
+        etats = IDLE;
       } else if (buttonValue > 110 && buttonValue < 209) {
         Serial.println("Button 1");
         buttonID = ledButtonArray[1-1];
@@ -288,7 +288,7 @@ void TaskActions(void *pvParameters)  // This is a task.
 
       Serial.println("test mcp1 pin0");
       mcp1.digitalWrite(0, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
       mcp1.digitalWrite(0, LOW);
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
 
@@ -300,46 +300,48 @@ void TaskActions(void *pvParameters)  // This is a task.
       break;
 
     case S2:              /*---------------------- case ---------------------*/
-    suspendDemo();
-    mcp0.digitalWrite(buttonID, HIGH);
-      vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+      suspendDemo();
+      mcp0.digitalWrite(buttonID, HIGH);
+        vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
 
-    Serial.println("test mcp1 pin1");
-    mcp1.digitalWrite(1, HIGH);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-    mcp1.digitalWrite(1, LOW);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+      Serial.println("test mcp1 pin1");
+      mcp1.digitalWrite(1, HIGH);
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+      mcp1.digitalWrite(1, LOW);
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
 
-    mcp0.digitalWrite(buttonID, LOW);
-    etats = IDLE;
-      break;
+      mcp0.digitalWrite(buttonID, LOW);
+      etats = IDLE;
+    break;
 
     case S3:              /*---------------------- case ---------------------*/
-    suspendDemo();
-    mcp0.digitalWrite(buttonID, HIGH);
-      vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
+      suspendDemo();
+      mcp0.digitalWrite(buttonID, HIGH);
+        vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
 
-    Serial.println("test mcp1 pin2");
-    mcp1.digitalWrite(2, HIGH);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-    mcp1.digitalWrite(2, LOW);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+      Serial.println("test mcp1 pin2");
+      piste2();
+      // mcp1.digitalWrite(2, HIGH);
+      //   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+      // mcp1.digitalWrite(2, LOW);
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
 
-    mcp0.digitalWrite(buttonID, LOW);
-    etats = IDLE;
-      break;
+      mcp0.digitalWrite(buttonID, LOW);
+      etats = IDLE;
+    break;
 
     case S4:              /*---------------------- case ---------------------*/
-        suspendDemo();
-        mcp0.digitalWrite(buttonID, HIGH);
-        Serial.println("test mcp1 pin3");
-        mcp1.digitalWrite(3, HIGH);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-        mcp1.digitalWrite(3, LOW);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+      suspendDemo();
+      mcp0.digitalWrite(buttonID, HIGH);
+      Serial.println("test mcp1 pin3");
+      piste1();
+      // mcp1.digitalWrite(8, HIGH);
+      //   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+      // mcp1.digitalWrite(8, LOW);
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
 
-        mcp0.digitalWrite(buttonID, LOW);
-        etats = IDLE;
+      mcp0.digitalWrite(buttonID, LOW);
+      etats = IDLE;
     break;
 
     case S5:              /*---------------------- case ---------------------*/
