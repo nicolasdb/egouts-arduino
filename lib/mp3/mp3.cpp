@@ -39,11 +39,11 @@ void mp3setup () {
 }
 
 
-void mp3 (int stormCount) {
+void storm (int stormCount) {
     Serial.print("Boucles : ");
     Serial.println(stormCount);
 for (size_t i=1 ; i<= stormCount ; i++){
-    int flashCount = random (5, 15);        // Min. and max. number of flashes each loop
+    int flashCount = random (10, 15);        // Min. and max. number of flashes each loop
       int flashBrightnessMin =  10;           // LED flash min. brightness (0-255)
       int flashBrightnessMax =  255;          // LED flash max. brightness (0-255)
 
@@ -91,7 +91,7 @@ for (size_t i=1 ; i<= stormCount ; i++){
 }
 
 void piste1 () {
-  stormPlayer.playFolder(1,4);
+  stormPlayer.playFolder(1,1);        // lavelinge
   delay(1000); // Give the DFPlayer some time
 
   while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
@@ -100,7 +100,34 @@ void piste1 () {
 }
 
 void piste2 () {
-  stormPlayer.playFolder(3,3);
+  stormPlayer.playFolder(1,2);        // wc
+  delay(1000); // Give the DFPlayer some time
+
+  while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
+
+}
+}
+
+void piste3 () {
+  stormPlayer.playFolder(1,3);        // robinet
+  delay(1000); // Give the DFPlayer some time
+
+  while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
+
+}
+}
+
+void piste4 () {
+  stormPlayer.playFolder(1,4);        // pluie
+  delay(1000); // Give the DFPlayer some time
+
+  while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
+
+}
+
+}
+void piste5 () {
+  stormPlayer.playFolder(1,5);        // douche
   delay(1000); // Give the DFPlayer some time
 
   while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
