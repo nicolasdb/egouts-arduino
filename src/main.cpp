@@ -36,31 +36,31 @@ int speed = 20;                               // delay pour scanner led k2000
 
 // define n° relay for valves on MCP0
 int pump = 0;         //pompe 220V
-int ledBO1 = 1;       //led du bassin d'orage haut 5V
+int ledCiterne = 1;   //citerne 5V
 int citerne = 2;      //valve 1 citerne
 int pJardin = 3;      //valve 3 pluie jardin
 int pChamp = 4;       //valve 8 pluie champ
 int tImper = 5;       //valve 5 pluie toiture G
 int tPlant = 6;       //valve 9 pluie toiture D
-int simVille = 7;      //valve 12 sim voisinage
-int ledBO2 = 8;       //led du bassin d'orage bas 5V
-int ledCiterne = 9;   //led de la citerne 5V
-int collecteur = 10;   //valve 7  collecteur maison (oeuf)
-int sImper = 11;  //valve 11 rue place
+int simVille = 11 ;     //valve 11
+int ledBO2 = 8;       //bassin d'orage bas 5V
+int ledBO1 = 9;       //bassin d'orage haut 5V
+int collecteur = 10;  //valve 7  collecteur maison (oeuf)
+int ruePlace = 7;    //valve 12
 int bOrage = 12;      //valve 4 bassin d'orage
-int egout = 13;      //valve 2 egout champignon
-int riviere = 14;       //valve 10 rivière
+int egout = 13;       //valve 2 egout champignon
+int riviere = 14;     //valve 10 rivière
 int sterput = 15;     //valve 6 sterput maison
 
 // mapping leds
 int nappe = 8;          // nappe Phréatique 12V
 int egg = 7;            // collecteur oeuf 12V
-int sdb1 = 4;
+int sdb1 = 6;
 int toilette = 2;
 int cuisine = 5;
-int arrosage = 6;
-int lavelinge = 3;
-int cave = 1;
+int arrosage = 4;
+int lavelinge = 1;
+int cave = 3;
 
 /*--------------------------------------------------*/
 /*---------------------- setup ---------------------*/
@@ -74,7 +74,7 @@ void setup() {
   // INPUT sensors
   pinMode(A3, INPUT);     // input pin buttons scénario
 
-  for (size_t i = 1; i < 9 ; i++){
+  for (size_t i = 2; i < 9 ; i++){
     pinMode(i, OUTPUT);
     digitalWrite(i,LOW);
     delay(10);
@@ -190,35 +190,35 @@ void TaskButtons(void *pvParameters)
       int buttonValue=analogRead(A3);
       // Serial.print("Waiting entry");
       // Serial.println(buttonValue);
-      if (buttonValue>950) {
+      if (buttonValue>810) {
         // Serial.println("Button 8");
         buttonID = ledButtonArray[8-1];
         etats = IDLE;
-      } else if (buttonValue > 850 && buttonValue < 949) {
+      } else if (buttonValue > 700 && buttonValue < 809) {
         // Serial.println("Button 7");
         buttonID = ledButtonArray[7-1];
         etats = S5;
-      } else if (buttonValue > 700 && buttonValue < 849) {
+      } else if (buttonValue > 610 && buttonValue < 699) {
         // Serial.println("Button 6");
         buttonID = ledButtonArray[6-1];
         etats = S4;
-      } else if (buttonValue > 600 && buttonValue < 699) {
+      } else if (buttonValue > 500 && buttonValue < 609) {
         // Serial.println("Button 5");
         buttonID = ledButtonArray[5-1];
         etats = S3;
-      } else if (buttonValue > 460 && buttonValue < 599) {
+      } else if (buttonValue > 370 && buttonValue < 499) {
         // Serial.println("Button 4");
         buttonID = ledButtonArray[4-1];
         etats = S2;
-      } else if (buttonValue > 310 && buttonValue < 459) {
+      } else if (buttonValue > 270 && buttonValue < 369) {
         // Serial.println("Button 3");
         buttonID = ledButtonArray[3-1];
         etats = S1;
-      } else if (buttonValue > 210 && buttonValue < 309) {
+      } else if (buttonValue > 190 && buttonValue <269) {
         // Serial.println("Button 2");
         buttonID = ledButtonArray[2-1];
         etats = IDLE;
-      } else if (buttonValue > 110 && buttonValue < 209) {
+      } else if (buttonValue > 90 && buttonValue < 189) {
         // Serial.println("Button 1");
         buttonID = ledButtonArray[1-1];
         etats = IDLE;
@@ -244,32 +244,28 @@ void TaskActions(void *pvParameters)  // This is a task.
     case S1:              /*---------------------- case ---------------------*/
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
-        vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for 1/2 second
+        vTaskDelay( 1000 / portTICK_PERIOD_MS );    // wait for 1/2 second
+// start scénario
+      // eau de pluie, alimentation de la nappe Phréatique
+      mcp1.digitalWrite(pump, HIGH);      // start pompe
+        piste4(); // activation audio pluie 24'
 
-      // Serial.println("test 2 valves toiture");
-      mcp1.digitalWrite(pump, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      mcp1.digitalWrite(tImper, HIGH);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-
-      mcp1.digitalWrite(tPlant, HIGH);
+      mcp1.digitalWrite(pChamp, HIGH);    // start pluie sur
+      mcp1.digitalWrite(pJardin, HIGH);   // les surfaces perméables
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
+      // Waiting x second
+      digitalWrite(nappe, HIGH);          // turn on led nappe Phréatique
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+      mcp1.digitalWrite(pChamp, LOW);     // stop pluie
+      mcp1.digitalWrite(pJardin, LOW);
+      mcp1.digitalWrite(pump, LOW);       // stop pompe
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
+      // on attend un peu pour l'histoire de la nappe Phréatique
+      digitalWrite(nappe, LOW);           // turn off led nappe
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
-      mcp1.digitalWrite(tImper, LOW);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-
-      mcp1.digitalWrite(tPlant, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      mcp1.digitalWrite(pump, LOW);
-      digitalWrite(nappe, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
-      digitalWrite(nappe, LOW);
-      // Serial.println("lavelinge");
-      // piste2();
-      //   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-
+// end scénario
       mcp0.digitalWrite(buttonID, LOW);
-      // vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
       etats = IDLE;
       break;
 
@@ -277,30 +273,43 @@ void TaskActions(void *pvParameters)  // This is a task.
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for 1/2 second
+// start scénario
+        // captation eau potable
+        digitalWrite(nappe, HIGH);      // turn on nappe Phréatique
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
+        // on pompe dans la nappe, ou dans la rivière
+        digitalWrite(nappe, LOW);
+          // Waiting pompage, chateau d'eau
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+        digitalWrite(cuisine, HIGH);
+        piste3(); // robinet 20'
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+        //waiting vaisselle, ambiance cuisine
+        // turn on pompe et activation du sterput, + led Cave.
+        mcp1.digitalWrite(pump, HIGH);
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
+        digitalWrite(cuisine, LOW);
+        mcp1.digitalWrite(sterput, HIGH);
+        digitalWrite(cave, HIGH);
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
+          // Waiting et turn off sertup et led cave
 
-      // Serial.println("test 2 valves pluie");
-      mcp1.digitalWrite(pump, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      mcp1.digitalWrite(pChamp, HIGH);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      digitalWrite(lavelinge, HIGH);
+        mcp1.digitalWrite(sterput, LOW);
+        digitalWrite(cave, LOW);
 
-      mcp1.digitalWrite(pJardin, HIGH);
-      digitalWrite(egg, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-      mcp1.digitalWrite(pChamp, LOW);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+          // Waiting trajet de l'eau jusqu'au collecteur rue
+        mcp1.digitalWrite(collecteur, HIGH);
+        digitalWrite(egg, HIGH);
 
-      mcp1.digitalWrite(pJardin, LOW);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
+          // Waiting
+        mcp1.digitalWrite(collecteur, LOW);
+        digitalWrite(egg, LOW);
+        mcp1.digitalWrite(pump, LOW);
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
 
-      mcp1.digitalWrite(pump, LOW);
-      digitalWrite(egg, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-
-      // Serial.println("wc");
-      digitalWrite(lavelinge, LOW);
-
+// end scénario
       mcp0.digitalWrite(buttonID, LOW);
       // vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
       etats = IDLE;
@@ -310,40 +319,17 @@ void TaskActions(void *pvParameters)  // This is a task.
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for 1/2 second
+// start scénario
 
-storm(1);
+mcp1.digitalWrite(pump, HIGH);
+mcp1.digitalWrite(riviere, HIGH);
+  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
+mcp1.digitalWrite(riviere, LOW);
+mcp1.digitalWrite(pump, LOW);
+  vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
 
-      // Serial.println("test 4 valves ORAGE");
-      mcp1.digitalWrite(pump, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      mcp1.digitalWrite(pChamp, HIGH);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-
-      mcp1.digitalWrite(pJardin, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      mcp1.digitalWrite(tImper, HIGH);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      mcp1.digitalWrite(tPlant, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
-
-      mcp1.digitalWrite(pChamp, LOW);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-
-      mcp1.digitalWrite(pJardin, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      mcp1.digitalWrite(tImper, LOW);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-
-      mcp1.digitalWrite(tPlant, LOW);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-
-      mcp1.digitalWrite(pump, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-
-      //   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-
+// end scénario
       mcp0.digitalWrite(buttonID, LOW);
-      // vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
       etats = IDLE;
     break;
 
@@ -351,29 +337,54 @@ storm(1);
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for 1/2 second
+// start scénario
+        storm(1); // start Orage
+        piste4(); // start audio pluie 24'
+        mcp1.digitalWrite(pump, HIGH);  // turn on pompe
+            vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
+        mcp1.digitalWrite(tImper, HIGH);      // pluie toitures maison
+        mcp1.digitalWrite(tPlant, HIGH);
+        mcp1.digitalWrite(pJardin, HIGH);
+        mcp1.digitalWrite(pChamp, HIGH);
+            vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
+          // Waiting
+        mcp1.digitalWrite(ruePlace, HIGH);    // eau sur rue&place
+            vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
+          // Waiting
+          mcp1.digitalWrite(tImper, LOW);     // turn off pluie
+          mcp1.digitalWrite(tPlant, LOW);
+          mcp1.digitalWrite(pJardin, LOW);
+          mcp1.digitalWrite(pChamp, LOW);
+            vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+          // Waiting
+        mcp1.digitalWrite(collecteur, HIGH);   //collecteur oeuf
+        digitalWrite(egg, HIGH);
+              vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+        mcp1.digitalWrite(ruePlace, LOW);   // turn off rue&place
+              vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
+              //bOrage + led Haut + egout
+              mcp1.digitalWrite(bOrage, HIGH);
+              mcp1.digitalWrite(ledBO1, HIGH);
+              mcp1.digitalWrite(egout, HIGH);
+              vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
+              mcp1.digitalWrite(collecteur, LOW);
+              digitalWrite(egg, LOW);
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
 
-      // Serial.println("test place/rue");
+              //led bas + egout
+              mcp1.digitalWrite(bOrage, LOW);
+              mcp1.digitalWrite(ledBO1, LOW);
+              mcp1.digitalWrite(ledBO2, HIGH);
+vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
+              mcp1.digitalWrite(ledBO2, LOW);
+              mcp1.digitalWrite(egout, LOW);
+vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+              mcp1.digitalWrite(pump, LOW);
+                vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
 
-      mcp1.digitalWrite(pump, HIGH);
-      digitalWrite(toilette, HIGH);
 
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      mcp1.digitalWrite(12, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
-
-      mcp1.digitalWrite(12, LOW);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      mcp1.digitalWrite(pump, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-
-        digitalWrite(toilette, LOW);
-
-      // Serial.println("pluie");
-      // piste4();
-        // vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
       mcp0.digitalWrite(buttonID, LOW);
-      // vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
       etats = IDLE;
     break;
 
@@ -382,20 +393,38 @@ storm(1);
       mcp0.digitalWrite(buttonID, HIGH);
         vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for 1/2 second
 
-      // Serial.println("test storm");
-      // Serial.println("test place/rue");
-      digitalWrite(cave, HIGH);
+        mcp1.digitalWrite(pump, HIGH);
+            vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
+          piste4(); // pluie 24'
 
-      mcp1.digitalWrite(pump, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      mcp1.digitalWrite(riviere, HIGH);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+        mcp1.digitalWrite(tImper, HIGH);
+        mcp1.digitalWrite(tPlant, HIGH);
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
+        // Waiting
+        mcp1.digitalWrite(citerne, HIGH);
+        mcp1.digitalWrite(ledCiterne, HIGH);
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
+        // Waiting
+        mcp1.digitalWrite(tImper, LOW);
+        mcp1.digitalWrite(tPlant, LOW);
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
+        // Waiting
+        mcp1.digitalWrite(citerne, LOW);
+        mcp1.digitalWrite(pump, LOW);
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
-      mcp1.digitalWrite(riviere, LOW);
-      vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
-      mcp1.digitalWrite(pump, LOW);
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
-      digitalWrite(cave, LOW);
+        digitalWrite(lavelinge, HIGH);
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
+        digitalWrite(toilette, HIGH);
+        digitalWrite(arrosage, HIGH);
+
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
+        digitalWrite(lavelinge, LOW);
+        digitalWrite(toilette, LOW);
+        digitalWrite(arrosage, LOW);
+
+        mcp1.digitalWrite(ledCiterne, LOW);
+
 
       mcp0.digitalWrite(buttonID, LOW);
       // vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );

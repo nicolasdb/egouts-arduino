@@ -77,7 +77,6 @@ for (size_t i=1 ; i<= stormCount ; i++){
       Serial.print(F("Playing thunder sound, file number: "));
       Serial.println(thunderFile);
       stormPlayer.playFolder(2, thunderFile);
-      // stormPlayer.playMp3Folder(thunderFile);
       delay(1000); // Give the DFPlayer some time
 
       while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
@@ -91,46 +90,41 @@ for (size_t i=1 ; i<= stormCount ; i++){
 }
 
 void piste1 () {
-  stormPlayer.playFolder(1,1);        // lavelinge
+  stormPlayer.playFolder(1,1);        // lavelinge 26'
   delay(1000); // Give the DFPlayer some time
 
   while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
-
-}
+  }
 }
 
 void piste2 () {
-  stormPlayer.playFolder(1,2);        // wc
+  stormPlayer.playFolder(1,2);        // wc 10'
   delay(1000); // Give the DFPlayer some time
 
   while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
-
-}
+  }
 }
 
 void piste3 () {
-  stormPlayer.playFolder(1,3);        // robinet
+  stormPlayer.playFolder(1,3);        // robinet 20'
   delay(1000); // Give the DFPlayer some time
 
-  while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
-
-}
+  // while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
+  // }
 }
 
 void piste4 () {
-  stormPlayer.playFolder(1,4);        // pluie
+  stormPlayer.playFolder(1,4);        // pluie 24'
   delay(1000); // Give the DFPlayer some time
 
-  while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
-
+  // while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
+// }
 }
 
-}
 void piste5 () {
-  stormPlayer.playFolder(1,5);        // douche
+  stormPlayer.playFolder(1,5);        // douche 24'
   delay(1000); // Give the DFPlayer some time
 
   while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
-
-}
+  }
 }
