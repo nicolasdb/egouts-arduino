@@ -93,8 +93,8 @@ void piste1 () {
   stormPlayer.playFolder(1,1);        // lavelinge 26'
   delay(1000); // Give the DFPlayer some time
 
-  while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
-  }
+  // while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
+  // }
 }
 
 void piste2 () {
