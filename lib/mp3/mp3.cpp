@@ -101,8 +101,8 @@ void piste2 () {
   stormPlayer.playFolder(1,2);        // wc 10'
   delay(1000); // Give the DFPlayer some time
 
-  while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
-  }
+  // while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
+  // }
 }
 
 void piste3 () {
@@ -125,6 +125,6 @@ void piste5 () {
   stormPlayer.playFolder(1,5);        // douche 24'
   delay(1000); // Give the DFPlayer some time
 
-  while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
-  }
+  // while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
+  // }
 }

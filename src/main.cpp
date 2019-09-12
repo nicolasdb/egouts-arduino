@@ -252,14 +252,14 @@ void TaskActions(void *pvParameters)  // This is a task.
 
       mcp1.digitalWrite(pChamp, HIGH);    // start pluie sur
       mcp1.digitalWrite(pJardin, HIGH);   // les surfaces perméables
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 22 );
       // Waiting x second
       digitalWrite(nappe, HIGH);          // turn on led nappe Phréatique
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
       mcp1.digitalWrite(pChamp, LOW);     // stop pluie
       mcp1.digitalWrite(pJardin, LOW);
       mcp1.digitalWrite(pump, LOW);       // stop pompe
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 30 );
       // on attend un peu pour l'histoire de la nappe Phréatique
       digitalWrite(nappe, LOW);           // turn off led nappe
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
@@ -276,23 +276,23 @@ void TaskActions(void *pvParameters)  // This is a task.
 // start scénario
         // captation eau potable
         digitalWrite(nappe, HIGH);      // turn on nappe Phréatique
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
         // on pompe dans la nappe, ou dans la rivière
         digitalWrite(nappe, LOW);
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
           // Waiting pompage, chateau d'eau
         digitalWrite(cuisine, HIGH);  // turn on led cuisine
         piste3(); // piste audio robinet 20'
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
         //waiting vaisselle, ambiance cuisine
         // turn on pompe et activation du sterput, + led Cave.
         mcp1.digitalWrite(pump, HIGH);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
         // waiting action robinet en cuisine
         // puis turn on sterput à la cave + led
         mcp1.digitalWrite(sterput, HIGH);
         digitalWrite(cave, HIGH);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
         // Waiting trajet de l'eau jusqu'au collecteur rue
         mcp1.digitalWrite(collecteur, HIGH);
         digitalWrite(egg, HIGH);
@@ -325,43 +325,39 @@ digitalWrite(sdb1, HIGH); // turn on sdb
 piste5();  //piste audio douche 24'
   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
   //wait douche, ajout des autres pièces d'eau.
-digitalWrite(cuisine, HIGH);
 mcp1.digitalWrite(pump, HIGH);  // turn on pompe
     vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
 mcp1.digitalWrite(sterput, HIGH);
 digitalWrite(cave, HIGH);
   // eau dans la chambre de visite
-  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
+  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+  digitalWrite(cuisine, HIGH);
 digitalWrite(lavelinge, HIGH); // turn on lavelinge
-  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
-piste2(); // piste audio toilette 10'
-digitalWrite(toilette, HIGH);
-  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
-digitalWrite(toilette, LOW);
-  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
-//
-digitalWrite(sdb1, LOW);
-  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
-digitalWrite(lavelinge, LOW);
-digitalWrite(cuisine, LOW);
-  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+
+  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 4 );
+
   //waiting fin des actions maisons
-mcp1.digitalWrite(sterput, LOW);
-digitalWrite(cave, LOW);
   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
   //waiting, l'eau arrive au collecteur rue (egg)
 mcp1.digitalWrite(collecteur, HIGH);   //collecteur oeuf + led
 digitalWrite(egg, HIGH);
+digitalWrite(sdb1, LOW);
+  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+digitalWrite(lavelinge, LOW);
+digitalWrite(cuisine, LOW);
+  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+  mcp1.digitalWrite(sterput, LOW);
+  digitalWrite(cave, LOW);
 mcp1.digitalWrite(bOrage, HIGH);  // l'eau monte un peu
   vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
   //waiting, l'eau arrive au champignon
 mcp1.digitalWrite(bOrage, LOW);  // on arrête l'eau au bassin
-  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 15 );
   //waiting, l'eau transit jusqu'à la station d'épuration.
-mcp1.digitalWrite(collecteur, LOW);   //collecteur oeuf + led
-digitalWrite(egg, LOW);
 mcp1.digitalWrite(riviere, HIGH);
-  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 8 );
+  vTaskDelay( (1000 / portTICK_PERIOD_MS) * 15 );
+  mcp1.digitalWrite(collecteur, LOW);   //collecteur oeuf + led
+  digitalWrite(egg, LOW);
   //waiting, eau à la rivière
 mcp1.digitalWrite(riviere, LOW);
 mcp1.digitalWrite(pump, LOW);
@@ -438,36 +434,44 @@ mcp1.digitalWrite(pump, LOW);
           // il pleut sur les toitures
         mcp1.digitalWrite(tImper, HIGH);
         mcp1.digitalWrite(tPlant, HIGH);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
         // Waiting, une captation de l'eau vers la citerne
         mcp1.digitalWrite(citerne, HIGH);
         mcp1.digitalWrite(ledCiterne, HIGH);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 13 );
         // Waiting, la citerne se remplit.
         mcp1.digitalWrite(tImper, LOW);
         mcp1.digitalWrite(tPlant, LOW);
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
         // Waiting, la citerne continue de se remplir et s'arrête.
         mcp1.digitalWrite(citerne, LOW);
-        mcp1.digitalWrite(pump, LOW);
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
-        digitalWrite(lavelinge, HIGH);
         piste1();  //piste audio lavelinge 26'
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
-          //wait lavelinge, ajout de la pompe d'arrosage.
+        // digitalWrite(lavelinge, HIGH);
         digitalWrite(arrosage, HIGH);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
-        digitalWrite(lavelinge, LOW); // turn off lavelinge
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
-        piste2(); // piste audio toilette 10'
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 8 );
+          //wait lavelinge, ajout de la pompe d'arrosage.
+        // digitalWrite(lavelinge, LOW); // turn off lavelinge
         digitalWrite(toilette, HIGH);
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
+
+        // piste2(); // piste audio toilette 10'
+        mcp1.digitalWrite(collecteur, HIGH);
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
+        digitalWrite(cave, HIGH);
+        digitalWrite(egg, HIGH);
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
-        digitalWrite(toilette, LOW);
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
         // la pompe d'arrosage est éteinte
+        digitalWrite(toilette, LOW);
         digitalWrite(arrosage, LOW);
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+          mcp1.digitalWrite(collecteur, LOW);
+          mcp1.digitalWrite(pump, LOW);
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
+          digitalWrite(cave, LOW);
+          digitalWrite(egg, LOW);
           // waiting a bit pour la citerne
         mcp1.digitalWrite(ledCiterne, LOW);
 
