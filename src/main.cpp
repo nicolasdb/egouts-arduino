@@ -1,11 +1,11 @@
 #include <Arduino.h>
-#include <Arduino_FreeRTOS.h>         // Multitasking
+#include <Arduino_FreeRTOS.h>         // Multitasking. Attention version 10.1.1-1!!
 #include <SoftwareSerial.h>           // controle du module mp3
 #include <DFRobotDFPlayerMini.h>      // controle du module mp3
 #include <Wire.h>                     // controle des MCP
 #include <Adafruit_MCP23017.h>        // controle des MCP
 
-#include <mp3.h>                      // controle storm du module mp3
+#include <mp3.h>                      // controle storm du module mp3 - local
 
 // define tasks for Demo, AnalogRead buttons, set Actions, MP3 launch
 void TaskDemo( void *pvParameters );          // define demo
@@ -241,7 +241,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       break;
 
 
-    case S1:              /*---------------------- case ---------------------*/
+    case S1:              /*---------------------- case Pluie ---------------------*/
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS );    // wait for 1/2 second
@@ -252,14 +252,14 @@ void TaskActions(void *pvParameters)  // This is a task.
 
       mcp1.digitalWrite(pChamp, HIGH);    // start pluie sur
       mcp1.digitalWrite(pJardin, HIGH);   // les surfaces perméables
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 22 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 15 );
       // Waiting x second
       digitalWrite(nappe, HIGH);          // turn on led nappe Phréatique
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
       mcp1.digitalWrite(pChamp, LOW);     // stop pluie
       mcp1.digitalWrite(pJardin, LOW);
       mcp1.digitalWrite(pump, LOW);       // stop pompe
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 30 );
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
       // on attend un peu pour l'histoire de la nappe Phréatique
       digitalWrite(nappe, LOW);           // turn off led nappe
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
@@ -269,7 +269,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       etats = IDLE;
       break;
 
-    case S2:              /*---------------------- case ---------------------*/
+    case S2:              /*---------------------- case Eau potable ---------------------*/
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for 1/2 second
@@ -315,7 +315,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       etats = IDLE;
     break;
 
-    case S3:              /*---------------------- case ---------------------*/
+    case S3:              /*---------------------- case Épuration ---------------------*/
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for 1/2 second
@@ -367,7 +367,7 @@ mcp1.digitalWrite(pump, LOW);
       etats = IDLE;
     break;
 
-    case S4:              /*---------------------- case ---------------------*/
+    case S4:              /*---------------------- case Orage ---------------------*/
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for 1/2 second
@@ -383,7 +383,7 @@ mcp1.digitalWrite(pump, LOW);
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
           // Waiting, il pleut
         mcp1.digitalWrite(ruePlace, HIGH);    // eau sur rue&place
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
           // Waiting, l'eau coule sur la rue et la place
         mcp1.digitalWrite(tImper, LOW);     // turn off pluie
         mcp1.digitalWrite(tPlant, LOW);
@@ -393,19 +393,19 @@ mcp1.digitalWrite(pump, LOW);
           // Waiting, la pluie s'arrête mais l'eau arrive dans le collecteur
         mcp1.digitalWrite(collecteur, HIGH);   //collecteur oeuf + led
         digitalWrite(egg, HIGH);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
           // l'eau s'est écoulée des ruePlace
         mcp1.digitalWrite(ruePlace, LOW);   // turn off rue&place
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
           // waiting, l'eau est dans le champignon, bOrage + led Haut + egout
         mcp1.digitalWrite(bOrage, HIGH);  // démo trop plein vers BassinOrage
         mcp1.digitalWrite(ledBO1, HIGH);
         mcp1.digitalWrite(egout, HIGH);   // l'eau s'écoule dans le champignon
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 16 );
           // waiting, turn off egg, l'orage est fini
         mcp1.digitalWrite(collecteur, LOW);
         digitalWrite(egg, LOW);
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );
           //le trop plein s'est déversé dans le bassin, led bas + egout
         mcp1.digitalWrite(bOrage, LOW);
         mcp1.digitalWrite(ledBO1, LOW);
@@ -423,7 +423,7 @@ mcp1.digitalWrite(pump, LOW);
       etats = IDLE;
     break;
 
-    case S5:              /*---------------------- case ---------------------*/
+    case S5:              /*---------------------- case Récup pluie ---------------------*/
       suspendDemo();
       mcp0.digitalWrite(buttonID, HIGH);
         vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for 1/2 second
