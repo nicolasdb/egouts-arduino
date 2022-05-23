@@ -7,6 +7,8 @@
 
 #include <mp3.h>                      // controle storm du module mp3 - local
 
+#define portCHAR char                 // resolve error: expected primary-expression before 'const'
+
 // define tasks for Demo, AnalogRead buttons, set Actions, MP3 launch
 void TaskDemo( void *pvParameters );          // define demo
 TaskHandle_t xDemoHandle = NULL;              // nécessaire pour activer la pause et reprise de la tâche
