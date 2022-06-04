@@ -19,7 +19,7 @@ void mp3setup () {
 
 
    mySoftwareSerial.begin(9600);
-   // Serial.begin(115200);
+   Serial.begin(115200);
    Serial.println(F("Initializing DFPlayer..."));
    randomSeed(analogRead(A0));
 

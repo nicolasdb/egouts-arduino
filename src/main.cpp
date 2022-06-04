@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>         // Multitasking. Attention version 10.1.1-1!!
-// #include <SoftwareSerial.h>           // controle du module mp3
-// #include <DFRobotDFPlayerMini.h>      // controle du module mp3
+#include <SoftwareSerial.h>           // controle du module mp3
+#include <DFRobotDFPlayerMini.h>      // controle du module mp3
 #include <Wire.h>                     // controle des MCP
 #include <Adafruit_MCP23017.h>        // controle des MCP
 
@@ -14,7 +14,7 @@ void TaskDemo( void *pvParameters );          // define demo
 TaskHandle_t xDemoHandle = NULL;              // nécessaire pour activer la pause et reprise de la tâche
 void TaskButtons( void *pvParameters );       // define Buttons, pour l'écoute de quel bouton est activé
 void TaskActions( void *pvParameters );       // define la tâche d'actions.
-void TaskPump( void *pvParameters );
+// void TaskPump( void *pvParameters );
 
 // define différent scénario = les actions déclenchées par les boutons lorsque pressé.
 enum {
@@ -30,7 +30,7 @@ Adafruit_MCP23017 mcp0;
 // define MCP1 - registre pour les electrovannes via relais et options
 Adafruit_MCP23017 mcp1;
 
-int ledButtonArray[] = {7,6,9,8,11,10,5,4};   // liste les pin utilisées sur mcp0 et leur ordre
+int ledButtonArray[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};   // liste les pin utilisées sur mcp0 et leur ordre {7,6,9,8,11,10,5,4}
 int count = 0;                                // compteur pour scanner led k2000
 int speed = 20;                               // delay pour scanner led k2000
 
@@ -70,8 +70,8 @@ int cave = 3;
 // setup function runs once when you press reset or power the board
 
 void setup() {
-  mp3setup();    // initialize mp3setup
-  // Serial.begin(115200);
+   mp3setup();    // initialize mp3setup
+  // Serial.begin(9600);
 
   // INPUT sensors
   pinMode(A3, INPUT);     // input pin buttons scénario
@@ -81,12 +81,14 @@ void setup() {
     digitalWrite(i,LOW);
     delay(10);
   }
+  
 // digitalWrite(2,HIGH);
 
   // MCP0, define all buttons
   mcp0.begin(0);                               // use default address 0
-  for (size_t i = 0; i < 8 ; i++){
-    mcp0.pinMode(ledButtonArray[i], OUTPUT);
+  for (size_t i = 0; i < 16 ; i++){
+    mcp0.pinMode(i, OUTPUT);
+    mcp0.digitalWrite(i, LOW);
     delay(50);
   }
 
@@ -97,7 +99,7 @@ void setup() {
     delay(50);
   }
 
-  // Serial.println("j'ai finis");
+  Serial.println("j'ai finis");
   etats = IDLE;
 
   // and at last,
@@ -160,7 +162,7 @@ void TaskDemo(void *pvParameters)  // This is a task.
 {
   (void) pvParameters;
   for (;;) {    // on joue la démo en loop : effet scanner k2000
-    for (count = 2; count < 6 ; count++){
+    for (count = 5; count < 11 ; count++){
       mcp0.digitalWrite(ledButtonArray[count], HIGH);
       vTaskDelay(speed / portTICK_PERIOD_MS);
       mcp0.digitalWrite(ledButtonArray[count+1], HIGH);
@@ -169,7 +171,7 @@ void TaskDemo(void *pvParameters)  // This is a task.
       vTaskDelay((speed*5) / portTICK_PERIOD_MS);
     }
     // vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
-    for (count = 6 ; count > 2 ; count--){
+    for (count = 11 ; count > 5 ; count--){
       mcp0.digitalWrite(ledButtonArray[count], HIGH);
       vTaskDelay(speed / portTICK_PERIOD_MS);
       mcp0.digitalWrite(ledButtonArray[count-1], HIGH);
@@ -190,38 +192,38 @@ void TaskButtons(void *pvParameters)
 
     if (etats == IDLE) {
       int buttonValue=analogRead(A3);
-      // Serial.print("Waiting entry");
-      // Serial.println(buttonValue);
+      Serial.print("Waiting entry");
+      Serial.println(buttonValue);
       if (buttonValue>810) {
-        // Serial.println("Button 8");
+        Serial.println("Button 8");
         buttonID = ledButtonArray[8-1];
         etats = IDLE;
       } else if (buttonValue > 700 && buttonValue < 809) {
-        // Serial.println("Button 7");
+        Serial.println("Button 7");
         buttonID = ledButtonArray[7-1];
         etats = S5;
       } else if (buttonValue > 610 && buttonValue < 699) {
-        // Serial.println("Button 6");
+        Serial.println("Button 6");
         buttonID = ledButtonArray[6-1];
         etats = S4;
       } else if (buttonValue > 500 && buttonValue < 609) {
-        // Serial.println("Button 5");
+        Serial.println("Button 5");
         buttonID = ledButtonArray[5-1];
         etats = S3;
       } else if (buttonValue > 370 && buttonValue < 499) {
-        // Serial.println("Button 4");
+        Serial.println("Button 4");
         buttonID = ledButtonArray[4-1];
         etats = S2;
       } else if (buttonValue > 270 && buttonValue < 369) {
-        // Serial.println("Button 3");
+        Serial.println("Button 3");
         buttonID = ledButtonArray[3-1];
         etats = S1;
       } else if (buttonValue > 190 && buttonValue <269) {
-        // Serial.println("Button 2");
+        Serial.println("Button 2");
         buttonID = ledButtonArray[2-1];
         etats = IDLE;
       } else if (buttonValue > 90 && buttonValue < 189) {
-        // Serial.println("Button 1");
+        Serial.println("Button 1");
         buttonID = ledButtonArray[1-1];
         etats = IDLE;
       }
