@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>         // Multitasking. Attention version 10.1.1-1!!
-#include <SoftwareSerial.h>           // controle du module mp3
-#include <DFRobotDFPlayerMini.h>      // controle du module mp3
+// #include <SoftwareSerial.h>           // controle du module mp3
+// #include <DFRobotDFPlayerMini.h>      // controle du module mp3
 #include <Wire.h>                     // controle des MCP
 #include <Adafruit_MCP23017.h>        // controle des MCP
 
