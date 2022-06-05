@@ -30,7 +30,7 @@ Adafruit_MCP23017 mcp0;
 // define MCP1 - registre pour les electrovannes via relais et options
 Adafruit_MCP23017 mcp1;
 
-int ledButtonArray[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};   // liste les pin utilisées sur mcp0 et leur ordre {7,6,9,8,11,10,5,4}
+int ledButtonArray[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};   // liste les pin utilisées sur mcp0
 int count = 0;                                // compteur pour scanner led k2000
 int speed = 20;                               // delay pour scanner led k2000
 
@@ -147,7 +147,7 @@ void loop()
 // this function will suspend Demo and turn off all led buttons
 void suspendDemo () {
   vTaskSuspend(xDemoHandle);
-  for (size_t i = 0 ; i < 8 ; i++){
+  for (size_t i = 0 ; i < 16 ; i++){
     mcp0.digitalWrite(ledButtonArray[i], LOW);
     vTaskDelay(1);
     }
@@ -162,7 +162,7 @@ void TaskDemo(void *pvParameters)  // This is a task.
 {
   (void) pvParameters;
   for (;;) {    // on joue la démo en loop : effet scanner k2000
-    for (count = 5; count < 11 ; count++){
+    for (count = 0; count < 5 ; count++){
       mcp0.digitalWrite(ledButtonArray[count], HIGH);
       vTaskDelay(speed / portTICK_PERIOD_MS);
       mcp0.digitalWrite(ledButtonArray[count+1], HIGH);
@@ -171,7 +171,7 @@ void TaskDemo(void *pvParameters)  // This is a task.
       vTaskDelay((speed*5) / portTICK_PERIOD_MS);
     }
     // vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for one second
-    for (count = 11 ; count > 5 ; count--){
+    for (count = 5 ; count > 0 ; count--){
       mcp0.digitalWrite(ledButtonArray[count], HIGH);
       vTaskDelay(speed / portTICK_PERIOD_MS);
       mcp0.digitalWrite(ledButtonArray[count-1], HIGH);
@@ -194,39 +194,31 @@ void TaskButtons(void *pvParameters)
       int buttonValue=analogRead(A3);
       Serial.print("Waiting entry");
       Serial.println(buttonValue);
-      if (buttonValue>810) {
-        Serial.println("Button 8");
-        buttonID = ledButtonArray[8-1];
-        etats = IDLE;
-      } else if (buttonValue > 700 && buttonValue < 809) {
-        Serial.println("Button 7");
-        buttonID = ledButtonArray[7-1];
-        etats = S5;
-      } else if (buttonValue > 610 && buttonValue < 699) {
-        Serial.println("Button 6");
-        buttonID = ledButtonArray[6-1];
-        etats = S4;
-      } else if (buttonValue > 500 && buttonValue < 609) {
-        Serial.println("Button 5");
-        buttonID = ledButtonArray[5-1];
-        etats = S3;
-      } else if (buttonValue > 370 && buttonValue < 499) {
-        Serial.println("Button 4");
-        buttonID = ledButtonArray[4-1];
-        etats = S2;
-      } else if (buttonValue > 270 && buttonValue < 369) {
-        Serial.println("Button 3");
-        buttonID = ledButtonArray[3-1];
-        etats = S1;
-      } else if (buttonValue > 190 && buttonValue <269) {
-        Serial.println("Button 2");
-        buttonID = ledButtonArray[2-1];
-        etats = IDLE;
-      } else if (buttonValue > 90 && buttonValue < 189) {
+      if (buttonValue>751) {                                         // read: 880
         Serial.println("Button 1");
-        buttonID = ledButtonArray[1-1];
-        etats = IDLE;
-      }
+        buttonID = 1;
+        etats = S1;
+      } else if (buttonValue >= 601 && buttonValue < 750) {          // read: 705
+        Serial.println("Button 2");
+        buttonID = 2;
+        // etats = IDLE;
+        etats = S2;
+      } else if (buttonValue >= 451 && buttonValue < 600) {          // read: 530
+        Serial.println("Button 3");
+        buttonID = 3;
+        // etats = IDLE;
+        etats = S3;
+      } else if (buttonValue >= 251 && buttonValue < 450) {          // read: 355
+        Serial.println("Button 4");
+        buttonID = 4;
+        // etats = IDLE;
+        etats = S4;
+      } else if (buttonValue >= 101 && buttonValue < 250) {          // read: 175
+        Serial.println("Button 5");
+        buttonID = 5;
+        // etats = IDLE;
+        etats = S5;
+      } 
     }
     vTaskDelay(1);
   }
@@ -245,9 +237,12 @@ void TaskActions(void *pvParameters)  // This is a task.
       break;
 
 
+
+
+
     case S1:              /*---------------------- case Pluie ---------------------*/
       suspendDemo();
-      mcp0.digitalWrite(buttonID, HIGH);
+      mcp0.digitalWrite(buttonID-1, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS );    // wait for 1/2 second
 // start scénario
       // eau de pluie, alimentation de la nappe Phréatique
@@ -269,13 +264,17 @@ void TaskActions(void *pvParameters)  // This is a task.
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
 
 // end scénario
-      mcp0.digitalWrite(buttonID, LOW);
+      mcp0.digitalWrite(buttonID-1, LOW);
       etats = IDLE;
       break;
 
+
+
+
+
     case S2:              /*---------------------- case Eau potable ---------------------*/
       suspendDemo();
-      mcp0.digitalWrite(buttonID, HIGH);
+      mcp0.digitalWrite(buttonID-1, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for 1/2 second
 // start scénario
         // captation eau potable
@@ -314,14 +313,18 @@ void TaskActions(void *pvParameters)  // This is a task.
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
 
 // end scénario
-      mcp0.digitalWrite(buttonID, LOW);
+      mcp0.digitalWrite(buttonID-1, LOW);
       // vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
       etats = IDLE;
     break;
 
+
+
+
+
     case S3:              /*---------------------- case Épuration ---------------------*/
       suspendDemo();
-      mcp0.digitalWrite(buttonID, HIGH);
+      mcp0.digitalWrite(buttonID-1, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for 1/2 second
 // start scénario
 
@@ -367,13 +370,17 @@ mcp1.digitalWrite(riviere, LOW);
 mcp1.digitalWrite(pump, LOW);
 
 // end scénario
-      mcp0.digitalWrite(buttonID, LOW);
+      mcp0.digitalWrite(buttonID-1, LOW);
       etats = IDLE;
     break;
 
+
+
+
+
     case S4:              /*---------------------- case Orage ---------------------*/
       suspendDemo();
-      mcp0.digitalWrite(buttonID, HIGH);
+      mcp0.digitalWrite(buttonID-1, HIGH);
         vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for 1/2 second
 // start scénario
         storm(1); // start Orage
@@ -423,13 +430,16 @@ mcp1.digitalWrite(pump, LOW);
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
 
 // end scénario
-      mcp0.digitalWrite(buttonID, LOW);
+      mcp0.digitalWrite(buttonID-1, LOW);
       etats = IDLE;
     break;
 
+
+
+
     case S5:              /*---------------------- case Récup pluie ---------------------*/
       suspendDemo();
-      mcp0.digitalWrite(buttonID, HIGH);
+      mcp0.digitalWrite(buttonID-1, HIGH);
         vTaskDelay( 500 / portTICK_PERIOD_MS ); // wait for 1/2 second
 // start scénario
         piste4(); // piste audio pluie 24'
@@ -480,34 +490,11 @@ mcp1.digitalWrite(pump, LOW);
         mcp1.digitalWrite(ledCiterne, LOW);
 
 // end scénario
-      mcp0.digitalWrite(buttonID, LOW);
+      mcp0.digitalWrite(buttonID-1, LOW);
       // vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
       etats = IDLE;
     break;
-    case S6:
-      suspendDemo();
-      mcp0.digitalWrite(buttonID, HIGH);
-      vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
-      mcp0.digitalWrite(buttonID, LOW);
-      etats = IDLE;
-      break;
-    case S7:
-      suspendDemo();
-      mcp0.digitalWrite(buttonID, HIGH);
-      vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
-      mcp0.digitalWrite(buttonID, LOW);
-      etats = IDLE;
-      break;
-    case S8:
-      suspendDemo();
-      mcp0.digitalWrite(buttonID, HIGH);
-      vTaskDelay( 1000 / portTICK_PERIOD_MS ); // wait for one second
-      mcp0.digitalWrite(buttonID, LOW);
-      etats = IDLE;
-      break;
-
-
-
+ 
     }
     vTaskDelay(1);
   }

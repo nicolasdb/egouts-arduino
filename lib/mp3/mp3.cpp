@@ -5,8 +5,8 @@
 
 // mp3 variable
 int StripPin = 9;    // LED strip (via MOSFET) connected to pin 9
-int rxPin = 10;      // DFplayer RX to Arduino pin 10
-int txPin = 11;      // DFplayer TX to Arduino pin 11
+int rxPin = 10;      // DFplayer TX to Arduino RX pin 10
+int txPin = 11;      // DFplayer RX to Arduino TX pin 11
 int busyPin = 12;    // DFplayer BUSY connected to pin 12
 
 SoftwareSerial mySoftwareSerial(rxPin, txPin);
@@ -54,7 +54,7 @@ for (size_t i=1 ; i<= stormCount ; i++){
       int nextFlashDelayMax = 150;            // Max, delay between each flash and the next
 
       int thunderDelay = random (300, 1000);  // Min. and max. delay between flashing and playing sound
-      int thunderFile = random (1, 13);       // There are 17 soundfiles: 0001.mp3 ... 0017.mp3
+      int thunderFile = random (1, 7);       // There are 17 soundfiles: 001.mp3 ... 017.mp3
       int loopDelay = random (50, 200);   // Min. and max. delay between each loop
 
       Serial.println();
@@ -76,7 +76,7 @@ for (size_t i=1 ; i<= stormCount ; i++){
 
       Serial.print(F("Playing thunder sound, file number: "));
       Serial.println(thunderFile);
-      stormPlayer.playFolder(2, thunderFile);
+      stormPlayer.playFolder(1, thunderFile);
       delay(1000); // Give the DFPlayer some time
 
       while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
@@ -90,7 +90,7 @@ for (size_t i=1 ; i<= stormCount ; i++){
 }
 
 void piste1 () {
-  stormPlayer.playFolder(1,1);        // lavelinge 26'
+  stormPlayer.playFolder(2,1);        // lavelinge 26'
   delay(1000); // Give the DFPlayer some time
 
   // while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
@@ -98,7 +98,7 @@ void piste1 () {
 }
 
 void piste2 () {
-  stormPlayer.playFolder(1,2);        // wc 10'
+  stormPlayer.playFolder(2,2);        // wc 10'
   delay(1000); // Give the DFPlayer some time
 
   // while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
@@ -106,7 +106,7 @@ void piste2 () {
 }
 
 void piste3 () {
-  stormPlayer.playFolder(1,3);        // robinet 20'
+  stormPlayer.playFolder(2,3);        // robinet 20'
   delay(1000); // Give the DFPlayer some time
 
   // while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
@@ -114,7 +114,7 @@ void piste3 () {
 }
 
 void piste4 () {
-  stormPlayer.playFolder(1,4);        // pluie 24'
+  stormPlayer.playFolder(2,4);        // pluie 24'
   delay(1000); // Give the DFPlayer some time
 
   // while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
@@ -122,7 +122,7 @@ void piste4 () {
 }
 
 void piste5 () {
-  stormPlayer.playFolder(1,5);        // douche 24'
+  stormPlayer.playFolder(2,5);        // douche 24'
   delay(1000); // Give the DFPlayer some time
 
   // while (digitalRead(busyPin) == LOW) { // Wait for the DFPlayer to finish playing the MP3 file
