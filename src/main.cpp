@@ -194,26 +194,26 @@ void TaskButtons(void *pvParameters)
       int buttonValue=analogRead(A3);
       Serial.print("Waiting entry");
       Serial.println(buttonValue);
-      if (buttonValue>751) {                                         // read: 880
+      if (buttonValue>751) {                                         // read: 1013
         Serial.println("Button 1");
         buttonID = 1;
         etats = S1;
-      } else if (buttonValue >= 601 && buttonValue < 750) {          // read: 705
+      } else if (buttonValue >= 726 && buttonValue < 925) {          // read: 815
         Serial.println("Button 2");
         buttonID = 2;
         // etats = IDLE;
         etats = S2;
-      } else if (buttonValue >= 451 && buttonValue < 600) {          // read: 530
+      } else if (buttonValue >= 501 && buttonValue < 725) {          // read: 614
         Serial.println("Button 3");
         buttonID = 3;
         // etats = IDLE;
         etats = S3;
-      } else if (buttonValue >= 251 && buttonValue < 450) {          // read: 355
+      } else if (buttonValue >= 251 && buttonValue < 500) {          // read: 409
         Serial.println("Button 4");
         buttonID = 4;
         // etats = IDLE;
         etats = S4;
-      } else if (buttonValue >= 101 && buttonValue < 250) {          // read: 175
+      } else if (buttonValue >= 101 && buttonValue < 250) {          // read: 214
         Serial.println("Button 5");
         buttonID = 5;
         // etats = IDLE;
