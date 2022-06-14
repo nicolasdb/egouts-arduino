@@ -19,7 +19,7 @@ void TaskActions( void *pvParameters );       // define la tâche d'actions.
 // define différent scénario = les actions déclenchées par les boutons lorsque pressé.
 enum {
   IDLE,
-  S1,S2,S3,S4,S5,S6,S7,S8
+  S1,S2,S3,S4,S5
 } etats;
 int buttonID = 0;
 
@@ -70,8 +70,6 @@ int cave = 3;
 // setup function runs once when you press reset or power the board
 
 void setup() {
-   mp3setup();    // initialize mp3setup
-  // Serial.begin(9600);
 
   // INPUT sensors
   pinMode(A3, INPUT);     // input pin buttons scénario
@@ -82,6 +80,10 @@ void setup() {
     delay(10);
   }
   
+  delay(1000);
+  mp3setup();    // initialize mp3setup
+  // Serial.begin(9600); 
+
 // digitalWrite(2,HIGH);
 
   // MCP0, define all buttons
@@ -192,28 +194,31 @@ void TaskButtons(void *pvParameters)
 
     if (etats == IDLE) {
       int buttonValue=analogRead(A3);
+      delay(20);
+      int buttonValue2=analogRead(A3);
       Serial.print("Waiting entry");
       Serial.println(buttonValue);
-      if (buttonValue>751) {                                         // read: 1013
+      if (buttonValue >= 950 && buttonValue2 >= 950){                                      // 10R read: 1021
         Serial.println("Button 1");
         buttonID = 1;
+        // etats = IDLE;
         etats = S1;
-      } else if (buttonValue >= 726 && buttonValue < 925) {          // read: 815
+      } else if (buttonValue >= 876 && buttonValue < 949 && buttonValue2 >= 876 && buttonValue2 < 949) {          // 10K read: 930
         Serial.println("Button 2");
         buttonID = 2;
         // etats = IDLE;
         etats = S2;
-      } else if (buttonValue >= 501 && buttonValue < 725) {          // read: 614
+      } else if (buttonValue >= 751 && buttonValue < 875 && buttonValue2 >= 751 && buttonValue2 < 875) {          // 22K read: 840
         Serial.println("Button 3");
         buttonID = 3;
         // etats = IDLE;
         etats = S3;
-      } else if (buttonValue >= 251 && buttonValue < 500) {          // read: 409
+      } else if (buttonValue >= 351 && buttonValue < 750 && buttonValue2 >= 351 && buttonValue2 < 750) {          // 56K read: 659
         Serial.println("Button 4");
         buttonID = 4;
         // etats = IDLE;
         etats = S4;
-      } else if (buttonValue >= 101 && buttonValue < 250) {          // read: 214
+      } else if (buttonValue >= 150 && buttonValue < 350 && buttonValue2 >= 150 && buttonValue2 < 350) {          // 210K read: 280
         Serial.println("Button 5");
         buttonID = 5;
         // etats = IDLE;
