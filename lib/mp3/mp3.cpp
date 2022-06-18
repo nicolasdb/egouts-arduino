@@ -4,7 +4,7 @@
 #include <DFRobotDFPlayerMini.h>
 
 // mp3 variable
-int StripPin = 9;    // LED strip (via MOSFET) connected to pin 9
+int StripPin = 5;    // LED strip (via MOSFET) connected to pin 9
 int rxPin = 10;      // DFplayer TX to Arduino RX pin 10
 int txPin = 11;      // DFplayer RX to Arduino TX pin 11
 int busyPin = 12;    // DFplayer BUSY connected to pin 12
