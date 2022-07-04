@@ -1,0 +1,833 @@
+{
+  "uuid": "ad836228ff577584b431a8cd48c8c716",
+  "path": "Offline/ShieldV1.2b",
+  "name": "ShieldV1.2b",
+  "content": "",
+  "created_at": "2022-06-17 08:30:28",
+  "updated_at": "2022-07-04 15:49:00",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "f0434d374cd865b357c07c26263f8dd8",
+      "title": "Main board",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "4363dc679f85409d8170eaa85095a946": 1,
+        "7897b7cc13cc46f6bc8c415d3bc1dd74": 6,
+        "45ddbab4559a43c6bc95d2ca22fb25a0": 8,
+        "1412972fc36044ca98a4d7524f7b4df1": 1,
+        "40c7819a7d8c7b7d7565f4d117de9b24": 1,
+        "d9f73faeabfa4bb79e146f6a7d744953": 5,
+        "73fdd93ed5c9430387b87845fcf3ebf9": 2,
+        "2365816df37853f44fb723fa5c2d1682": 2,
+        "47015ec55c8e4296b885a728f64d1871": 1,
+        "59d6d42fb478482e83852243fcdc6db6": 3,
+        "a9aa2b14f188405792fa87ac344499a4": 2,
+        "92c32ceaaac84139add7ebda884f0a47": 2,
+        "075dc0b4261f4eeda1a60ecc60e707b2": 2,
+        "b7adf400643b4936be8b786704d0e70f": 1,
+        "6b183ead02164764b4179944bf03b053": 2,
+        "7cf0742ede124deabc1a17d9cb305ad1": 1,
+        "6d1444624d4b4388837c774e32c35da2": 1,
+        "ed9eb2faffb34286820a54a14e9e9e24": 7,
+        "3adac0687b184795ac82a88d7030b579": 1,
+        "86f58b76cf18416fb0b452fc0bdcc130": 6
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "12V IN",
+          5,
+          "CONN-TH_P5.00_KF301-5.0-2P",
+          "12VIN,V1,V2,V3,V4",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C474881",
+            "BOM_Manufacturer": "Cixi Kefa Elec",
+            "BOM_Manufacturer Part": "KF301-5.0-2P",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "c444d117946441c3ab8b7492a6a9cd72",
+            "uuid": "45ddbab4559a43c6bc95d2ca22fb25a0"
+          }
+        ],
+        [
+          "DFPlayerMini",
+          1,
+          "DFPLAYER",
+          "AUDIO1",
+          {
+            "BOM_Manufacturer Part": "DFPlayer mini",
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "puuid": "c7a4a711d0ce4719a6d7bfd3d3d7083f",
+            "uuid": "47015ec55c8e4296b885a728f64d1871"
+          }
+        ],
+        [
+          "100nF-104",
+          3,
+          "RAD-0.1",
+          "C1,C11,CHP1",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "ea82fbe34d7840de9fdcf3145ab199ef",
+            "uuid": "59d6d42fb478482e83852243fcdc6db6"
+          }
+        ],
+        [
+          "330uF",
+          1,
+          "CAP-D6.3×F2.5",
+          "CHP2",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "f22f57806f1b484c9525ae585bd9e142",
+            "uuid": "6d1444624d4b4388837c774e32c35da2"
+          }
+        ],
+        [
+          "B2B-PH-K-S(LF)(SN)",
+          1,
+          "CONN-TH_B2B-PH-K-S",
+          "CN1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "JST",
+            "BOM_Manufacturer Part": "B2B-PH-K-S(LF)(SN)",
+            "BOM_Supplier Part": "C131337",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "685bd04c33df492ab1ad332fe461c196",
+            "uuid": "4363dc679f85409d8170eaa85095a946"
+          }
+        ],
+        [
+          "3.3V",
+          1,
+          "DO-41_BD2.4-L4.7-P8.70-D0.9-RD",
+          "D1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C232466",
+            "BOM_Manufacturer": "ON Semicon",
+            "BOM_Manufacturer Part": "1N5921BG",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "c2803222ad4b48fb94db0de548a6280a",
+            "uuid": "7cf0742ede124deabc1a17d9cb305ad1"
+          }
+        ],
+        [
+          "B2B-PH-KL",
+          6,
+          "CONN-TH_2P-P2.00_2B-PH-KL",
+          "HOME1,HOME2,HOME3,HOME4,HOME5,HOME6",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C2683610",
+            "BOM_Manufacturer": "JST",
+            "BOM_Manufacturer Part": "B2B-PH-KL",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "cc2564166e6044e9920000c699881f97",
+            "uuid": "86f58b76cf18416fb0b452fc0bdcc130"
+          }
+        ],
+        [
+          "JL300-50003U01",
+          1,
+          "CONN-TH_3P-P5.08_JL300-50003U01",
+          "HP",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C394552",
+            "BOM_Manufacturer": "JILN",
+            "BOM_Manufacturer Part": "JL300-50003U01",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "8ef579c01f0c4a0bbadace929254ee54",
+            "uuid": "1412972fc36044ca98a4d7524f7b4df1"
+          }
+        ],
+        [
+          "IRFZ44NPBF",
+          1,
+          "TO-220-3_L10.0-W4.5-P2.54-L",
+          "IRFZ44",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "IR",
+            "BOM_Manufacturer Part": "IRFZ44NPBF",
+            "BOM_Supplier Part": "C2586",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "948e610cffd14df79f04c73832b1409b",
+            "uuid": "40c7819a7d8c7b7d7565f4d117de9b24"
+          }
+        ],
+        [
+          "XHB-4A(White)/4needle",
+          5,
+          "CONN-TH_4P_XHB-4A",
+          "J0,J1,J2,J3,J4",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "BOOMELE",
+            "BOM_Manufacturer Part": "XHB-4A(White)/4needle",
+            "BOM_Supplier Part": "C61277",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "accbc1122cad41ac836088b9110d0fb2",
+            "uuid": "d9f73faeabfa4bb79e146f6a7d744953"
+          }
+        ],
+        [
+          "HDR-M-2.54_1x15",
+          2,
+          "HDR-M-2.54_1X15",
+          "J5,J7",
+          {
+            "BOM_Supplier Part": "C124373",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "5c151642f5ca4b219fdefa11da9edb9f",
+            "uuid": "6b183ead02164764b4179944bf03b053"
+          }
+        ],
+        [
+          "HDR-M-2.54_1x2",
+          2,
+          "HDR-M-2.54_1X2",
+          "J11,J13",
+          {
+            "BOM_Supplier Part": "C124375",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "70aa5812f21f4991bf427395d51849f4",
+            "uuid": "a9aa2b14f188405792fa87ac344499a4"
+          }
+        ],
+        [
+          "MCP23017-E/SP",
+          2,
+          "DIP-28_L35.0-W6.5-P2.54-LS7.6-BL",
+          "MCP0,MCP1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C647352",
+            "BOM_Manufacturer": "Microchip Tech",
+            "BOM_Manufacturer Part": "MCP23017-E/SP",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "05f9034a01ac44779a501276e87f7948",
+            "uuid": "73fdd93ed5c9430387b87845fcf3ebf9"
+          }
+        ],
+        [
+          "2N4401_C15986",
+          2,
+          "TO-92-3_L4.9-W3.7-P1.27-L",
+          "NPN1,NPN2",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "CJ",
+            "BOM_Manufacturer Part": "2N4401",
+            "BOM_Supplier Part": "C15986",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "6924b36489de4921bb29ca14bf27c33f",
+            "uuid": "2365816df37853f44fb723fa5c2d1682"
+          }
+        ],
+        [
+          "100K",
+          1,
+          "R0805",
+          "R000",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "10K",
+          3,
+          "R0805",
+          "R0RST,R1RST,R011",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "10",
+          1,
+          "R0805",
+          "R001",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "220",
+          5,
+          "R0805",
+          "R002,R012,R022,R032,R042",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "22K",
+          1,
+          "R0805",
+          "R021",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "56K",
+          1,
+          "R0805",
+          "R031",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "220K",
+          1,
+          "R0805",
+          "R041",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "1K",
+          5,
+          "R0805",
+          "RA01,RA02,RHP1,RHP2,RSTORM",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "HDR-M-2.54_1x8",
+          2,
+          "HDR-M-2.54_1X8",
+          "RELAY0-7,RELAY8-15",
+          {
+            "BOM_Supplier Part": "C190820",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "fb11a1cdebf6433b8a3c664a100689e6",
+            "uuid": "92c32ceaaac84139add7ebda884f0a47"
+          }
+        ],
+        [
+          "4.7K",
+          6,
+          "RES-ADJ-SMD_GF063P1",
+          "RH01,RH02,RH03,RH04,RH05,RH06",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "TOCOS",
+            "BOM_Manufacturer Part": "GF063P1-B101",
+            "BOM_Supplier Part": "C128075",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "8d06c72ca91d4010a9941dc80b810aad",
+            "uuid": "7897b7cc13cc46f6bc8c415d3bc1dd74"
+          }
+        ],
+        [
+          "68R",
+          6,
+          "R0805",
+          "RH7,RH8,RH9,RH10,RH11,RH12",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": "ed9eb2faffb34286820a54a14e9e9e24"
+          }
+        ],
+        [
+          "4K7",
+          2,
+          "R0805",
+          "RSCL,RSDA",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "KF301-5.0-2P",
+          3,
+          "CONN-TH_P5.00_KF301-5.0-2P",
+          "U1,U2,U3",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C474881",
+            "BOM_Manufacturer": "Cixi Kefa Elec",
+            "BOM_Manufacturer Part": "KF301-5.0-2P",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "c444d117946441c3ab8b7492a6a9cd72",
+            "uuid": "45ddbab4559a43c6bc95d2ca22fb25a0"
+          }
+        ],
+        [
+          "ULN2803",
+          2,
+          "DIP-18_L23.0-W6.5-P2.54-LS7.6-BL",
+          "U4,U5",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "UTC",
+            "BOM_Manufacturer Part": "ULN2803G-D18-T",
+            "BOM_Supplier Part": "C75528",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "410e4c6012dc4e80aa77814f280c208f",
+            "uuid": "075dc0b4261f4eeda1a60ecc60e707b2"
+          }
+        ],
+        [
+          "ARDUINO_NANO",
+          1,
+          "COMM-TH_ARDUINO_NANO",
+          "U6",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C9900017879",
+            "BOM_Manufacturer": "null",
+            "BOM_Manufacturer Part": "ARDUINO_NANO",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "ff6e2030776d4574a7594ce501bb86c5",
+            "uuid": "b7adf400643b4936be8b786704d0e70f"
+          }
+        ],
+        [
+          "LED5MM",
+          12,
+          "LED5MM",
+          "NAPPE-LED1,NAPPE-LED2,NAPPE-LED3,NAPPE-LED4,NAPPE-LED5,NAPPE-LED6,NAPPE-LED7,NAPPE-LED8,NAPPE-LED9,NAPPE-LED10,NAPPE-LED11,NAPPE-LED13",
+          {
+            "puuid": "41500ebec55644099429cf84718c4fb6",
+            "uuid": ""
+          }
+        ],
+        [
+          "68",
+          4,
+          "R0805",
+          "R47,R49,R50,R51",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ]
+      ],
+      "updateTime": 1656942488,
+      "createTime": 1653389505,
+      "histories": [],
+      "created_at": "2022-05-24 12:51:45",
+      "updated_at": "2022-07-04 15:48:08"
+    },
+    {
+      "uuid": "f529dee69ad8fcf023dc15501cab1b46",
+      "title": "leds",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {},
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "12V IN",
+          5,
+          "CONN-TH_P5.00_KF301-5.0-2P",
+          "12VIN,V1,V2,V3,V4",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C474881",
+            "BOM_Manufacturer": "Cixi Kefa Elec",
+            "BOM_Manufacturer Part": "KF301-5.0-2P",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "c444d117946441c3ab8b7492a6a9cd72",
+            "uuid": "45ddbab4559a43c6bc95d2ca22fb25a0"
+          }
+        ],
+        [
+          "HDR-M-2.54_1x10",
+          1,
+          "HDR-M-2.54_1X10",
+          "A1",
+          {
+            "BOM_Supplier Part": "C57369",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "0163104799714461abf84081b4477301",
+            "uuid": "ce91631041f646fd9775777b794167dd"
+          }
+        ],
+        [
+          "HDR-M-2.54_1x8",
+          4,
+          "HDR-M-2.54_1X8",
+          "A2,A3,RELAY0-7,RELAY8-15",
+          {
+            "BOM_Supplier Part": "C190820",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "fb11a1cdebf6433b8a3c664a100689e6",
+            "uuid": "92c32ceaaac84139add7ebda884f0a47"
+          }
+        ],
+        [
+          "HDR-M-2.54_1x6",
+          1,
+          "HDR-M-2.54_1X6",
+          "A4",
+          {
+            "BOM_Supplier Part": "C190819",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "df3ca37cb13d499cb713e9aa6fdd0c7b",
+            "uuid": "93b44d62463c4c9c82dd7108c8ee7d73"
+          }
+        ],
+        [
+          "DFPlayerMini",
+          1,
+          "DFPLAYER",
+          "AUDIO1",
+          {
+            "BOM_Manufacturer Part": "DFPlayer mini",
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "puuid": "c7a4a711d0ce4719a6d7bfd3d3d7083f",
+            "uuid": "47015ec55c8e4296b885a728f64d1871"
+          }
+        ],
+        [
+          "ARDUINO_UNO_R3_SHIELDBASIC",
+          1,
+          "UNO_R3_SHIELD",
+          "B1",
+          {
+            "puuid": "67a9f92ea3d9497ebc447eb23a447228",
+            "uuid": ""
+          }
+        ],
+        [
+          "100nF-104",
+          2,
+          "RAD-0.1",
+          "C1,C11",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "ea82fbe34d7840de9fdcf3145ab199ef",
+            "uuid": "59d6d42fb478482e83852243fcdc6db6"
+          }
+        ],
+        [
+          "B2B-PH-K-S(LF)(SN)",
+          7,
+          "CONN-TH_B2B-PH-K-S",
+          "CN1,HOME1,HOME2,HOME3,HOME4,HOME5,HOME6",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "JST",
+            "BOM_Manufacturer Part": "B2B-PH-K-S(LF)(SN)",
+            "BOM_Supplier Part": "C131337",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "685bd04c33df492ab1ad332fe461c196",
+            "uuid": "4363dc679f85409d8170eaa85095a946"
+          }
+        ],
+        [
+          "JL300-50003U01",
+          1,
+          "CONN-TH_3P-P5.08_JL300-50003U01",
+          "HP",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C394552",
+            "BOM_Manufacturer": "JILN",
+            "BOM_Manufacturer Part": "JL300-50003U01",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "8ef579c01f0c4a0bbadace929254ee54",
+            "uuid": "1412972fc36044ca98a4d7524f7b4df1"
+          }
+        ],
+        [
+          "IRFZ44NPBF",
+          1,
+          "TO-220-3_L10.0-W4.5-P2.54-L",
+          "IRFZ44",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "IR",
+            "BOM_Manufacturer Part": "IRFZ44NPBF",
+            "BOM_Supplier Part": "C2586",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "948e610cffd14df79f04c73832b1409b",
+            "uuid": "40c7819a7d8c7b7d7565f4d117de9b24"
+          }
+        ],
+        [
+          "XHB-4A(White)/4needle",
+          5,
+          "CONN-TH_4P_XHB-4A",
+          "J0,J1,J2,J3,J4",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "BOOMELE",
+            "BOM_Manufacturer Part": "XHB-4A(White)/4needle",
+            "BOM_Supplier Part": "C61277",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "accbc1122cad41ac836088b9110d0fb2",
+            "uuid": "d9f73faeabfa4bb79e146f6a7d744953"
+          }
+        ],
+        [
+          "HDR-M-2.54_1x2",
+          2,
+          "HDR-M-2.54_1X2",
+          "J11,J13",
+          {
+            "BOM_Supplier Part": "C124375",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "70aa5812f21f4991bf427395d51849f4",
+            "uuid": "a9aa2b14f188405792fa87ac344499a4"
+          }
+        ],
+        [
+          "MCP23017-E/SP",
+          2,
+          "DIP-28_L35.0-W6.5-P2.54-LS7.6-BL",
+          "MCP0,MCP2",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C647352",
+            "BOM_Manufacturer": "Microchip Tech",
+            "BOM_Manufacturer Part": "MCP23017-E/SP",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "05f9034a01ac44779a501276e87f7948",
+            "uuid": "73fdd93ed5c9430387b87845fcf3ebf9"
+          }
+        ],
+        [
+          "2N4401_C15986",
+          2,
+          "TO-92-3_L4.9-W3.7-P1.27-L",
+          "NPN1,NPN2",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "CJ",
+            "BOM_Manufacturer Part": "2N4401",
+            "BOM_Supplier Part": "C15986",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "6924b36489de4921bb29ca14bf27c33f",
+            "uuid": "2365816df37853f44fb723fa5c2d1682"
+          }
+        ],
+        [
+          "BC337",
+          16,
+          "TO-92-3_L4.9-W3.7-P1.27-L",
+          "NPN100,NPN101,NPN102,NPN103,NPN104,NPN105,NPN106,NPN107,NPN108,NPN109,NPN110,NPN111,NPN112,NPN113,NPN114,NPN115",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C713609",
+            "BOM_Manufacturer": "LGE",
+            "BOM_Manufacturer Part": "BC337-16",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "6924b36489de4921bb29ca14bf27c33f",
+            "uuid": "20a49746cec649d8a8cd6ea3fed21bfb"
+          }
+        ],
+        [
+          "10K",
+          18,
+          "R0805",
+          "R0RST,R1RST,R100,R101,R102,R103,R104,R105,R106,R107,R108,R109,R110,R111,R112,R113,R114,R115",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "1M",
+          1,
+          "R0805",
+          "R01M",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "1K",
+          10,
+          "R0805",
+          "R001,R011,R021,R031,R041,RA01,RA02,RHP1,RHP2,RSTORM",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "220",
+          5,
+          "R0805",
+          "R002,R012,R022,R032,R042",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "100",
+          6,
+          "RES-ADJ-SMD_GF063P1",
+          "RH01,RH02,RH03,RH04,RH05,RH06",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "TOCOS",
+            "BOM_Manufacturer Part": "GF063P1-B101",
+            "BOM_Supplier Part": "C128075",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "8d06c72ca91d4010a9941dc80b810aad",
+            "uuid": "7897b7cc13cc46f6bc8c415d3bc1dd74"
+          }
+        ],
+        [
+          "4K7",
+          2,
+          "R0805",
+          "RSCL,RSDA",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ],
+        [
+          "KF301-5.0-2P",
+          3,
+          "CONN-TH_P5.00_KF301-5.0-2P",
+          "U1,U2,U3",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C474881",
+            "BOM_Manufacturer": "Cixi Kefa Elec",
+            "BOM_Manufacturer Part": "KF301-5.0-2P",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "c444d117946441c3ab8b7492a6a9cd72",
+            "uuid": "45ddbab4559a43c6bc95d2ca22fb25a0"
+          }
+        ],
+        [
+          "LED5MM",
+          12,
+          "LED5MM",
+          "NAPPE-LED1,NAPPE-LED2,NAPPE-LED3,NAPPE-LED4,NAPPE-LED5,NAPPE-LED6,NAPPE-LED7,NAPPE-LED8,NAPPE-LED9,NAPPE-LED10,NAPPE-LED11,NAPPE-LED13",
+          {
+            "puuid": "41500ebec55644099429cf84718c4fb6",
+            "uuid": ""
+          }
+        ],
+        [
+          "68",
+          4,
+          "R0805",
+          "R47,R49,R50,R51",
+          {
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": ""
+          }
+        ]
+      ],
+      "updateTime": 1655186233,
+      "createTime": 1654074138,
+      "histories": [],
+      "created_at": "2022-06-01 11:02:18",
+      "updated_at": "2022-06-14 07:57:13"
+    },
+    {
+      "uuid": "1d0f439db91b984e8dd9d2b10bcf9237",
+      "title": "PCB_ShieldV1.2b.sch",
+      "filename": "PCB_ShieldV1.2b.sch.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "b60f399a7a7e41848b2be1eb49c79141": 26,
+        "cc2564166e6044e9920000c699881f97": 6,
+        "8d06c72ca91d4010a9941dc80b810aad": 6,
+        "f22f57806f1b484c9525ae585bd9e142": 1,
+        "ff6e2030776d4574a7594ce501bb86c5": 1,
+        "5c151642f5ca4b219fdefa11da9edb9f": 2,
+        "410e4c6012dc4e80aa77814f280c208f": 2,
+        "ea82fbe34d7840de9fdcf3145ab199ef": 3,
+        "05f9034a01ac44779a501276e87f7948": 2,
+        "c2803222ad4b48fb94db0de548a6280a": 1,
+        "fb11a1cdebf6433b8a3c664a100689e6": 2,
+        "accbc1122cad41ac836088b9110d0fb2": 5,
+        "c444d117946441c3ab8b7492a6a9cd72": 8,
+        "c7a4a711d0ce4719a6d7bfd3d3d7083f": 1,
+        "6924b36489de4921bb29ca14bf27c33f": 2,
+        "685bd04c33df492ab1ad332fe461c196": 1,
+        "8ef579c01f0c4a0bbadace929254ee54": 1,
+        "70aa5812f21f4991bf427395d51849f4": 2,
+        "948e610cffd14df79f04c73832b1409b": 1
+      },
+      "BOM": [],
+      "updateTime": 1656942540,
+      "createTime": 1653394144,
+      "histories": [],
+      "created_at": "2022-05-24 14:09:04",
+      "updated_at": "2022-07-04 15:49:00"
+    }
+  ],
+  "sort": [
+    "f0434d374cd865b357c07c26263f8dd8",
+    "f529dee69ad8fcf023dc15501cab1b46"
+  ],
+  "title": "ShieldV1.2b",
+  "foldername": "ShieldV1.2b",
+  "schfilename": "ShieldV1.2b.json",
+  "schfilemtime": 1656942488883
+}
