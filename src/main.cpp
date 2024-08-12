@@ -3,7 +3,7 @@
 #include <SoftwareSerial.h>           // controle du module mp3
 #include <DFRobotDFPlayerMini.h>      // controle du module mp3
 #include <Wire.h>                     // controle des MCP
-#include <Adafruit_MCP23017.h>        // controle des MCP
+#include <Adafruit_MCP23X17.h>        // controle des MCP
 
 #include <mp3.h>                      // controle storm du module mp3 - local
 
@@ -26,9 +26,9 @@ int buttonID = 0;
 
 
 // define MCP0 - registre pour les leds bouttons "scénario"
-Adafruit_MCP23017 mcp0;
+Adafruit_MCP23X17 mcp0;
 // define MCP1 - registre pour les electrovannes via relais et options
-Adafruit_MCP23017 mcp1;
+Adafruit_MCP23X17 mcp1;
 
 int ledButtonArray[] = {7,6,9,8,11,10,5,4};   // liste les pin utilisées sur mcp0 et leur ordre
 int count = 0;                                // compteur pour scanner led k2000
@@ -84,13 +84,13 @@ void setup() {
 // digitalWrite(2,HIGH);
 
   // MCP0, define all buttons
-  mcp0.begin(0);                               // use default address 0
+  mcp0.begin_I2C(0);                               // use default address 0
   for (size_t i = 0; i < 8 ; i++){
     mcp0.pinMode(ledButtonArray[i], OUTPUT);
     delay(50);
   }
 
-  mcp1.begin(1);                               // use default address 1
+  mcp1.begin_I2C(1);                               // use default address 1
   for (int j = 0; j < 16 ; j++){
     mcp1.pinMode(j, OUTPUT);
     mcp1.digitalWrite(j, LOW);

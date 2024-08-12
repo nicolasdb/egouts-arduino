@@ -42,7 +42,7 @@ void mp3setup () {
 void storm (int stormCount) {
     Serial.print("Boucles : ");
     Serial.println(stormCount);
-for (size_t i=1 ; i<= stormCount ; i++){
+for (size_t i=1 ; i <= stormCount ; i++){
     int flashCount = random (10, 15);        // Min. and max. number of flashes each loop
       int flashBrightnessMin =  10;           // LED flash min. brightness (0-255)
       int flashBrightnessMax =  255;          // LED flash max. brightness (0-255)
