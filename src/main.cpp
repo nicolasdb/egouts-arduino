@@ -36,27 +36,27 @@ int speed = 20;                               // delay pour scanner led k2000
 
 
 
-// define n° relay for valves on MCP0
+// define n° relay for valves on MCP0 | n°relai>>n°valve
 int pump = 0;         //pompe 220V
 int ledCiterne = 1;   //citerne 5V
-int citerne = 2;      //valve 1 citerne
-int pJardin = 3;      //valve 3 pluie jardin
-int pChamp = 4;       //valve 8 pluie champ
-int tImper = 5;       //valve 5 pluie toiture G
-int tPlant = 6;       //valve 9 pluie toiture D
-int simVille = 11 ;     //valve 11
+int sterput = 2;     //valve 1-- sterput maison
+int citerne = 3;      //valve 2 citerne
+int tImper = 4;       //valve 3 pluie toiture G
+int tPlant = 5;       //valve 4 pluie toiture D
+int egout = 6;       //valve 5 egout champignon
+int bOrage = 7;      //valve 6 bassin d'orage
 int ledBO2 = 8;       //bassin d'orage bas 5V
 int ledBO1 = 9;       //bassin d'orage haut 5V
-int collecteur = 10;  //valve 7  collecteur maison (oeuf)
-int ruePlace = 7;    //valve 12
-int bOrage = 12;      //valve 4 bassin d'orage
-int egout = 13;       //valve 2 egout champignon
-int riviere = 14;     //valve 10 rivière
-int sterput = 15;     //valve 6 sterput maison
+int pChamp = 10;       //valve 7 pluie champ
+int pJardin = 11;      //valve 8 pluie jardin
+int collecteur = 12;  //valve 9  collecteur maison (oeuf)
+int ruePlace = 13;     //valve 10 rue et place
+int riviere = 14;     //valve 11 rivière
+int simVille = 15 ;   //valve 12 Maison voisine dans oeuf
 
 // mapping leds
-int nappe = 8;          // nappe Phréatique 12V
-int egg = 7;            // collecteur oeuf 12V
+int nappe = 8;          // nappe Phréatique 12V _ Out2
+int egg = 7;            // collecteur oeuf 12V - Out1
 int sdb1 = 6;
 int toilette = 2;
 int cuisine = 5;
