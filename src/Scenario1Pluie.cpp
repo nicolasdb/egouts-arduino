@@ -1,5 +1,10 @@
 #include "Scenario1Pluie.h"
 #include "Arduino.h"
+#include "pins.h"
+
+extern Adafruit_MCP23X17 mcp0;
+extern Adafruit_MCP23X17 mcp1;
+extern MP3Player mp3Player;
 
 void Scenario1Pluie::execute() {
     if (DEBUG_MODE) {

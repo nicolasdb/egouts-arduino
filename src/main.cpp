@@ -3,11 +3,18 @@
 #include <Adafruit_MCP23X17.h>
 #include "config.h"
 #include "MP3Player.h"
+#include "pins.h"
+
+#include "Scenario1Pluie.h"
+#include "Scenario2EauPotable.h"
+#include "Scenario3Epuration.h"
+#include "Scenario4Orage.h"
+#include "Scenario5RecupPluie.h"
 
 // Function prototypes
 void handleButtonPress();
 void updateLEDs();
-void runScenario(int scenarioNumber);
+void runScenario();
 void turnOffAllLEDs();
 
 // Global variables
@@ -20,7 +27,7 @@ enum ScenarioState {
   S1, S2, S3, S4, S5
 } currentState = IDLE;
 
-// MCP1 pin definitions
+// Pin definitions
 const int pump = 0;
 const int ledCiterne = 1;
 const int sterput = 2;
@@ -38,7 +45,6 @@ const int ruePlace = 13;
 const int riviere = 14;
 const int simVille = 15;
 
-// MCP0 pin definitions
 const int StripPin = 5;
 const int nappe = 6;
 const int egg = 7;
@@ -55,9 +61,24 @@ const int numLeds = 5;
 const int buttonPin = A3;
 int buttonID = 0;
 
+// Scenario objects
+Scenario1Pluie* scenario1;
+Scenario2EauPotable* scenario2;
+Scenario3Epuration* scenario3;
+Scenario4Orage* scenario4;
+Scenario5RecupPluie* scenario5;
+
+// Timing variables
+unsigned long lastButtonCheck = 0;
+unsigned long lastLEDUpdate = 0;
+unsigned long lastScenarioRun = 0;
+
+const unsigned long buttonCheckInterval = 50;
+const unsigned long ledUpdateInterval = 100;
+const unsigned long scenarioRunInterval = 50;
+
 void setup() {
   Serial.begin(115200);
-  delay(1000);  // Give some time for the serial connection to establish
   
   Serial.println("Starting setup...");
 
@@ -92,34 +113,33 @@ void setup() {
     mcp1.digitalWrite(i, LOW);
   }
 
+  // Initialize scenario objects
+  scenario1 = new Scenario1Pluie(mp3Player, mcp0, mcp1);
+  scenario2 = new Scenario2EauPotable(mp3Player, mcp0, mcp1);
+  scenario3 = new Scenario3Epuration(mp3Player, mcp0, mcp1);
+  scenario4 = new Scenario4Orage(mp3Player, mcp0, mcp1);
+  scenario5 = new Scenario5RecupPluie(mp3Player, mcp0, mcp1);
+
   Serial.println("Setup complete");
 }
 
 void loop() {
-  handleButtonPress();
+  unsigned long currentMillis = millis();
 
-  switch (currentState) {
-    case IDLE:
-      updateLEDs();
-      break;
-    case S1:
-      runScenario(1);
-      break;
-    case S2:
-      runScenario(2);
-      break;
-    case S3:
-      runScenario(3);
-      break;
-    case S4:
-      runScenario(4);
-      break;
-    case S5:
-      runScenario(5);
-      break;
+  if (currentMillis - lastButtonCheck >= buttonCheckInterval) {
+    handleButtonPress();
+    lastButtonCheck = currentMillis;
   }
 
-  delay(10);
+  if (currentMillis - lastLEDUpdate >= ledUpdateInterval) {
+    updateLEDs();
+    lastLEDUpdate = currentMillis;
+  }
+
+  if (currentMillis - lastScenarioRun >= scenarioRunInterval) {
+    runScenario();
+    lastScenarioRun = currentMillis;
+  }
 }
 
 void handleButtonPress() {
@@ -160,11 +180,10 @@ void handleButtonPress() {
 }
 
 void updateLEDs() {
-  static unsigned long lastUpdate = 0;
   static int currentLed = 0;
   static bool direction = true;
 
-  if (millis() - lastUpdate > 100) {
+  if (currentState == IDLE) {
     turnOffAllLEDs();
     
     if (direction) {
@@ -176,26 +195,46 @@ void updateLEDs() {
     }
 
     mcp0.digitalWrite(ledButtonArray[currentLed], HIGH);
-    lastUpdate = millis();
   }
 }
 
-void runScenario(int scenarioNumber) {
-  Serial.print("Running Scenario ");
-  Serial.println(scenarioNumber);
-  
-  // Turn on the corresponding LED
-  mcp0.digitalWrite(buttonID - 1, HIGH);
-  
-  // Simulate scenario running
-  delay(3000);
-  
-  // Turn off all LEDs
-  turnOffAllLEDs();
-  
-  // Return to IDLE state
-  currentState = IDLE;
-  Serial.println("Returning to IDLE state");
+void runScenario() {
+  if (currentState != IDLE) {
+    int scenarioNumber = static_cast<int>(currentState);
+    Serial.print("Running Scenario ");
+    Serial.println(scenarioNumber);
+    
+    // Turn on the corresponding LED
+    mcp0.digitalWrite(buttonID - 1, HIGH);
+    
+    // Execute the appropriate scenario
+    switch (currentState) {
+      case S1:
+        scenario1->execute();
+        break;
+      case S2:
+        scenario2->execute();
+        break;
+      case S3:
+        scenario3->execute();
+        break;
+      case S4:
+        scenario4->execute();
+        break;
+      case S5:
+        scenario5->execute();
+        break;
+      default:
+        break;
+    }
+    
+    // Turn off all LEDs
+    turnOffAllLEDs();
+    
+    // Return to IDLE state
+    currentState = IDLE;
+    Serial.println("Returning to IDLE state");
+  }
 }
 
 void turnOffAllLEDs() {
