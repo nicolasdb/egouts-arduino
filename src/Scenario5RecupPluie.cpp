@@ -12,30 +12,42 @@ void Scenario5RecupPluie::execute() {
     }
 
     // start scénario
-    mcp1.digitalWrite(pump, HIGH);                          // Power ON pompe 
-    mp3Player.piste5();                                     // piste audio récupération pluie 24'
-
-    mcp1.digitalWrite(pChamp, HIGH);                        // Valve ON pluie champs 
-    mcp1.digitalWrite(pJardin, HIGH);                       // Valve ON pluie jardin
-    delay(3000);                                            // wait 3 seconds
+    mp3Player.piste4();                                     // piste audio pluie 24'
+    mcp1.digitalWrite(pump, HIGH);                          // Power ON pompe
+    delay(1000);                                            // wait 1 second
+    mcp1.digitalWrite(tImper, HIGH);                        // Valve ON pluie toit G 
+    mcp1.digitalWrite(tPlant, HIGH);                        // Valve ON pluie toit D 
+    delay(5000);                                            // Wait 5 seconds
     mcp1.digitalWrite(ledCiterne, HIGH);                    // LED ON citerne
     mcp1.digitalWrite(citerne, HIGH);                       // Valve ON citerne
-    delay(3000);                                            // wait 3 seconds
-    mcp1.digitalWrite(tImper, HIGH);                        // LED ON toiture imperméable
-    delay(3000);                                            // wait 3 seconds
-    mcp1.digitalWrite(tPlant, HIGH);                        // LED ON toiture plantée
-    delay(3000);                                            // wait 3 seconds
+    delay(13000);                                           // Wait 13 seconds
+    mcp1.digitalWrite(tImper, LOW);                         // Valve OFF pluie toit G 
+    mcp1.digitalWrite(tPlant, LOW);                         // Valve OFF pluie toit D 
+    delay(5000);                                            // Wait 5 seconds
+    mcp1.digitalWrite(citerne, LOW);                        // Valve OFF citerne
+    delay(1000);                                            // wait 1 second
+
+    mp3Player.piste1();                                     // piste audio lavelinge 26'
     mcp0.digitalWrite(arrosage, HIGH);                      // LED ON arrosage
+    delay(8000);                                            // wait 8 seconds
+    mcp0.digitalWrite(toilette, HIGH);                      // LED ON WC
     delay(3000);                                            // wait 3 seconds
 
-    mcp1.digitalWrite(pChamp, LOW);                         // Valve OFF pluie champs
-    mcp1.digitalWrite(pJardin, LOW);                        // Valve OFF pluie jardin
-    mcp1.digitalWrite(ledCiterne, LOW);                     // LED OFF citerne
-    mcp1.digitalWrite(citerne, LOW);                        // Valve OFF citerne
-    mcp1.digitalWrite(tImper, LOW);                         // LED OFF toiture imperméable
-    mcp1.digitalWrite(tPlant, LOW);                         // LED OFF toiture plantée
+    mp3Player.piste2();                                     // piste audio toilette 10'
+    mcp0.digitalWrite(egg, HIGH);                           // LED ON collecteur Egg
+    mcp1.digitalWrite(collecteur, HIGH);                    // Valve ON collecteur Egg
+    delay(500);                                             // wait 0.5 seconds
+    mcp0.digitalWrite(cave, HIGH);                          // LED ON cave
+    delay(13000);                                           // wait 13 seconds
+    mcp0.digitalWrite(toilette, LOW);                       // LED OFF WC
     mcp0.digitalWrite(arrosage, LOW);                       // LED OFF arrosage
+    delay(2000);                                            // wait 2 seconds
+    mcp1.digitalWrite(collecteur, LOW);                     // Valve OFF collecteur Egg
     mcp1.digitalWrite(pump, LOW);                           // Power OFF pompe
+    delay(500);                                             // wait 0.5 seconds
+    mcp0.digitalWrite(cave, LOW);                           // LED OFF cave
+    mcp0.digitalWrite(egg, LOW);                            // LED OFF collecteur Egg 
+    mcp1.digitalWrite(ledCiterne, LOW);                     // LED OFF citerne
 
     if (DEBUG_MODE) {
         Serial.println("Scenario 5: Récupération Pluie completed");

@@ -2,6 +2,7 @@
 #define SCENARIO4_ORAGE_H
 
 #include "Scenario.h"
+#include <stdint.h>
 
 class Scenario4Orage : public Scenario {
 public:
@@ -10,6 +11,8 @@ public:
     void execute() override;
 
 private:
+    void storm(uint32_t stormCount);
+
     // Define pin numbers for this scenario
     static const int pump = 0;
     static const int tImper = 4;
@@ -23,6 +26,8 @@ private:
     static const int ledBO1 = 9;
     static const int ledBO2 = 8;
     static const int egout = 6;
+    static const int StripPin = 5;
+    static const int busyPin = 12;
 };
 
 #endif // SCENARIO4_ORAGE_H
