@@ -1,0 +1,44 @@
+#include "Scenario3Epuration.h"
+#include "Arduino.h"
+
+void Scenario3Epuration::execute() {
+    if (DEBUG_MODE) {
+        Serial.println("Executing Scenario 3: Epuration");
+    }
+
+    // consommation d'eau ménagère, évacuation vers la station d'épuration et rivière
+    mcp0.digitalWrite(sdb1, HIGH);                                    // LED ON sdb
+    mp3Player.piste5();                                               // piste audio douche 24'
+    delay(5000);                                                      // wait 5 seconds
+    mcp1.digitalWrite(pump, HIGH);                                    // Power ON pompe
+    delay(500);                                                       // wait 0.5 seconds
+    mcp1.digitalWrite(sterput, HIGH);                                 // Valve ON sterput
+    mcp0.digitalWrite(cave, HIGH);                                    // LED ON cave
+    delay(1000);                                                      // wait 1 second
+    mcp0.digitalWrite(cuisine, HIGH);                                 // LED ON cuisine
+    mcp0.digitalWrite(lavelinge, HIGH);                               // LED ON lavelinge
+    delay(6000);                                                      // wait audio et simule l'eau arrivant au collecteur egg
+    mcp0.digitalWrite(egg, HIGH);                                     // LED ON collecteur Egg
+    mcp1.digitalWrite(collecteur, HIGH);                              // Valve ON collecteur Egg
+    mcp0.digitalWrite(sdb1, LOW);                                     // LED OFF sdb
+    delay(1000);                                                      // wait 1 second
+    mcp0.digitalWrite(lavelinge, LOW);                                // LED OFF lavelinge
+    mcp0.digitalWrite(cuisine, LOW);                                  // LED OFF cuisine
+    delay(2000);                                                      // wait 2 seconds
+    mcp1.digitalWrite(sterput, LOW);                                  // Valve OFF sterput
+    mcp0.digitalWrite(cave, LOW);                                     // LED OFF cave
+    mcp1.digitalWrite(bOrage, HIGH);                                  // Valve ON bassin d'orage
+    delay(2000);                                                      // wait, l'eau monte dans le champignon
+    mcp1.digitalWrite(bOrage, LOW);                                   // Valve OFF bassin d'orage
+    delay(15000);                                                     // wait, l'eau transit jusqu'à la station d'épuration.
+    mcp1.digitalWrite(riviere, HIGH);                                 // Valve ON rivière
+    delay(15000);                                                     // wait 15 seconds
+    mcp1.digitalWrite(collecteur, LOW);                               // Valve OFF collecteur Egg
+    mcp0.digitalWrite(egg, LOW);                                      // LED OFF collecteur Egg
+    mcp1.digitalWrite(riviere, LOW);                                  // Valve OFF rivière
+    mcp1.digitalWrite(pump, LOW);                                     // Power OFF pompe
+
+    if (DEBUG_MODE) {
+        Serial.println("Scenario 3: Epuration completed");
+    }
+}
