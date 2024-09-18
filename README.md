@@ -1,5 +1,5 @@
 # MUSEE DES EGOUTS
-Une maquette sur le cycle anthropique de l’eau et ses supports didactiques  
+Une maquette sur le cycle anthropique de l'eau et ses supports didactiques  
 Projet Arduino pour l'automatisation des écoulements d'eau.   
 
 ## Appel à projet remporté par:
@@ -7,7 +7,7 @@ Projet Arduino pour l'automatisation des écoulements d'eau.
 **Ignacio Plaza De Giles** : architecte, maquettiste  
 _Conception et réalisation + modelisation 3D, impression 3D, découpe laser_  
 **Nicolas de Barquin** : co-fondateur de OpenFab  
-_Conception et réalisation + support technique sur le design et l’électronique_  
+_Conception et réalisation + support technique sur le design et l'électronique_  
 **Juan Vandeput** : menuisier, ébéniste  
 _Conception et réalisation + construction bois_  
 **Alexandra Sebbag** : graphiste  
@@ -24,3 +24,7 @@ _Conception et réalisation + communication, logistique_
 ![image](https://user-images.githubusercontent.com/12049360/173175463-7eaa1d18-9063-443f-ab0a-3d2acf2dca6d.png)
 
 ![image](https://user-images.githubusercontent.com/12049360/173175498-a1e09585-fd4a-4dbb-aedf-862686dd1b8b.png)
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.

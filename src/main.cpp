@@ -1,3 +1,22 @@
+/*
+ * This file is part of the MUSEE DES EGOUTS project.
+ * 
+ * Copyright (C) 2024 Nicolas de Barquin
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_MCP23X17.h>
@@ -26,34 +45,6 @@ enum ScenarioState {
   IDLE,
   S1, S2, S3, S4, S5
 } currentState = IDLE;
-
-// Pin definitions
-const int pump = 0;
-const int ledCiterne = 1;
-const int sterput = 2;
-const int citerne = 3;
-const int tImper = 4;
-const int tPlant = 5;
-const int egout = 6;
-const int bOrage = 7;
-const int ledBO2 = 8;
-const int ledBO1 = 9;
-const int pChamp = 10;
-const int pJardin = 11;
-const int collecteur = 12;
-const int ruePlace = 13;
-const int riviere = 14;
-const int simVille = 15;
-
-const int StripPin = 5;
-const int nappe = 6;
-const int egg = 7;
-const int cave = 8;
-const int toilette = 9;
-const int sdb1 = 10;
-const int arrosage = 11;
-const int cuisine = 12;
-const int lavelinge = 13;
 
 const int ledButtonArray[] = {0, 1, 2, 3, 4};
 const int numLeds = 5;

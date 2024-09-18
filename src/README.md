@@ -89,6 +89,53 @@ src/
 4. **Storm (S4)**: Illustrates heavy rain, street flooding, and the use of storm basins.
 5. **Rainwater Harvesting (S5)**: Demonstrates rainwater collection, storage, and use for irrigation and household purposes.
 
+## Pin Mappings and Hardware Connections
+
+The project uses two MCP23X17 I/O expanders (MCP0 and MCP1) to control various components. Here's a detailed breakdown of the pin assignments:
+
+### MCP1 (16 channels) - Relays for Valves
+
+| Pin | Component | Description |
+|-----|-----------|-------------|
+| 0   | Pump      | 220V pump |
+| 1   | LED Citerne | Tank LED (5V) |
+| 2   | Sterput   | Valve 1: House septic tank |
+| 3   | Citerne   | Valve 2: Tank |
+| 4   | TImper    | Valve 3: Left roof rainwater |
+| 5   | TPlant    | Valve 4: Right roof rainwater |
+| 6   | Egout     | Valve 5: Sewer mushroom |
+| 7   | BOrage    | Valve 6: Storm basin |
+| 8   | LED BO2   | Lower storm basin LED (5V) |
+| 9   | LED BO1   | Upper storm basin LED (5V) |
+| 10  | PChamp    | Valve 7: Field rainwater |
+| 11  | PJardin   | Valve 8: Garden rainwater |
+| 12  | Collecteur| Valve 9: House collector (egg) |
+| 13  | RuePlace  | Valve 10: Street and square |
+| 14  | Riviere   | Valve 11: River |
+| 15  | SimVille  | Valve 12: Neighbor's house in egg |
+
+### MCP0 (16 channels) - LEDs and Other Components
+
+| Pin | Component | Description |
+|-----|-----------|-------------|
+| 5   | StripPin  | LED strip (via MOSFET, 12V) |
+| 6   | Nappe     | Groundwater table (12V) |
+| 7   | Egg       | Egg collector (12V) |
+| 8   | Cave      | Home 6 |
+| 9   | Toilette  | Home 2 |
+| 10  | SDB1      | Home 1 |
+| 11  | Arrosage  | Home 4 |
+| 12  | Cuisine   | Home 3 |
+| 13  | Lavelinge | Home 5 |
+
+These pin mappings are crucial for understanding how different components are controlled in various scenarios. For example:
+
+- The pump (pin 0 on MCP1) is used in multiple scenarios to simulate water flow.
+- Valves (pins 2-7, 10-15 on MCP1) control water flow in different parts of the system, such as from roofs to tanks or from houses to sewers.
+- LEDs (most pins on MCP0 and some on MCP1) provide visual feedback for different water-related events and states.
+
+Proper documentation of these mappings is essential for maintaining and updating the system. Always refer to these mappings when modifying scenarios or adding new features to ensure correct component control.
+
 ## Usage
 
 1. Upload the code to your Arduino board.
@@ -112,4 +159,4 @@ This project provides an educational and engaging way to learn about the urban w
 
 ## Note
 
-Make sure to have all the required libraries installed in your Arduino IDE or PlatformIO environment before compiling and uploading the code.
+Make sure to have all the required libraries installed in your Arduino IDE or PlatformIO environment before compiling and uploading the code. Always double-check the pin connections when setting up or modifying the hardware to ensure they match the software definitions in `pins.h`.
