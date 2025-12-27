@@ -84,7 +84,6 @@ void setup() {
 
   // clean start LOW arduino pin 2 to 9 
   for (size_t i = 2; i <= 9 ; i++){
-    mcp0.pinMode(i, OUTPUT);
     digitalWrite(i,LOW);
     delay(10);
   }
@@ -96,7 +95,6 @@ void setup() {
     mcp0.digitalWrite(i, LOW);
     delay(50);
   }
-
 
   // MCP1, define all OUTPUT
   mcp1.begin_I2C(1);                               // use default address 1 - 5V/GND/GND
@@ -448,7 +446,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       piste5();                                                         // piste audio douche 24'
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 5 );                  // wait
       mcp1.digitalWrite(pump, HIGH);                                    // Power ON pompe
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 0.5 );
       mcp1.digitalWrite(sterput, HIGH);                                 // Valve ON sterput
       mcp0.digitalWrite(cave, HIGH);                                    // LED ON cave
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 1 );
@@ -497,7 +495,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       storm(1);                                                       // thunder
       piste4();                                                       // piste audio pluie 24'
       mcp1.digitalWrite(pump, HIGH);                                  // Power ON pompe
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 0.5 );
       mcp1.digitalWrite(tImper, HIGH);                                // Valve ON pluie toit G 
       mcp1.digitalWrite(tPlant, HIGH);                                // Valve ON pluie toit D 
       mcp1.digitalWrite(pJardin, HIGH);                               // Valve ON pluie jardin
@@ -515,7 +513,7 @@ void TaskActions(void *pvParameters)  // This is a task.
       mcp1.digitalWrite(collecteur, HIGH);                            // Valve ON collecteur Egg
         vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );                // wait, l'eau s'est écoulée des ruePlace
       mcp1.digitalWrite(ruePlace, LOW);                               // Valve OFF rue&place
-        vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );               // wait, l'eau est dans le champignon, bOrage + led Haut + egout
+        vTaskDelay( (1000 / portTICK_PERIOD_MS) * 0.5 );               // wait, l'eau est dans le champignon, bOrage + led Haut + egout
       mcp1.digitalWrite(bOrage, HIGH);                                // Valve ON bassin d'orage
       mcp1.digitalWrite(ledBO1, HIGH);                                // LED ON bassin d'orage haut
       mcp1.digitalWrite(egout, HIGH);                                 // Valve ON egout
@@ -577,7 +575,7 @@ void TaskActions(void *pvParameters)  // This is a task.
         piste2();                                                 // piste audio toilette 10'
         mcp0.digitalWrite(egg, HIGH);                             // LED ON collecteur Egg
         mcp1.digitalWrite(collecteur, HIGH);                      // Valve ON collecteur Egg
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );         // wait
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 0.5 );         // wait
         mcp0.digitalWrite(cave, HIGH);                            // LED ON cave
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * 10 );         
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * 3 );          // wait, la pompe d'arrosage est éteinte
@@ -586,7 +584,7 @@ void TaskActions(void *pvParameters)  // This is a task.
           vTaskDelay( (1000 / portTICK_PERIOD_MS) * 2 );          // wait
         mcp1.digitalWrite(collecteur, LOW);                       // Valve OFF collecteur Egg
         mcp1.digitalWrite(pump, LOW);                             // Power OFF pompe
-          vTaskDelay( (1000 / portTICK_PERIOD_MS) * .5 );         // wait
+          vTaskDelay( (1000 / portTICK_PERIOD_MS) * 0.5 );         // wait
         mcp0.digitalWrite(cave, LOW);                             // LED OFF cave
         mcp0.digitalWrite(egg, LOW);                              // LED OFF collecteur Egg 
         mcp1.digitalWrite(ledCiterne, LOW);                       // LED OFF citerne
